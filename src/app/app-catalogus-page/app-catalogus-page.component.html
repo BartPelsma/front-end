@@ -23,6 +23,11 @@
     </mat-card>
 </div>
 <!-- Regular generating fields for the catalog-->
+<div class="form-group">
+  <select class="form-control">
+    <option *ngFor = "let catalogItem of catalogItemsWithCategory" class="dropdown" value="{{catalogItem.categoryName}}">{{catalogItem.categoryName}}</option>
+  </select>
+  </div>
 <div *ngFor="let catalogItem of catalogItemsWithCategory" class="main-container">
     <mat-card class="catalog-card">
         <mat-card-header>
