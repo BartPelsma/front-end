@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent {
 
   constructor(
     public translate: TranslateService,
+    private titleService: Title,
     private router: Router
   ) {
     this.initLanguage();
@@ -102,19 +104,29 @@ export class AppComponent {
   /*
     Returns translated page title for current route.
   */
+    public setTitle( newTitle: string) {
+      this.titleService.setTitle( newTitle );
+    }
+
   getTranslatedRoute(): string {
     let textToTranslate = 'APP.ROUTE.UNKNOWN_ROUTE';
     if (this.router.url.endsWith('products/add')) {
+      this.setTitle("Product");
       textToTranslate = 'APP.ROUTE.ADD_PRODUCT';
     } else if (this.router.url.endsWith('products')) {
+      this.setTitle("Product");
       textToTranslate = 'APP.ROUTE.PRODUCTS';
     } else if (this.router.url.endsWith('cart')) {
+      this.setTitle("Cart");
       textToTranslate = 'APP.ROUTE.CART';
     } else if (this.router.url.endsWith('catalog')) {
+      this.setTitle("Catalog");
       textToTranslate = 'APP.ROUTE.CATALOG';
     } else if (this.router.url.endsWith('reservations')) {
+      this.setTitle("Reservations");
       textToTranslate = 'APP.ROUTE.RESERVATIONS';
     } else if (this.router.url.includes('reservation')) {
+      this.setTitle("Reservations");
       textToTranslate = 'APP.ROUTE.RESERVATION';
     }
 
