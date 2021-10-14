@@ -10,6 +10,10 @@ export class MyFilterPipe implements PipeTransform {
         if (!items || !filter) {
             return items;
         }
+        else if(filter == 'All')
+        {
+          return items;
+        }
         return items.filter(items => items.categoryName.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
     }
 }
