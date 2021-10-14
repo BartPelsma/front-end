@@ -1,6 +1,6 @@
 # ACIRental
-[![Build and test Angular web-application](https://github.com/SieBrum/aci-frontend/actions/workflows/build.yml/badge.svg)](https://github.com/SieBrum/aci-frontend/actions/workflows/build.yml)
-[![Publish new release to Docker hub](https://github.com/SieBrum/aci-frontend/actions/workflows/release.yml/badge.svg)](https://github.com/SieBrum/aci-frontend/actions/workflows/release.yml)
+[![Build and test Angular web-application](https://github.com/ACI-Rental/front-end/actions/workflows/build.yml/badge.svg)](https://github.com/ACI-Rental/front-end/actions/workflows/build.yml)
+[![Publish new release to Docker hub](https://github.com/ACI-Rental/front-end/actions/workflows/release.yml/badge.svg)](https://github.com/ACI-Rental/front-end/actions/workflows/release.yml)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
 
