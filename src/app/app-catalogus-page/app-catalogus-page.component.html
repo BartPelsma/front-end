@@ -24,11 +24,15 @@
 </div>
 <!-- Regular generating fields for the catalog-->
 <div class="form-group">
-  <select class="form-control">
+  <select class="selector" [(ngModel)]="filter"
+    #mySelect
+    (change)='search(mySelect.value)'>
     <option *ngFor = "let catalogItem of catalogItemsWithCategory" class="dropdown" value="{{catalogItem.categoryName}}">{{catalogItem.categoryName}}</option>
   </select>
-  </div>
-<div *ngFor="let catalogItem of catalogItemsWithCategory" class="main-container">
+</div>
+
+
+<div *ngFor="let catalogItem of catalogItemsWithCategory|MyFilterPipe:filter" class="main-container">
     <mat-card class="catalog-card">
         <mat-card-header>
             <mat-card-title name="cart-title">
@@ -96,7 +100,7 @@
             </div>
         </mat-card-content>
     </mat-card>
-</div>
+  </div>
 <mat-paginator *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0"
     style="margin-top: 30px;" [length]="totalProductCount" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
     [pageIndex]="pageIndex" (page)="pageEvent = handlePageEvent($event)" showFirstLastButtons></mat-paginator>

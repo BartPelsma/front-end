@@ -24,6 +24,8 @@ import { AppInventoryPageComponent } from './app-inventory-page/app-inventory-pa
 import { AppReservationsOverviewPageComponent } from './app-reservations-overview-page/app-reservations-overview-page.component';
 import { AppReservationActionPageComponent } from './app-reservation-action-page/app-reservation-action-page.component';
 
+import { MyFilterPipe } from './pipes/MyFilterPipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,8 @@ import { AppReservationActionPageComponent } from './app-reservation-action-page
     AppArchiveDialogComponent,
     AppCatalogusPageComponent,
     AppReservationsOverviewPageComponent,
-    AppReservationActionPageComponent
+    AppReservationActionPageComponent,
+    MyFilterPipe
   ],
   imports: [
     BrowserModule,
