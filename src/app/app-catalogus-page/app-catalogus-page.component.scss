@@ -111,3 +111,19 @@
         }
     }
 }
+
+.container {
+  min-height:100%;
+  position:relative;
+}
+
+.body {
+  padding-bottom:75px;   /* adjust to footer height */
+}
+.footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+}
+
+
