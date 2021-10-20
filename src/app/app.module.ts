@@ -23,6 +23,7 @@ import { HttpLoaderFactory } from './factories/http-loader.factory';
 import { AppInventoryPageComponent } from './app-inventory-page/app-inventory-page.component';
 import { AppReservationsOverviewPageComponent } from './app-reservations-overview-page/app-reservations-overview-page.component';
 import { AppReservationActionPageComponent } from './app-reservation-action-page/app-reservation-action-page.component';
+import { AppShoppingCartDatepickerComponent } from './app-shopping-cart-datepicker/app-shopping-cart-datepicker.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AppReservationActionPageComponent } from './app-reservation-action-page
     AppArchiveDialogComponent,
     AppCatalogusPageComponent,
     AppReservationsOverviewPageComponent,
-    AppReservationActionPageComponent
+    AppReservationActionPageComponent,
+    AppShoppingCartDatepickerComponent
   ],
   imports: [
     BrowserModule,

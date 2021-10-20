@@ -97,6 +97,7 @@
   },
   "PRODUCT_DATEPICKER": {
     "LABEL": "Choose a date period",
+    "LABEL_DISABLED": "Chosen period",
     "ERROR": {
       "START_DATE_WEEKEND": "Start date cannot be in the weekend",
       "END_DATE_WEEKEND": "End date cannot be in the weekend",
