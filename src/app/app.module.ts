@@ -23,6 +23,7 @@ import { HttpLoaderFactory } from './factories/http-loader.factory';
 import { AppInventoryPageComponent } from './app-inventory-page/app-inventory-page.component';
 import { AppReservationsOverviewPageComponent } from './app-reservations-overview-page/app-reservations-overview-page.component';
 import { AppReservationActionPageComponent } from './app-reservation-action-page/app-reservation-action-page.component';
+import { AppUsersPageComponent } from './app-users-page/app-users-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AppReservationActionPageComponent } from './app-reservation-action-page
     AppArchiveDialogComponent,
     AppCatalogusPageComponent,
     AppReservationsOverviewPageComponent,
-    AppReservationActionPageComponent
+    AppReservationActionPageComponent,
+    AppUsersPageComponent
   ],
   imports: [
     BrowserModule,
