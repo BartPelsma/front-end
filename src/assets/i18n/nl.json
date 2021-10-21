@@ -97,6 +97,7 @@
   },
   "PRODUCT_DATEPICKER": {
     "LABEL": "Kies een periode",
+    "LABEL_DISABLED": "Gekozen periode",
     "ERROR": {
       "START_DATE_WEEKEND": "Startdatum kan niet in het weekend zijn",
       "END_DATE_WEEKEND": "Einddatum kan niet in het weekend zijn",
