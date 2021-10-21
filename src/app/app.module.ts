@@ -23,6 +23,8 @@ import { HttpLoaderFactory } from './factories/http-loader.factory';
 import { AppInventoryPageComponent } from './app-inventory-page/app-inventory-page.component';
 import { AppReservationsOverviewPageComponent } from './app-reservations-overview-page/app-reservations-overview-page.component';
 import { AppReservationActionPageComponent } from './app-reservation-action-page/app-reservation-action-page.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { AppReservationActionPageComponent } from './app-reservation-action-page
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    MatSortModule,
+    MatTableModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

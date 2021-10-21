@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IProductData } from '../models/product-data.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 import { ApiService } from '../api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
@@ -20,11 +21,13 @@ const PRODUCT_COUNT_DEFAULT = 0;
 })
 export class AppInventoryPageComponent implements OnInit {
 
+
   // shows loading spinner if true
   isLoading = true;
 
   // determined whch columns that are displayed in the inventory table and in which order.
   displayedColumns: string[] = ['name', 'location', 'requiresApproval', 'status', 'options'];
+
 
   // MatPaginator Inputs
   totalProductCount = PRODUCT_COUNT_DEFAULT;
@@ -50,6 +53,12 @@ export class AppInventoryPageComponent implements OnInit {
   ngOnInit(): void {
     this.retrieveLocalStorage();
     this.getProductData();
+    this.dataSource.sort = this.sort;
+  }
+  
+  @ViewChild(MatSort) sort: MatSort;
+  ngAfterViewInit(){
+    this.dataSource.sort = this.sort;
   }
 
   /**

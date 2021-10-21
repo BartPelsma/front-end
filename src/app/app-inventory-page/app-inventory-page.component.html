@@ -1,19 +1,19 @@
 <div class="container">
-    <mat-card *ngIf="!isLoading" class="main-content">
+    <mat-card [hidden]="!isLoading" class="main-content">
         <mat-card-header>
             <mat-card-title name="add-product-title">
                 <h1 class="mat-h1">{{ 'INVENTORY.TITLE' | translate }}</h1>
             </mat-card-title>
         </mat-card-header>
         <mat-card-content class="card-content mat-elevation-z0">
-            <mat-table *ngIf="dataSource.data.length > 0 && isLoading === false" [dataSource]="dataSource"
+            <mat-table [hidden]="dataSource.data.length > 0 && isLoading === false" [dataSource]="dataSource" matSort
                 class="mat-elevation-z0">
                 <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
                 <!-- Status Column -->
                 <ng-container matColumnDef="status">
-                    <mat-header-cell *matHeaderCellDef>{{ 'ATTRIBUTES.STATUS' | translate }}</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'ATTRIBUTES.STATUS' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'ATTRIBUTES.STATUS' | translate">
                         <mat-chip [ngClass]="element.status | statusNameClass">
                             {{ element.status | statusNameKey | translate }}
@@ -23,7 +23,7 @@
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
-                    <mat-header-cell *matHeaderCellDef> {{ 'ATTRIBUTES.NAME' | translate }} </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'ATTRIBUTES.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'ATTRIBUTES.NAME' | translate">
                         {{ element.name }}
                     </mat-cell>
@@ -31,7 +31,7 @@
 
                 <!-- Location Column -->
                 <ng-container matColumnDef="location">
-                    <mat-header-cell *matHeaderCellDef> {{ 'ATTRIBUTES.LOCATION' | translate }} </mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'ATTRIBUTES.LOCATION' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'ATTRIBUTES.LOCATION' | translate">
                         {{ element.location }}
                     </mat-cell>
@@ -39,7 +39,7 @@
 
                 <!-- RequiresApproval Column -->
                 <ng-container matColumnDef="requiresApproval">
-                    <mat-header-cell *matHeaderCellDef> {{ 'ATTRIBUTES.REQUIRES_APPROVAL' | translate }}
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'ATTRIBUTES.REQUIRES_APPROVAL' | translate }}
                     </mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'ATTRIBUTES.REQUIRES_APPROVAL' | translate">
                         {{ (element.requiresApproval ? 'GENERIC.YES' : 'GENERIC.NO') | translate }}
@@ -73,7 +73,7 @@
                 <br>
                 {{ 'INVENTORY.INVENTORY_EMPTY' | translate }}
             </div>
-            <mat-paginator *ngIf="dataSource.data.length > 0" [length]="totalProductCount" [pageSize]="pageSize"
+            <mat-paginator [hidden]="dataSource.data.length > 0" [length]="totalProductCount" [pageSize]="pageSize"
                 [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" (page)="pageEvent = handlePageEvent($event)"
                 showFirstLastButtons>
             </mat-paginator>
