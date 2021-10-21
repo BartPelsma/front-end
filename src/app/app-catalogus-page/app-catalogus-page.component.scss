@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-.mat-standard-chip {    
+.mat-standard-chip {
   height: auto !important;
 }
 
@@ -20,7 +20,7 @@
     .catalog-card {
         display:flex;
         flex-direction: column;
-        width: 80%;
+        width: 70%;
         margin-top: 20px;
         .catalog-content {
             display: flex;
@@ -31,7 +31,7 @@
                 margin-bottom: 20px;
                 margin-top: 10px;
 
-                @media (max-width: 500px) { 
+                @media (max-width: 500px) {
                   flex-direction: column;
                 }
 
@@ -48,7 +48,7 @@
                     margin: auto;
                     display:block;
                     padding-top: 17px;
-  
+
                     img {
                       max-width: 100px;
                       max-height: 100px;
@@ -66,7 +66,7 @@
                 .catalogItemBox-description{
                   max-width: 600px;
 
-                  
+
                 }
 
                 .catalogItemBox-datepicker{
@@ -91,19 +91,19 @@
                     }
                   }
                 }
-                
+
                 .available-status {
                     background-color: #006600;
                   }
-                  
+
                   .requires-approval-status {
                     background-color: rgb(152, 79, 241);
                   }
-                  
+
                   .unavailable-status {
                     background-color: #FF8000;
                   }
-                  
+
                   .archived-status {
                     background-color: red;
                   }

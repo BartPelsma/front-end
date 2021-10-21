@@ -218,4 +218,12 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     });
   }
 
+  //Filter values
+  filter:string = '';
+  filterargs = {category: ''};
+
+  //Filter function
+  search(selectedFilter:string){
+    this.filterargs = {category: this.filter};
+  }
 }

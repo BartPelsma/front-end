@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { AppCatalogusPageComponent } from './app-catalogus-page.component';
+
+
 
 describe('AppCatalogusPageComponent', () => {
   let component: AppCatalogusPageComponent;
