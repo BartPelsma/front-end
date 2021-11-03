@@ -82,9 +82,18 @@
       "NO_PRODUCT_FOUND": "Het product dat gearchiveerd moet worden is niet gevonden",
       "PRODUCT_ALREADY_ARCHIVED": "Dit product is al gearchiveerd",
       "ARCHIVE_SUCCESFULL": "Het product is succesvol gearchiveerd!"
+<<<<<<< HEAD
     },
     "DELETE":{
       "DIALOG_DELETE_BUTTON": "PDF Verwijderen"
+=======
+
+    },
+    "DELETE":{
+      "DIALOG_DELETE_BUTTON": "PDF Verwijderen",
+      "DIALOG_DELETE_MESSAGE": "U staat op het punt de PDF van het volgende product te verwijderen:"
+
+>>>>>>> origin/PDFButtons
     }
   },
   "CART": {
