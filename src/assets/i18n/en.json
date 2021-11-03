@@ -82,18 +82,12 @@
       "NO_PRODUCT_FOUND": "The product to archive was not found",
       "PRODUCT_ALREADY_ARCHIVED": "This product is already archived",
       "ARCHIVE_SUCCESFULL": "The product has been archived!"
-<<<<<<< HEAD
-    },
-    "DELETE":{
-      "DIALOG_DELETE_BUTTON": "Delete PDF"
-=======
       
     },
     "DELETE":{
       "DIALOG_DELETE_BUTTON": "Delete PDF",
       "DIALOG_DELETE_MESSAGE": "You are about to delete the PDF of the following product:"
 
->>>>>>> origin/PDFButtons
     }
   },
   "CART": {

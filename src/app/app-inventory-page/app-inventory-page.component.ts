@@ -95,14 +95,8 @@ export class AppInventoryPageComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-  openAddPDF(element: any): void{
-    const dialogRef = this.dialog.open(AppArchiveDialogComponent, {
-=======
-
   openAddPDF(element: any): void{
     const dialogRef = this.dialog.open(AppAddPdfComponent, {
->>>>>>> origin/PDFButtons
       data: {
         id: element.id,
         name: element.name
@@ -112,11 +106,7 @@ export class AppInventoryPageComponent implements OnInit {
   }
 
   openDeletePDF(element: any): void{
-<<<<<<< HEAD
-    const dialogRef = this.dialog.open(AppArchiveDialogComponent, {
-=======
     const dialogRef = this.dialog.open(AppDeletePdfComponent, {
->>>>>>> origin/PDFButtons
       data: {
         id: element.id,
         name: element.name
