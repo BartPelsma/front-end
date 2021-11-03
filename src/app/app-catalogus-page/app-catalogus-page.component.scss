@@ -117,8 +117,15 @@
   position:relative;
 }
 
+.header{
+  position: absolute;
+  top:0px;
+  width:100%;
+}
+
 .body {
-  padding-bottom:75px;   /* adjust to footer height */
+  padding-top: 56px;
+  padding-bottom:75px;  
 }
 .footer {
   position:absolute;
@@ -130,6 +137,15 @@
   height: 56px;
   width: 100%;
   background-color: #424242;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // flex-direction: column;
+  white-space: nowrap;
+}
+
+.filter{
+  height: 100%;
 }
 
 

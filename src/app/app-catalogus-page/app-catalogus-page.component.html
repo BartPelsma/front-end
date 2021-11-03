@@ -5,6 +5,7 @@
         <mat-spinner diameter="70"></mat-spinner>
     </mat-card>
 </div>
+
 <!-- Display box if there are no catalog items to be found -->
 <div *ngIf="!isLoading && catalogItemsWithCategory !== null && catalogItemsWithCategory.length < 1 "
     style="text-align: center; margin-top: 10px;">
@@ -23,23 +24,32 @@
     </mat-card>
 </div>
 
-<div>
-    <!-- Regular generating fields for the catalog-->
-
     <div class="container">
-        <div class="body">
 
+        <div class="header">
             <!-- Filter function-->
             <div class="filterbar" *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0">
-                <div class="form-group" style="padding-top:10px; padding-left: 600px; max-width: 100px;">
+                <!-- <div class="form-group" style="padding-top:10px; padding-left: 600px; max-width: 150px;">
                     <mat-label>Choose a filter</mat-label>
                     <mat-select class="selector" [(ngModel)]="filter" #mySelect (change)='search(mySelect.value)'>
                         <mat-option selected value="All">All</mat-option>
                         <mat-option *ngFor="let catalogItem of catalogItemsWithCategory" class="dropdown"
                             value="{{catalogItem.categoryName}}">{{catalogItem.categoryName}}</mat-option>
                     </mat-select>
-                </div>
+                </div> -->
+
+                <mat-form-field appearance="fill" class="filter">
+                    <mat-label >Choose a filter</mat-label>
+                    <mat-select class="selector" [(ngModel)]="filter" #mySelect (change)='search(mySelect.value)'>
+                        <mat-option selected value="All">All</mat-option>
+                        <mat-option *ngFor="let catalogItem of catalogItemsWithCategory" class="dropdown"
+                            value="{{catalogItem.categoryName}}">{{catalogItem.categoryName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
             </div>   
+        </div>
+
+        <div class="body">
 
             <div *ngFor="let catalogItem of catalogItemsWithCategory|MyFilterPipe:filter" class="main-container">
                 <mat-card class="catalog-card">
@@ -112,12 +122,10 @@
                 </mat-card>
             </div>
         </div>
-
+        <div class="footer">
+            <mat-paginator *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0"
+                style="margin-top: 30px;" [length]="totalProductCount" [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" (page)="pageEvent = handlePageEvent($event)"
+                showFirstLastButtons></mat-paginator>
+        </div>
     </div>
-    <div class="footer">
-        <mat-paginator *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0"
-            style="margin-top: 30px;" [length]="totalProductCount" [pageSize]="pageSize"
-            [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" (page)="pageEvent = handlePageEvent($event)"
-            showFirstLastButtons></mat-paginator>
-    </div>
-</div>
