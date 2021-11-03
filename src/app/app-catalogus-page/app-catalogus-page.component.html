@@ -86,6 +86,9 @@
                         <button name="add-to-cart-button" *ngIf="item.status != 1" mat-flat-button color="primary"
                             (click)="addItemToCart(item)"> {{ 'CATALOG.ADD_TO_CART'
                             | translate }} </button>
+                            <button name="pdf.bekijken"  mat-flat-button color="primary"
+                            (click)="addItemToCart(item)"> {{ 'CATALOG.VIEW_PDF'
+                            | translate }} </button>
                     </div>
                 </div>
             </div>

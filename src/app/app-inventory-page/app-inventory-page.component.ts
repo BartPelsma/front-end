@@ -93,6 +93,26 @@ export class AppInventoryPageComponent implements OnInit {
     });
   }
 
+  openAddPDF(element: any): void{
+    const dialogRef = this.dialog.open(AppArchiveDialogComponent, {
+      data: {
+        id: element.id,
+        name: element.name
+      },
+      backdropClass: 'no-backdrop',
+    });    
+  }
+
+  openDeletePDF(element: any): void{
+    const dialogRef = this.dialog.open(AppArchiveDialogComponent, {
+      data: {
+        id: element.id,
+        name: element.name
+      },
+      backdropClass: 'no-backdrop',
+    });
+  }
+
   /*
     Show error notification
 

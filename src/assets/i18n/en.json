@@ -17,7 +17,8 @@
     "EMPTY_DATE": "Add a date to the product",
     "CART_ADD_SUCCESSFUL": "has been added to the shopping cart",
     "NO_PRODUCTS": "Currently there are no products in the catalog",
-    "LOADING": "Loading catalog"
+    "LOADING": "Loading catalog",
+    "VIEW_PDF": "View PDF"
   },
   "INVENTORY": {
     "TITLE": "Inventory",
@@ -69,7 +70,8 @@
       "NO_CATEGORIES_RESPONSE": "Something went wrong with receiving the category data. Please try again later or contact an administrator",
       "NO_CATALOG_NUMBER_RESPONSE": "Something went wrong with receiving the catalog data. Please try again later or contact an administrator",
       "NO_DATA": "Something went wrong with saving your data. Please try again later or contact an administrator",
-      "ADD_SUCCESSFUL": "Product has been added!"
+      "ADD_SUCCESSFUL": "Product has been added!",
+      "DIALOG_ADD_BUTTON": "Add PDF"
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Confirm",
@@ -80,6 +82,9 @@
       "NO_PRODUCT_FOUND": "The product to archive was not found",
       "PRODUCT_ALREADY_ARCHIVED": "This product is already archived",
       "ARCHIVE_SUCCESFULL": "The product has been archived!"
+    },
+    "DELETE":{
+      "DIALOG_DELETE_BUTTON": "Delete PDF"
     }
   },
   "CART": {
