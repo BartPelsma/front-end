@@ -23,21 +23,24 @@
     </mat-card>
 </div>
 
-<!-- Filter function-->
 <div>
-    <div class="form-group" style="padding-top:10px; padding-left: 600px; max-width: 100px;">
-        <mat-label>Choose a filter</mat-label>
-        <mat-select class="selector" [(ngModel)]="filter" #mySelect (change)='search(mySelect.value)'>
-            <mat-option selected value="All">All</mat-option>
-            <mat-option *ngFor="let catalogItem of catalogItemsWithCategory" class="dropdown"
-                value="{{catalogItem.categoryName}}">{{catalogItem.categoryName}}</mat-option>
-        </mat-select>
-    </div>
-
     <!-- Regular generating fields for the catalog-->
 
     <div class="container">
         <div class="body">
+
+            <!-- Filter function-->
+            <div class="filterbar" *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0">
+                <div class="form-group" style="padding-top:10px; padding-left: 600px; max-width: 100px;">
+                    <mat-label>Choose a filter</mat-label>
+                    <mat-select class="selector" [(ngModel)]="filter" #mySelect (change)='search(mySelect.value)'>
+                        <mat-option selected value="All">All</mat-option>
+                        <mat-option *ngFor="let catalogItem of catalogItemsWithCategory" class="dropdown"
+                            value="{{catalogItem.categoryName}}">{{catalogItem.categoryName}}</mat-option>
+                    </mat-select>
+                </div>
+            </div>   
+
             <div *ngFor="let catalogItem of catalogItemsWithCategory|MyFilterPipe:filter" class="main-container">
                 <mat-card class="catalog-card">
                     <mat-card-header>
