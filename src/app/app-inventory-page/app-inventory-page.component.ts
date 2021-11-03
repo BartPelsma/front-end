@@ -95,8 +95,7 @@ export class AppInventoryPageComponent implements OnInit {
     });
   }
 
-<<<<<<< Updated upstream
-=======
+
   openAddPDF(element: any): void{
     const dialogRef = this.dialog.open(AppAddPdfComponent, {
       data: {
@@ -117,7 +116,6 @@ export class AppInventoryPageComponent implements OnInit {
     });
   }
 
->>>>>>> Stashed changes
   /*
     Show error notification
 
