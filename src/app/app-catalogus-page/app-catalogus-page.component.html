@@ -83,11 +83,11 @@
                                 (datesChanged)="datepickerDatesChanged(item, $event)">
                             </app-product-datepicker>
                         </ng-template>
-                        <button name="add-to-cart-button" *ngIf="item.status != 1" mat-flat-button color="primary"
+                        <button style="margin: 5px;" name="add-to-cart-button" *ngIf="item.status != 1" mat-flat-button color="primary"
                             (click)="addItemToCart(item)"> {{ 'CATALOG.ADD_TO_CART'
                             | translate }} </button>
-                            <button name="pdf.bekijken"  mat-flat-button color="primary"
-                            (click)="addItemToCart(item)"> {{ 'CATALOG.VIEW_PDF'
+                            <button style="margin: 5px;" name="pdf.bekijken"  mat-flat-button color="primary"
+                            (click)="DownloadPDF"> {{ 'CATALOG.VIEW_PDF'
                             | translate }} </button>
                     </div>
                 </div>

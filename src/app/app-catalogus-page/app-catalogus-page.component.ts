@@ -130,6 +130,10 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     }
   }
 
+  DownloadPDF(){
+
+  }
+
   /**
    * Handles the checking of amount of images with a received item
    * @param images images object that should be handled
