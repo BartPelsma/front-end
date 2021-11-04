@@ -24,6 +24,7 @@ import { AppInventoryPageComponent } from './app-inventory-page/app-inventory-pa
 import { AppReservationsOverviewPageComponent } from './app-reservations-overview-page/app-reservations-overview-page.component';
 import { AppReservationActionPageComponent } from './app-reservation-action-page/app-reservation-action-page.component';
 import { AppUsersPageComponent } from './app-users-page/app-users-page.component';
+import { RoleNameKeyPipe } from './pipes/role-name-key.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AppUsersPageComponent } from './app-users-page/app-users-page.component
     AppCatalogusPageComponent,
     AppReservationsOverviewPageComponent,
     AppReservationActionPageComponent,
-    AppUsersPageComponent
+    AppUsersPageComponent,
+    RoleNameKeyPipe
   ],
   imports: [
     BrowserModule,

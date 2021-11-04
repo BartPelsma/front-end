@@ -140,7 +140,12 @@
     "USERS_EMPTY": "Geen gebruikers gevonden",
     "LOADING": "Laden van gebruikers",
     "NO_USERS": "Geen gebruikers gevonden",
-    "NO_USERS_RESPONSE": "Er is iets misgegaan, probeer later opnieuw"
+    "NO_USERS_RESPONSE": "Er is iets misgegaan, probeer later opnieuw",
+    "ROLETYPE": {
+      "USER": "Gebruiker",
+      "EMPLOYEE": "Medewerker",
+      "ADMIN": "Admin"
+    }
   },
   "USERINFO": {
     "NUMBER": "Studentennummer",

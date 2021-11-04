@@ -31,7 +31,7 @@
                 <ng-container matColumnDef="role">
                     <mat-header-cell *matHeaderCellDef> {{ 'USERINFO.ROLE' | translate }} </mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.ROLE' | translate">
-                        {{ element.role.name }}
+                        {{ element.role.name | roleNameKey | translate }}
                     </mat-cell>
                 </ng-container>
 
