@@ -50,6 +50,10 @@ export class AppInventoryPageComponent implements OnInit {
     this.dataSource = new MatTableDataSource();
   }
 
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  }
+
   ngOnInit(): void {
     this.retrieveLocalStorage();
     this.getProductData();

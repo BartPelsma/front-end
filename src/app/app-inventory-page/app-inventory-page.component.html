@@ -4,6 +4,7 @@
             <mat-card-title name="add-product-title">
                 <h1 class="mat-h1">{{ 'INVENTORY.TITLE' | translate }}</h1>
             </mat-card-title>
+            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
         </mat-card-header>
         <mat-card-content class="card-content mat-elevation-z0">
             <mat-table [hidden]="dataSource.data.length > 0 && isLoading === false" [dataSource]="dataSource" matSort
