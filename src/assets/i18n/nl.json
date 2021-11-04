@@ -6,7 +6,8 @@
       "CART": "Winkelmandje",
       "CATALOG": "Catalogus",
       "RESERVATIONS": "Reserveringen",
-      "RESERVATION": "Reservering"
+      "RESERVATION": "Reservering",
+      "USERS": "Gebruikers"
     }
   },
   "CATALOG": {
@@ -133,6 +134,18 @@
     "LOCATION": "Locatie",
     "REQUIRES_APPROVAL": "Goedkeuring vereist",
     "OPTIONS": "Opties"
+  },
+  "USERS": {
+    "TITLE": "Gebruikers",
+    "USERS_EMPTY": "Geen gebruikers gevonden",
+    "LOADING": "Laden van gebruikers",
+    "NO_USERS": "Geen gebruikers gevonden",
+    "NO_USERS_RESPONSE": "Er is iets misgegaan, probeer later opnieuw"
+  },
+  "USERINFO": {
+    "NUMBER": "Studentennummer",
+    "BANNED": "Geblokkerd tot",
+    "ROLE": "Rol"
   },
   "GENERIC": {
     "YES": "Ja",

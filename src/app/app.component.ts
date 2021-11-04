@@ -114,9 +114,11 @@ export class AppComponent {
       textToTranslate = 'APP.ROUTE.CATALOG';
     } else if (this.router.url.endsWith('reservations')) {
       textToTranslate = 'APP.ROUTE.RESERVATIONS';
+    } else if (this.router.url.endsWith('users')) {
+      textToTranslate = 'APP.ROUTE.USERS';
     } else if (this.router.url.includes('reservation')) {
       textToTranslate = 'APP.ROUTE.RESERVATION';
-    }
+    } 
 
     return this.translate.instant(textToTranslate);
   }
