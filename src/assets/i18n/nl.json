@@ -17,7 +17,8 @@
     "EMPTY_DATE": "Voeg een datum toe aan het product",
     "CART_ADD_SUCCESSFUL": "is toegevoegd aan winkelmandje",
     "NO_PRODUCTS": "Er zijn huidig geen producten aanwezig in de catalogus",
-    "LOADING": "Laden van catalogus"
+    "LOADING": "Laden van catalogus",
+    "VIEW_PDF":  "PDF bekijken"
   },
   "INVENTORY": {
     "TITLE": "Inventaris",
@@ -69,7 +70,8 @@
       "NO_CATEGORIES_RESPONSE": "Er is iets misgegaan met het ophalen van de categorieën. Probeer het later opnieuw of contacteer een administrator",
       "NO_CATALOG_NUMBER_RESPONSE": "Er is iets misgegaan met het ophalen van de catalogusnummers. Probeer het later opnieuw of contacteer een administrator",
       "NO_DATA": "Er is iets misgegaan met het opslaan van de gegevens. Probeer het later opnieuw of contacteer een administrator",
-      "ADD_SUCCESSFUL": "Product is toegevoegd!"
+      "ADD_SUCCESSFUL": "Product is toegevoegd!",
+      "DIALOG_ADD_BUTTON": "PDF Toevoegen"
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Bevestig",
@@ -80,6 +82,12 @@
       "NO_PRODUCT_FOUND": "Het product dat gearchiveerd moet worden is niet gevonden",
       "PRODUCT_ALREADY_ARCHIVED": "Dit product is al gearchiveerd",
       "ARCHIVE_SUCCESFULL": "Het product is succesvol gearchiveerd!"
+
+    },
+    "DELETE":{
+      "DIALOG_DELETE_BUTTON": "PDF Verwijderen",
+      "DIALOG_DELETE_MESSAGE": "U staat op het punt de PDF van het volgende product te verwijderen:"
+
     }
   },
   "CART": {
