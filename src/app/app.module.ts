@@ -51,8 +51,6 @@ import { MyFilterPipe } from './pipes/MyFilterPipe';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatSortModule,
-    MatTableModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
