@@ -1,0 +1,64 @@
+<div class="container">
+    <mat-card *ngIf="!isLoading" class="main-content">
+        <mat-card-header>
+            <mat-card-title name="users-title">
+                <h1 class="mat-h1">{{ 'USERS.TITLE' | translate }}</h1>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-content mat-elevation-z0">
+            <mat-table *ngIf="dataSource.data.length > 0 && isLoading === false" [dataSource]="dataSource"
+                class="mat-elevation-z0">
+                <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Student Number Column -->
+                <ng-container matColumnDef="number">
+                    <mat-header-cell *matHeaderCellDef>{{ 'USERINFO.NUMBER' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.NUMBER' | translate">
+                        {{ element.studentNumber}}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Blocked Column -->
+                <ng-container matColumnDef="blocked">
+                    <mat-header-cell *matHeaderCellDef> {{ 'USERINFO.BANNED' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.BANNED' | translate">
+                        {{ element.bannedUntil }}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Role Column -->
+                <ng-container matColumnDef="role">
+                    <mat-header-cell *matHeaderCellDef> {{ 'USERINFO.ROLE' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.ROLE' | translate">
+                        {{ element.role.name }}
+                    </mat-cell>
+                </ng-container>
+
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <div *ngIf="dataSource.data.length === 0 && !isLoading" class="empty-message">
+                <mat-divider></mat-divider>
+                <mat-icon style="padding-top: 30px;">sentiment_dissatisfied</mat-icon>
+                <br>
+                {{ 'USERS.NO_USERS' | translate }}
+            </div>
+            <mat-paginator *ngIf="dataSource.data.length > 0" [length]="totalUsersCount" [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" (page)="pageEvent = handlePageEvent($event)"
+                showFirstLastButtons>
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div *ngIf="isLoading">
+    <mat-card class="spinner-container">
+        <mat-card-header>
+            <mat-card-title>{{ 'USERS.LOADING' | translate }}</mat-card-title>
+        </mat-card-header>
+        <mat-progress-spinner color="primary" mode="indeterminate">
+        </mat-progress-spinner>
+    </mat-card>
+</div>
