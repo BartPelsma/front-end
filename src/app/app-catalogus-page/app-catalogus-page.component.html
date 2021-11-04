@@ -49,7 +49,7 @@
             </div>   
         </div>
 
-        <div class="body">
+        <div class="body" *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0">
 
             <div *ngFor="let catalogItem of catalogItemsWithCategory|MyFilterPipe:filter" class="main-container">
                 <mat-card class="catalog-card">
