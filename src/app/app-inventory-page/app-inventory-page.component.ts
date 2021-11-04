@@ -9,6 +9,8 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { AppArchiveDialogComponent } from '../app-archive-dialog/app-archive-dialog.component';
 import { IInventoryPage } from '../models/inventory-page.model';
+import { AppAddPdfComponent } from '../app-add-pdf/app-add-pdf.component';
+import { AppDeletePdfComponent } from '../app-delete-pdf/app-delete-pdf.component';
 
 const PAGE_SIZE_DEFAULT = 50;
 const INDEX_DEFAULT = 0;
@@ -99,6 +101,26 @@ export class AppInventoryPageComponent implements OnInit {
       if (val) {
         this.getProductData();
       }
+    });
+  }
+
+  openAddPDF(element: any): void{
+    const dialogRef = this.dialog.open(AppAddPdfComponent, {
+      data: {
+        id: element.id,
+        name: element.name
+      },
+      backdropClass: 'no-backdrop',
+    });    
+  }
+
+  openDeletePDF(element: any): void{
+    const dialogRef = this.dialog.open(AppDeletePdfComponent, {
+      data: {
+        id: element.id,
+        name: element.name
+      },
+      backdropClass: 'no-backdrop',
     });
   }
 

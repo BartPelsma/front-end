@@ -25,6 +25,8 @@ import { AppReservationsOverviewPageComponent } from './app-reservations-overvie
 import { AppReservationActionPageComponent } from './app-reservation-action-page/app-reservation-action-page.component';
 import { AppShoppingCartDatepickerComponent } from './app-shopping-cart-datepicker/app-shopping-cart-datepicker.component';
 import { MyFilterPipe } from './pipes/MyFilterPipe';
+import { AppAddPdfComponent } from './app-add-pdf/app-add-pdf.component';
+import { AppDeletePdfComponent } from './app-delete-pdf/app-delete-pdf.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { MyFilterPipe } from './pipes/MyFilterPipe';
     AppReservationActionPageComponent,
     MyFilterPipe,
     AppShoppingCartDatepickerComponent,
+    AppAddPdfComponent,
+    AppDeletePdfComponent
   ],
   imports: [
     BrowserModule,
