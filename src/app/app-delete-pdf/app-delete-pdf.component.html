@@ -12,6 +12,6 @@
 <button class="delete-button" name="archive-dialog-archive-button" mat-button> 
     {{ 'PRODUCT.DELETE.DIALOG_DELETE_BUTTON' | translate }}
   </button>
-  <button class="cancel-button" name="archive-dialog-cancel-button" mat-stroked-button>
+  <button class="cancel-button" (click)="closeDialog()" name="archive-dialog-cancel-button" mat-stroked-button>
     {{ 'PRODUCT.ARCHIVE.DIALOG_CANCEL_BUTTON' | translate }}
   </button>
