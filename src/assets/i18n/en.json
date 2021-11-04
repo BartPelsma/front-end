@@ -71,7 +71,8 @@
       "NO_CATEGORIES_RESPONSE": "Something went wrong with receiving the category data. Please try again later or contact an administrator",
       "NO_CATALOG_NUMBER_RESPONSE": "Something went wrong with receiving the catalog data. Please try again later or contact an administrator",
       "NO_DATA": "Something went wrong with saving your data. Please try again later or contact an administrator",
-      "ADD_SUCCESSFUL": "Product has been added!"
+      "ADD_SUCCESSFUL": "Product has been added!",
+      "DIALOG_ADD_BUTTON": "Add PDF"
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Confirm",
@@ -82,6 +83,11 @@
       "NO_PRODUCT_FOUND": "The product to archive was not found",
       "PRODUCT_ALREADY_ARCHIVED": "This product is already archived",
       "ARCHIVE_SUCCESFULL": "The product has been archived!"
+    },
+    "DELETE":{
+      "DIALOG_DELETE_BUTTON": "Delete PDF",
+      "DIALOG_DELETE_MESSAGE": "You are about to delete the PDF of the following product:"
+
     }
   },
   "CART": {
