@@ -119,29 +119,6 @@
                         </div>
                     </mat-card-content>
                 </mat-card>
-                        <div class="catalogItemBox-description">
-                            {{item.description}}
-                        </div>
-                    </div>
-                    <div class="catalogItemBox-datepicker">
-                        <p name="datepicker-not-available"
-                            style="width: 100%; padding-top: 40px; padding-right: 20px; margin:auto"
-                            *ngIf="item.status == 1; else elseBlock">
-                            Product niet beschikbaar
-                        </p>
-                        <ng-template #elseBlock>
-                            <app-product-datepicker name="datepicker" [productId]="item.id" #productdatepicker
-                                (datesChanged)="datepickerDatesChanged(item, $event)">
-                            </app-product-datepicker>
-                        </ng-template>
-                        <button name="add-to-cart-button" *ngIf="item.status != 1" mat-flat-button color="primary"
-                            (click)="addItemToCart(item)"> {{ 'CATALOG.ADD_TO_CART'
-                            | translate }} </button>
-                            <button name="pdf.bekijken"  mat-flat-button color="primary"
-                            (click)="addItemToCart(item)"> {{ 'CATALOG.VIEW_PDF'
-                            | translate }} </button>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="footer">
