@@ -17,7 +17,7 @@ const PRODUCT_COUNT_DEFAULT = 0;
 @Component({
   selector: 'app-inventory-page',
   templateUrl: './app-inventory-page.component.html',
-  styleUrls: ['./app-inventory-page.component.scss']
+  styleUrls: ['./app-inventory-page.component.scss'],
 })
 export class AppInventoryPageComponent implements OnInit {
 
@@ -38,6 +38,8 @@ export class AppInventoryPageComponent implements OnInit {
   // MatPaginator Output
   pageEvent: PageEvent | undefined;
 
+  filterValue: string;
+
   dataSource: MatTableDataSource<IProductData>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -50,16 +52,17 @@ export class AppInventoryPageComponent implements OnInit {
     this.dataSource = new MatTableDataSource();
   }
 
-  public doFilter = (value: string) => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
-  }
-
   ngOnInit(): void {
     this.retrieveLocalStorage();
     this.getProductData();
     this.dataSource.sort = this.sort;
   }
   
+  applyFilter(event: Event){
+    this.filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = this.filterValue.trim().toLocaleLowerCase();
+  }
+
   @ViewChild(MatSort) sort: MatSort;
   ngAfterViewInit(){
     this.dataSource.sort = this.sort;

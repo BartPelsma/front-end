@@ -58,7 +58,7 @@ import { MyFilterPipe } from './pipes/MyFilterPipe';
         deps: [HttpClient]
       }
     }),
-    LayoutModule
+    LayoutModule,
   ],
   providers: [
     {
