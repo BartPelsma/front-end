@@ -50,7 +50,7 @@
                 <div class="Searchbar">
                     <mat-form-field appearance="outline" class="DeleteInputPadding">
                         <mat-label>Zoeken</mat-label>
-                        <input [(ngModel)]="filter" #mySelect2 (keyup)='searchbar(mySelect2.value)' matInput>
+                        <input [(ngModel)]="filter" #MySearchBar (keyup)='searchbar(MySearchBar.value)' matInput>
                         <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
                 </div>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="body" *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0">
-            <div *ngFor="let catalogItem of catalogItemsWithCategory|MyFilterPipe:filter:searchfilter" class="main-container">
+            <div *ngFor="let catalogItem of catalogItemsWithCategory|MyFilterPipe:searchfilter" class="main-container">
                 <mat-card class="catalog-card">
                     <mat-card-header>
                         <mat-card-title name="cart-title">
