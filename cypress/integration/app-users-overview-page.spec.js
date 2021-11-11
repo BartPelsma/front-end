@@ -146,6 +146,28 @@ describe('Users overview tests', () => {
         cy.get('.mat-table').find('.cdk-column-role:contains("Admin")').should('have.length', 1);
     });
 
+    it('Should show button text in English', () => {
+        cy.intercept('GET', /\/api\/user\/page\/0\/[0-9]+$/, { fixture: 'users-overview-page-1.json'}).as('getUsers');
+
+        cy.visit('http://localhost:4200/users');
+        cy.changeLanguage('en');
+        cy.wait("@getUsers");
+
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button:contains("Block user")').should('have.length', 3);
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button:contains("Unblock user")').should('have.length', 1);
+    });
+
+    it('Should show button text in Dutch', () => {
+        cy.intercept('GET', /\/api\/user\/page\/0\/[0-9]+$/, { fixture: 'users-overview-page-1.json'}).as('getUsers');
+
+        cy.visit('http://localhost:4200/users');
+        cy.changeLanguage('nl');
+        cy.wait("@getUsers");
+
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button:contains("Blokkeer")').should('have.length', 3);
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button:contains("Deblokkeren")').should('have.length', 1);
+    });
+
     it('Should show correct information in the table', () => {
         cy.intercept('GET', /\/api\/user\/page\/0\/[0-9]+$/, { fixture: 'users-overview-page-1.json'}).as('getUsers');
 
@@ -159,6 +181,11 @@ describe('Users overview tests', () => {
         cy.get('.mat-table').find('.mat-column-number').contains(5).should('exist');
         cy.get('.mat-table').find('.mat-column-number').contains(6).should('exist');
 
-        cy.get('.mat-table').find('.mat-column-blocked').contains("2021-12-24T10:00:00").should('exist');
+        cy.get('.mat-table').find('.mat-column-blocked:contains("Jan 2, 2022")').should('have.length', 1);
+        cy.get('.mat-table').find('.mat-column-blocked:contains("-")').should('have.length', 1);
+        cy.get('.mat-table').find('.mat-column-blocked').find('mat-form-field').should('have.length', 3);
+
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button:contains("Block user")').should('have.length', 3);
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button:contains("Unblock user")').should('have.length', 1);
     });
 });

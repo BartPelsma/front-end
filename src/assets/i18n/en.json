@@ -150,7 +150,11 @@
   "USERINFO": {
     "NUMBER": "Student number",
     "BANNED": "Blocked until",
-    "ROLE": "Role"
+    "ROLE": "Role",
+    "OPTIONS": "Options",
+    "UNBLOCK_BUTTON": "Unblock user",
+    "BLOCK_BUTTON": "Block user",
+    "BLOCK_DATEPICKER": "Choose enddate of block"
   },
   "GENERIC": {
     "YES": "Yes",

@@ -150,7 +150,11 @@
   "USERINFO": {
     "NUMBER": "Studentennummer",
     "BANNED": "Geblokkeerd tot",
-    "ROLE": "Rol"
+    "ROLE": "Rol",
+    "OPTIONS": "Opties",
+    "UNBLOCK_BUTTON": "Deblokkeren",
+    "BLOCK_BUTTON": "Blokkeer",
+    "BLOCK_DATEPICKER": "Kies einddatum van blokkeren"
   },
   "GENERIC": {
     "YES": "Ja",
