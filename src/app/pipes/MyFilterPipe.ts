@@ -5,8 +5,13 @@ import { CatalogItemsWithCategory } from '../models/catalog-items-with-catogery.
     name: 'MyFilterPipe',
     pure: false
 })
+
 export class MyFilterPipe implements PipeTransform {
-    transform(items: Array<CatalogItemsWithCategory>, filter: string): Array<CatalogItemsWithCategory> {
+    filtereditems = Array<CatalogItemsWithCategory>();
+
+    transform(items: Array<CatalogItemsWithCategory>, filter: string, searchfilter: string): Array<CatalogItemsWithCategory> {
+        
+
         if (!items || !filter) {
             return items;
         }
@@ -14,6 +19,11 @@ export class MyFilterPipe implements PipeTransform {
         {
           return items;
         }
-        return items.filter(items => items.categoryName.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
+
+        items = items.filter(items => items.categoryName.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
+
+        this.filtereditems = items.filter(items => items.catalogItems.forEach.name.toLowerCase().indexOf(searchfilter.toLowerCase()) !== -1);
+
+        return this.filtereditems;
     }
 }

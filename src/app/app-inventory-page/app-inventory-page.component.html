@@ -24,7 +24,7 @@
                 <ng-container matColumnDef="status">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'ATTRIBUTES.STATUS' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'ATTRIBUTES.STATUS' | translate">
-                        <mat-chip [ngClass]="element.status | statusNameClass">
+                        <mat-chip [ngClass]="element.status | statusNameClass" style="background-color: green"> 
                             {{ element.status | statusNameKey | translate }}
                         </mat-chip>
                     </mat-cell>

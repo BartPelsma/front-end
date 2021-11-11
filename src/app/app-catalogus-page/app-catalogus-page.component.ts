@@ -226,4 +226,14 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   search(selectedFilter:string){
     this.filterargs = {category: this.filter};
   }
+
+
+  //Filter values
+  searchfilter:string = '';
+  searchfilterargs = {productname: ''};
+
+  //Filter function
+  searchbar(selectedFilter:string){
+    this.searchfilterargs = {productname: this.searchfilter};
+  }
 }

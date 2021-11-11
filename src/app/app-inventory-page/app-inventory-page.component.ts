@@ -9,6 +9,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { AppArchiveDialogComponent } from '../app-archive-dialog/app-archive-dialog.component';
 import { IInventoryPage } from '../models/inventory-page.model';
+import { ViewEncapsulation } from '@angular/core';
 
 const PAGE_SIZE_DEFAULT = 50;
 const INDEX_DEFAULT = 0;
@@ -18,6 +19,7 @@ const PRODUCT_COUNT_DEFAULT = 0;
   selector: 'app-inventory-page',
   templateUrl: './app-inventory-page.component.html',
   styleUrls: ['./app-inventory-page.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppInventoryPageComponent implements OnInit {
 
