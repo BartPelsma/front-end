@@ -1,0 +1,51 @@
+{
+    "currentPage": 0,
+    "totalUsersCount": 7,
+    "users": [
+      {
+        "studentNumber": 1,
+        "bannedUntil": null,
+        "role": {
+          "id": 1,
+          "name": "User",
+          "permissions": null
+        }
+      },
+      {
+        "studentNumber": 2,
+        "bannedUntil": "2022-01-02T10:00:00",
+        "role": {
+          "id": 1,
+          "name": "User",
+          "permissions": null
+        }
+      },
+      {
+        "studentNumber": 4,
+        "bannedUntil": null,
+        "role": {
+          "id": 2,
+          "name": "Employee",
+          "permissions": null
+        }
+      },
+      {
+        "studentNumber": 5,
+        "bannedUntil": null,
+        "role": {
+          "id": 3,
+          "name": "Admin",
+          "permissions": null
+        }
+      },
+      {
+        "studentNumber": 6,
+        "bannedUntil": null,
+        "role": {
+          "id": 2,
+          "name": "Employee",
+          "permissions": null
+        }
+      }
+    ]
+  }

@@ -147,12 +147,21 @@
     "USERS_EMPTY": "No users found",
     "LOADING": "Loading users",
     "NO_USERS": "No users found",
-    "NO_USERS_RESPONSE": "Something went wrong, please try again later"
+    "NO_USERS_RESPONSE": "Something went wrong, please try again later",
+    "ROLETYPE": {
+      "USER": "User",
+      "EMPLOYEE": "Employee",
+      "ADMIN": "Admin"
+    }
   },
   "USERINFO": {
     "NUMBER": "Student number",
     "BANNED": "Blocked until",
-    "ROLE": "Role"
+    "ROLE": "Role",
+    "OPTIONS": "Options",
+    "UNBLOCK_BUTTON": "Unblock user",
+    "BLOCK_BUTTON": "Block user",
+    "BLOCK_DATEPICKER": "Choose enddate of block"
   },
   "GENERIC": {
     "YES": "Yes",

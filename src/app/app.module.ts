@@ -28,6 +28,7 @@ import { MyFilterPipe } from './pipes/MyFilterPipe';
 import { AppUsersPageComponent } from './app-users-page/app-users-page.component';
 import { AppAddPdfComponent } from './app-add-pdf/app-add-pdf.component';
 import { AppDeletePdfComponent } from './app-delete-pdf/app-delete-pdf.component';
+import { RoleNameKeyPipe } from './pipes/role-name-key.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,9 @@ import { AppDeletePdfComponent } from './app-delete-pdf/app-delete-pdf.component
     AppShoppingCartDatepickerComponent,
     AppUsersPageComponent,
     AppAddPdfComponent,
-    AppDeletePdfComponent
+    AppDeletePdfComponent,
+    AppUsersPageComponent,
+    RoleNameKeyPipe,
   ],
   imports: [
     BrowserModule,

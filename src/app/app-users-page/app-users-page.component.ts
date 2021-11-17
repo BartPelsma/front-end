@@ -22,7 +22,7 @@ export class AppUsersPageComponent implements OnInit {
   isLoading = true;
 
   // determined whch columns that are displayed in the users table and in which order.
-  displayedColumns: string[] = ['number', 'role', 'blocked'];
+  displayedColumns: string[] = ['number', 'role', 'blocked', 'blockOptions'];
 
   // MatPaginator Inputs
   totalUsersCount = USERS_COUNT_DEFAULT;
