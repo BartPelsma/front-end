@@ -72,6 +72,12 @@
                         [disabled]="isLoading || images.length < 1" name="remove-image-button">
                         <mat-icon>delete</mat-icon>
                     </button>
+                    <input id="PDFInput" type="file"  accept="application/pdf" hidden='true'
+                        multiple [disabled]="isLoading" name="file-input-button">
+                    <button mat-icon-button [title]="'PRODUCT.ADD.DIALOG_ADD_BUTTON' | translate" color="accent"
+                        (click)="onClickAddPDF()" [disabled]="isLoading" name="PDF-input-button">
+                        <mat-icon>picture_as_pdf</mat-icon>
+                    </button>
                     <br>
                 </div>
                 <div *ngIf='removingImageIndex !== null && removingImageIndex > -1' style="margin-bottom: 4px;">

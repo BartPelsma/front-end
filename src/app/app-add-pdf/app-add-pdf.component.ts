@@ -17,6 +17,11 @@ export class AppAddPdfComponent implements OnInit {
     private dialogRef: MatDialogRef<AppAddPdfComponent>
   ) { }
 
+  onClickAddPDF(): void {
+    const element = document.getElementById('PDFInput') as HTMLElement;
+    element.click();
+  }
+
   ngOnInit(): void {
   }
 }

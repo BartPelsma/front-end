@@ -209,6 +209,11 @@ export class AppAddProductPageComponent implements OnInit {
     element.click();
   }
 
+  onClickAddPDF(): void {
+    const element = document.getElementById('PDFInput') as HTMLElement;
+    element.click();
+  }
+
   /*
     Remove image when confirm is clicked
   */
