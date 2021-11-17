@@ -125,10 +125,12 @@ export class AppComponent {
     } else if (this.router.url.endsWith('reservations')) {
       this.setTitle("Reservations");
       textToTranslate = 'APP.ROUTE.RESERVATIONS';
+    } else if (this.router.url.endsWith('users')) {
+      textToTranslate = 'APP.ROUTE.USERS';
     } else if (this.router.url.includes('reservation')) {
       this.setTitle("Reservations");
       textToTranslate = 'APP.ROUTE.RESERVATION';
-    }
+    } 
 
     return this.translate.instant(textToTranslate);
   }

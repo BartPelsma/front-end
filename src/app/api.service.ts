@@ -11,6 +11,7 @@ import { CatalogPage } from './models/catalog-page.model';
 import { IInventoryPage } from './models/inventory-page.model';
 import { environment } from '../environments/environment';
 import { IReservationAction } from './models/reservation-action.model';
+import { IUsersPage } from './models/users-page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,10 @@ export class ApiService {
 
   getSimilarReservations(): Observable<HttpResponse<Array<Array<IReservation>>>> {
     return this.http.get<Array<Array<IReservation>>>(`${this.API_GATEWAY}reservation/similar`, { observe: 'response' });
+  }
+
+  getUsersForPage(pageNumber: number, pageSize: number): Observable<HttpResponse<IUsersPage>> {
+    return this.http.get<IUsersPage>(`${this.API_GATEWAY}user/page/${pageNumber}/${pageSize}`, { observe: 'response'});
   }
 
   /* POST calls */

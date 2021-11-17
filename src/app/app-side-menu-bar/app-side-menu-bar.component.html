@@ -27,6 +27,11 @@
           <mat-icon>date_range</mat-icon>
           {{ 'SIDE_BAR.RESERVATIONS' | translate }}
         </button>
+        <button mat-stroked-button class="menu-option-button" (click)="onClickNavigate('users')"
+          [style]="isOnRoute('users')" name="menu-option-users">
+          <mat-icon>people</mat-icon>
+          {{ 'SIDE_BAR.USERS' | translate }}
+        </button>
       </div>
     </div>
     <div class="content-filler">
