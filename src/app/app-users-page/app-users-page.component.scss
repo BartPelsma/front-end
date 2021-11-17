@@ -44,9 +44,13 @@
     flex: auto;
   }
 
-  .DeleteInputPadding .mat-form-field-wrapper .mat-form-field-flex{
-      margin-top: 0em !important;
+  .DeleteInputPadding .mat-form-field-wrapper {
+    padding-bottom: 0px !important;
   }
+
+  // .DeleteInputPadding .mat-form-field-wrapper .mat-form-field-flex{
+  //   margin-top: 0em !important;
+  // }
 
   @media screen and (min-width: 960px){
     .table-row {
