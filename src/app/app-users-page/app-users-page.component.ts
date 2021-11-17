@@ -6,6 +6,7 @@ import { ApiService } from '../api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { ViewEncapsulation } from '@angular/core';
 
 const PAGE_SIZE_DEFAULT = 25;
 const INDEX_DEFAULT = 0;
@@ -14,9 +15,12 @@ const USERS_COUNT_DEFAULT = 0;
 @Component({
   selector: 'app-app-users-page',
   templateUrl: './app-users-page.component.html',
-  styleUrls: ['./app-users-page.component.scss']
+  styleUrls: ['./app-users-page.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppUsersPageComponent implements OnInit {
+  //Minimal date for datapicker
+  minDate: Date;
 
   // shows loading spinner if true
   isLoading = true;
@@ -40,8 +44,10 @@ export class AppUsersPageComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private notificationService: MatSnackBar,
-    private translateService: TranslateService) {
+    private translateService: TranslateService) 
+    {
       this.dataSource = new MatTableDataSource();
+      this.minDate = new Date();
      }
 
   ngOnInit(): void {

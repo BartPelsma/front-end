@@ -4,8 +4,18 @@
             <mat-card-title name="users-title">
                 <h1 class="mat-h1">{{ 'USERS.TITLE' | translate }}</h1>
             </mat-card-title>
+
+            <div class="Searchbar">
+                <mat-form-field appearance="outline" class="DeleteInputPadding">
+                    <mat-label>Zoeken</mat-label>
+                    <input  matInput>
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+
         </mat-card-header>
         <mat-card-content class="card-content mat-elevation-z0">
+
             <mat-table *ngIf="dataSource.data.length > 0 && isLoading === false" [dataSource]="dataSource"
                 class="mat-elevation-z0">
                 <!--- Note that these columns can be defined in any order.
@@ -26,14 +36,16 @@
                         <div *ngIf="element.bannedUntil">
                             {{ element.bannedUntil | date }}
                         </div>
+
                         <div *ngIf="!element.bannedUntil && element.role.name !== 'Admin'" >
-                            <mat-form-field appearance="fill" style="width: 70%;">
+                            <mat-form-field appearance="fill" style="width: 70%;" class="my-form-field">
                                 <mat-label> {{ 'USERINFO.BLOCK_DATEPICKER' | translate }} </mat-label>
-                                <input matInput [matDatepicker]="banPicker">
+                                <input matInput [matDatepicker]="banPicker" [min]="minDate">
                                 <mat-datepicker-toggle matSuffix [for]="banPicker"></mat-datepicker-toggle>
                                 <mat-datepicker #banPicker></mat-datepicker>
                             </mat-form-field>
                         </div>
+
                         <div *ngIf="element.role.name === 'Admin'">
                             -
                         </div>
@@ -65,7 +77,8 @@
 
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
             </mat-table>
             <div *ngIf="dataSource.data.length === 0 && !isLoading" class="empty-message">
                 <mat-divider></mat-divider>
