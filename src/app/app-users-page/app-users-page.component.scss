@@ -38,6 +38,16 @@
     width: 100%;
   }
 
+  .Searchbar{
+    display: flex;
+    justify-content: flex-end;
+    flex: auto;
+  }
+
+  .DeleteInputPadding .mat-form-field-wrapper .mat-form-field-flex{
+      margin-top: 0em !important;
+  }
+
   @media screen and (min-width: 960px){
     .table-row {
       height: 70px !important;
