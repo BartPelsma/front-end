@@ -38,7 +38,7 @@
                     </mat-select>
                 </div> -->
 
-                <mat-form-field appearance="fill" class="sfilter">
+                <mat-form-field appearance="fill" class="sfilter" style="padding-top: 20px;">
                     <mat-label >Choose a filter</mat-label>
                     <mat-select class="selector" [(ngModel)]="filter" #mySelect (change)='search(mySelect.value)'>
                         <mat-option selected value="All">All</mat-option>
@@ -47,10 +47,11 @@
                     </mat-select>
                 </mat-form-field>
 
-                <div class="Searchbar">
+                
+                <div class="Searchbar" style="padding-top: 20px; padding-left: 10px; padding-right: 20%;">
                     <mat-form-field appearance="outline" class="DeleteInputPadding">
                         <mat-label>Zoeken</mat-label>
-                        <input [(ngModel)]="filter" #MySearchBar (keyup)='searchbar(MySearchBar.value)' matInput>
+                        <input [(ngModel)]="searchfilter" #MySearchBar (keyup)='searchbar(MySearchBar.value)' matInput>
                         <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>
                 </div>

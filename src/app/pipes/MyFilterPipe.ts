@@ -8,9 +8,6 @@ import { ICatalogFlat } from '../models/catalog-flat.model';
 })
 
 export class MyFilterPipe implements PipeTransform {
-    filtereditems = Array<CatalogItemsWithCategory>();
-    catalogitems = Array<ICatalogFlat>();
-
     transform(items: Array<CatalogItemsWithCategory>, searchfilter: string): Array<CatalogItemsWithCategory> {
         
 
@@ -25,15 +22,18 @@ export class MyFilterPipe implements PipeTransform {
 
         items = items.filter(items => items.categoryName.toLowerCase().indexOf(searchfilter.toLowerCase()) !== -1);
 
-        // items.forEach(Element => {
-        //     Element.catalogItems.forEach(element => {
-        //         this.catalogitems.push(element);
-        //     });
-        // });
-
-
-        // this.filtereditems = items.filter(items => this.catalogitems.forEach.name.toLowerCase().indexOf(searchfilter.toLowerCase()) !== -1);
-
-        return this.filtereditems;
+        items = items.filter(items => items.catalogItems.forEach.name.toLowerCase().indexOf(searchfilter.toLowerCase()) !== -1);
+        return items;
     }
+
+    // transform(items: Array<CatalogItemsWithCategory>, filter: string): Array<CatalogItemsWithCategory> {
+    //     if (!items || !filter) {
+    //         return items;
+    //     }
+    //     else if(filter == 'All')
+    //     {
+    //       return items;
+    //     }
+    //     return items.filter(items => items.categoryName.toLowerCase().indexOf(filter.toLowerCase()) !== -1);
+    // }
 }
