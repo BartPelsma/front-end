@@ -11,6 +11,7 @@ import { AppArchiveDialogComponent } from '../app-archive-dialog/app-archive-dia
 import { IInventoryPage } from '../models/inventory-page.model';
 import { AppAddPdfComponent } from '../app-add-pdf/app-add-pdf.component';
 import { AppDeletePdfComponent } from '../app-delete-pdf/app-delete-pdf.component';
+import { ViewEncapsulation } from '@angular/core';
 
 const PAGE_SIZE_DEFAULT = 50;
 const INDEX_DEFAULT = 0;
@@ -19,7 +20,8 @@ const PRODUCT_COUNT_DEFAULT = 0;
 @Component({
   selector: 'app-inventory-page',
   templateUrl: './app-inventory-page.component.html',
-  styleUrls: ['./app-inventory-page.component.scss']
+  styleUrls: ['./app-inventory-page.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppInventoryPageComponent implements OnInit {
 
@@ -40,6 +42,8 @@ export class AppInventoryPageComponent implements OnInit {
   // MatPaginator Output
   pageEvent: PageEvent | undefined;
 
+  filterValue: string;
+
   dataSource: MatTableDataSource<IProductData>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -58,6 +62,11 @@ export class AppInventoryPageComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   
+  applyFilter(event: Event){
+    this.filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = this.filterValue.trim().toLocaleLowerCase();
+  }
+
   @ViewChild(MatSort) sort: MatSort;
   ngAfterViewInit(){
     this.dataSource.sort = this.sort;

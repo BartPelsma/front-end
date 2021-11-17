@@ -38,19 +38,27 @@
                     </mat-select>
                 </div> -->
 
-                <mat-form-field appearance="fill" class="filter">
+                <mat-form-field appearance="fill" class="sfilter">
                     <mat-label >Choose a filter</mat-label>
                     <mat-select class="selector" [(ngModel)]="filter" #mySelect (change)='search(mySelect.value)'>
                         <mat-option selected value="All">All</mat-option>
                         <mat-option *ngFor="let catalogItem of catalogItemsWithCategory" class="dropdown"
                             value="{{catalogItem.categoryName}}">{{catalogItem.categoryName}}</mat-option>
                     </mat-select>
-                  </mat-form-field>
+                </mat-form-field>
+
+                <div class="Searchbar">
+                    <mat-form-field appearance="outline" class="DeleteInputPadding">
+                        <mat-label>Zoeken</mat-label>
+                        <input [(ngModel)]="filter" #MySearchBar (keyup)='searchbar(MySearchBar.value)' matInput>
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
             </div>   
         </div>
 
         <div class="body" *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0">
-            <div *ngFor="let catalogItem of catalogItemsWithCategory|MyFilterPipe:filter" class="main-container">
+            <div *ngFor="let catalogItem of catalogItemsWithCategory|MyFilterPipe:searchfilter" class="main-container">
                 <mat-card class="catalog-card">
                     <mat-card-header>
                         <mat-card-title name="cart-title">

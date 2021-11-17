@@ -89,7 +89,29 @@
     margin-top: 10px;
     width: 100%;
   }
-  
+
+//   ::ng-deep .mat-form-field-wrapper{
+//     margin-bottom: -1.25em !important;
+//  }
+
+//  ::ng-deep .mat-form-field-wrapper .mat-form-field-flex{
+//     margin-top: -0.50em !important;
+//  } 
+  .Searchbar{
+    display: flex;
+    justify-content: flex-end;
+    flex: auto;
+  }
+
+  .DeleteInputPadding .mat-form-field-wrapper {
+      margin-top: -0.25em !important;
+      padding-bottom: 0 !important;
+  }
+
+  .DeleteInputPadding .mat-form-field-wrapper .mat-form-field-flex{
+      margin-top: 0em !important;
+  }
+
   @media screen and (max-width: 960px) {
     .mat-header-row {
       display: none;
@@ -154,3 +176,5 @@
       margin-top: 4%;
     }
   }
+
+  
