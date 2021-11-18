@@ -116,7 +116,7 @@ export class AppReservationActionPageComponent implements OnInit {
     }
   }
   /**
-   * Updates the currect list
+   * Updates the current list
    * @param action number, 0 delete, 1 out, 2 in
    * @param id number the id of the reservation
    */

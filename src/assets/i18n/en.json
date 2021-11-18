@@ -145,6 +145,13 @@
       "USER": "User",
       "EMPLOYEE": "Employee",
       "ADMIN": "Admin"
+    },
+    "ACTION": {
+      "ERROR": "Unable to complete action",
+      "EMPTY_DATE": "Add a valid end date for the block",
+      "BLOCK_SUCCESS": "Blocking successful",
+      "UNBLOCK_SUCCESS": "Unblocking successful",
+      "UNSUCCESSFUL": "Action was unsuccessful"
     }
   },
   "USERINFO": {

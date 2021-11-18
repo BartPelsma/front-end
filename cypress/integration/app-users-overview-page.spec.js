@@ -168,6 +168,110 @@ describe('Users overview tests', () => {
         cy.get('.mat-table').find('.mat-column-blockOptions').find('button:contains("Deblokkeren")').should('have.length', 1);
     });
 
+    it('Should give feedback if date is invalid in English', () => {
+        cy.clock(new Date(2030, 7, 1));
+        cy.intercept('GET', '/api/user', { fixture: 'users-overview-page-1.json'}).as('getUsers');
+    
+        cy.visit('http://localhost:4200/users');
+        cy.changeLanguage('en');
+        cy.wait("@getUsers");
+
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[id="1"]').click();
+        cy.get("snack-bar-container").contains('Add a valid end date for the block').should('exist');
+
+        cy.get('.mat-table').find('.mat-column-blocked').find('input[ng-reflect-id="1"]').clear().type('11/18/2021');
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[id="1"]').click();
+        cy.get("snack-bar-container").contains('Add a valid end date for the block').should('exist');
+    });
+
+    it('Should give feedback if date is invalid in Dutch', () => {
+        cy.clock(new Date(2030, 7, 1));
+        cy.intercept('GET', '/api/user', { fixture: 'users-overview-page-1.json'}).as('getUsers');
+    
+        cy.visit('http://localhost:4200/users');
+        cy.changeLanguage('nl');
+        cy.wait("@getUsers");
+
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[id="1"]').click();
+        cy.get("snack-bar-container").contains('Voeg een toegestane einddatum toe voor het blokkeren').should('exist');
+
+        cy.get('.mat-table').find('.mat-column-blocked').find('input[ng-reflect-id="1"]').clear().type('11/18/2021');
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[id="1"]').click();
+        cy.get("snack-bar-container").contains('Voeg een toegestane einddatum toe voor het blokkeren').should('exist');
+    });
+
+    it('Should send call to ban user in English', () => {
+        cy.clock(new Date(2030, 7, 1));
+        cy.intercept('GET', '/api/user', { fixture: 'users-overview-page-1.json'}).as('getUsers');
+    
+        cy.visit('http://localhost:4200/users');
+        cy.changeLanguage('en');
+        cy.wait("@getUsers");
+
+        cy.intercept('POST', 'api/user/block', {}).as('block');
+
+        cy.get('.mat-table').find('.mat-column-blocked').find('input[ng-reflect-id="1"]').clear().type('11/18/2030');
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[id="1"]').click();
+        cy.wait("@block");
+
+        cy.get("snack-bar-container").contains('Blocking successful').should('exist');
+        cy.get('.mat-table').find('.mat-column-blocked:contains("Nov 18, 2030")').should('exist');
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[name="unblock-button"]').should('have.length', 2);
+    });
+
+    it('Should send call to ban user in Dutch', () => {
+        cy.clock(new Date(2030, 7, 1));
+        cy.intercept('GET', '/api/user', { fixture: 'users-overview-page-1.json'}).as('getUsers');
+    
+        cy.visit('http://localhost:4200/users');
+        cy.changeLanguage('nl');
+        cy.wait("@getUsers");
+
+        cy.intercept('POST', 'api/user/block', {}).as('block');
+
+        cy.get('.mat-table').find('.mat-column-blocked').find('input[ng-reflect-id="1"]').clear().type('11/18/2030');
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[id="1"]').click();
+        cy.wait("@block");
+
+        cy.get("snack-bar-container").contains('Blokkeren gelukt').should('exist');
+        cy.get('.mat-table').find('.mat-column-blocked:contains("Nov 18, 2030")').should('exist');
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[name="unblock-button"]').should('have.length', 2);
+    });
+
+    it('Should send call to unban user in English', () => {
+        cy.intercept('GET', '/api/user', { fixture: 'users-overview-page-1.json'}).as('getUsers');
+    
+        cy.visit('http://localhost:4200/users');
+        cy.changeLanguage('en');
+        cy.wait("@getUsers");
+
+        cy.intercept('POST', 'api/user/block', {}).as('block');
+
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[id="2"]').click();
+        cy.wait("@block");
+
+        cy.get("snack-bar-container").contains('Unblocking successful').should('exist');
+        cy.get('.mat-table').find('.mat-column-blocked').find('input[ng-reflect-id="2"]').should('exist');
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[name="block-button"]').should('have.length', 4);
+    });
+
+    it('Should send call to unban user in Dutch', () => {
+        cy.intercept('GET', '/api/user', { fixture: 'users-overview-page-1.json'}).as('getUsers');
+    
+        cy.visit('http://localhost:4200/users');
+        cy.changeLanguage('nl');
+        cy.wait("@getUsers");
+
+        cy.intercept('POST', 'api/user/block', {}).as('block');
+
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[id="2"]').click();
+        cy.wait("@block");
+
+        cy.get("snack-bar-container").contains('Deblokkeren gelukt').should('exist');
+        cy.get('.mat-table').find('.mat-column-blocked').find('input[ng-reflect-id="2"]').should('exist');
+        cy.get('.mat-table').find('.mat-column-blockOptions').find('button[name="block-button"]').should('have.length', 4);
+    });
+
     it('Should show correct information in the table', () => {
         cy.intercept('GET', /\/api\/user\/page\/0\/[0-9]+$/, { fixture: 'users-overview-page-1.json'}).as('getUsers');
 

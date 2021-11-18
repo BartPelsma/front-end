@@ -145,6 +145,13 @@
       "USER": "Gebruiker",
       "EMPLOYEE": "Medewerker",
       "ADMIN": "Admin"
+    },
+    "ACTION": {
+      "ERROR": "Actie kan niet gedaan worden",
+      "EMPTY_DATE": "Voeg een toegestane einddatum toe voor het blokkeren",
+      "BLOCK_SUCCESS": "Blokkeren gelukt",
+      "UNBLOCK_SUCCESS": "Deblokkeren gelukt",
+      "UNSUCCESSFUL": "Actie is niet gelukt"
     }
   },
   "USERINFO": {
