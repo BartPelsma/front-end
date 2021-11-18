@@ -151,7 +151,13 @@
       "EMPTY_DATE": "Add a valid end date for the block",
       "BLOCK_SUCCESS": "Blocking successful",
       "UNBLOCK_SUCCESS": "Unblocking successful",
-      "UNSUCCESSFUL": "Action was unsuccessful"
+      "UNSUCCESSFUL": "Action was unsuccessful",
+      "INVALID": {
+        "CALL": "Invalid call",
+        "ID": "Invalid ID given",
+        "BLOCK_ADMIN": "Admins cannot be blocked",
+        "ACTION":"Invalid action on user"
+      }
     }
   },
   "USERINFO": {
