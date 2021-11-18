@@ -154,7 +154,7 @@
     "OPTIONS": "Options",
     "UNBLOCK_BUTTON": "Unblock user",
     "BLOCK_BUTTON": "Block user",
-    "BLOCK_DATEPICKER": "Choose enddate of block"
+    "BLOCK_DATEPICKER": "Choose enddate"
   },
   "GENERIC": {
     "YES": "Yes",
