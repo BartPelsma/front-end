@@ -50,7 +50,7 @@
                 
                 <div class="Searchbar" style="padding-top: 20px; padding-left: 10px; padding-right: 20%;">
                     <mat-form-field appearance="outline" class="DeleteInputPadding">
-                        <mat-label>Zoeken</mat-label>
+                        <mat-label>{{ 'FILTER.SEARCHBAR' | translate }}</mat-label>
                         <input [(ngModel)]="searchfilter" #MySearchBar (keyup)='searchbar(MySearchBar.value)' matInput>
                         <mat-icon matSuffix>search</mat-icon>
                     </mat-form-field>

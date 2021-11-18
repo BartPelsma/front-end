@@ -173,5 +173,8 @@
     "NO_RESERVATIONS": "No reservations were found to be displayed",
     "NO_RESPONSE_DATA": "Could not retrieve reservation data",
     "NO_PRODUCT_DATA": "Could not retrieve product data"
+  },
+  "FILTER": {
+    "SEARCHBAR": "Search"
   }
 }
