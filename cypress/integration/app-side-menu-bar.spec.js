@@ -54,4 +54,10 @@ describe('Side menu bar tests', () => {
     cy.get('button[name=menu-option-catalog]').click();
     cy.url().should('include', 'catalog');
   });
+
+  it('Should show closed menu', () => {
+    cy.viewport(550, 750)
+    cy.contains('Vergrendel menu').should('not.visible')
+  });
+
 });

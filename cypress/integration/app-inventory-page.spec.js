@@ -195,4 +195,21 @@ describe('Inventory tests', () => {
         cy.get('.mat-table').find('.mat-column-location').contains('Die ene plank').should('exist');
         cy.get('.mat-table').find('.mat-column-location:contains("Balie")').should('have.length', 3);
     });
+
+    it('Should change order of inventory', () => {
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+
+        cy.visit('http://localhost:4200/products');
+        cy.changeLanguage('en');
+        cy.wait("@getProducts");
+
+        cy.intercept('GET', /\/api\/product\/page\/1\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProductsNextPage');
+        //cy.contains('Naam').click();
+        cy.get(".mat-header-cell").contains('Name').click();
+        cy.get(".mat-header-cell").contains('Status').click();
+        cy.get(".mat-header-cell").contains('Location').click();
+        cy.get(".mat-header-cell").contains('Requires approval').click();
+
+        cy.get(".mat-table").find('.cdk-column-status').click();
+    });
 });
