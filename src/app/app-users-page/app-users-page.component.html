@@ -38,7 +38,7 @@
                         </div>
 
                         <div *ngIf="!element.bannedUntil && element.role.name !== 'Admin'" >
-                            <mat-form-field appearance="fill" style="width: 70%;" class="my-form-field">
+                            <mat-form-field appearance="fill" class="my-form-field">
                                 <mat-label> {{ 'USERINFO.BLOCK_DATEPICKER' | translate }} </mat-label>
                                 <input matInput [matDatepicker]="banPicker" [min]="minDate">
                                 <mat-datepicker-toggle matSuffix [for]="banPicker"></mat-datepicker-toggle>
