@@ -1,7 +1,8 @@
 {
     "catalogItems": [
         {
-            "catalogItems": [
+            "catalogItems": 
+            [
                 {
                     "id": 1,
                     "name": "Nikon Z50",
@@ -11,8 +12,8 @@
                     "status": 0,
                     "images": [],
                     "imageIndex": 0,
-                    "startDate": "0001-01-01T00:00:00",
-                    "endDate": "0001-01-01T00:00:00",
+                    "startDate": "2022-01-0100:00:00",
+                    "endDate": "0000-01-01T00:00:00",
                     "category": {
                         "id": 1,
                         "name": "Camera"
