@@ -22,8 +22,20 @@ export class MyFilterPipe implements PipeTransform {
 
         items = items.filter(items => items.categoryName.toLowerCase().indexOf(searchfilter.toLowerCase()) !== -1);
 
-        items = items.filter(items => items.catalogItems.forEach.name.toLowerCase().indexOf(searchfilter.toLowerCase()) !== -1);
-        return items;
+        const returnItems: any[] = [];
+        for (const item of items) {
+            const returnCatalogItems = [];
+            for (const catalogItem of item.catalogItems) {
+                if (catalogItem.name.toLowerCase().indexOf(searchfilter) > -1) {
+                    returnCatalogItems.push(catalogItem);
+                }
+            }
+
+            returnItems.push({ ...item, catalogItems: returnCatalogItems });
+        }
+
+
+        return returnItems;
     }
 
     // transform(items: Array<CatalogItemsWithCategory>, filter: string): Array<CatalogItemsWithCategory> {

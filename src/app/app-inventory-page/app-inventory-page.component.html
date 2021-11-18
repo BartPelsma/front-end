@@ -8,7 +8,7 @@
             <div class="Searchbar">
                 <mat-form-field appearance="outline" class="DeleteInputPadding">
                     <mat-label>{{ 'FILTER.SEARCHBAR' | translate }}</mat-label>
-                    <input (keyup)="applyFilter($event)" matInput>
+                    <input #MySearchBar (keyup)='searchbar(MySearchBar.value)' matInput>
                     <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
             </div>

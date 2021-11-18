@@ -10,6 +10,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppArchiveDialogComponent } from '../app-archive-dialog/app-archive-dialog.component';
 import { IInventoryPage } from '../models/inventory-page.model';
 import { ViewEncapsulation } from '@angular/core';
+import {
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
 
 const PAGE_SIZE_DEFAULT = 50;
 const INDEX_DEFAULT = 0;
@@ -58,11 +61,6 @@ export class AppInventoryPageComponent implements OnInit {
     this.retrieveLocalStorage();
     this.getProductData();
     this.dataSource.sort = this.sort;
-  }
-  
-  applyFilter(event: Event){
-    this.filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = this.filterValue.trim().toLocaleLowerCase();
   }
 
   @ViewChild(MatSort) sort: MatSort;
@@ -151,12 +149,28 @@ export class AppInventoryPageComponent implements OnInit {
     }
   }
 
+  //Filter values
+  searchfilter:string = '-';
+
+  //Filter function
+  searchbar(selectedFilter:string){
+    this.searchfilter = selectedFilter;
+
+    debounceTime(3000);
+
+    if (!this.searchfilter){
+      this.searchfilter = "-";
+    }
+
+    this.getProductData();
+  }
+
   /**
    * Get product data that gets displayed in the inventory
    */
   getProductData(): void {
     this.isLoading = true;
-    this.apiService.getInventoryProducts(this.pageIndex, this.pageSize)
+    this.apiService.getInventoryProducts(this.pageIndex, this.pageSize, this.searchfilter)
       .subscribe({
         next: (response) => {
           this.readInventoryPage(response.body);
