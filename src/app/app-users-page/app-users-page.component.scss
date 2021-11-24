@@ -37,6 +37,31 @@
     margin-top: 10px;
     width: 100%;
   }
+
+  .Searchbar{
+    display: flex;
+    justify-content: flex-end;
+    flex: auto;
+  }
+
+  .DeleteInputPadding .mat-form-field-wrapper {
+    margin-top: -0.25em !important;
+    padding-bottom: 0px !important;
+  }
+
+  .mat-column-blocked {
+    padding-right: 50px;
+  }
+
+  @media screen and (min-width: 960px){
+    .table-row {
+      height: 70px !important;
+    }
+  
+    .my-form-field .mat-form-field-wrapper {
+      margin-bottom: -1.25em;
+  }
+  }
   
   @media screen and (max-width: 960px) {
     .mat-header-row {

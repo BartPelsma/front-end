@@ -168,7 +168,7 @@
     "OPTIONS": "Opties",
     "UNBLOCK_BUTTON": "Deblokkeren",
     "BLOCK_BUTTON": "Blokkeer",
-    "BLOCK_DATEPICKER": "Kies einddatum van blokkeren"
+    "BLOCK_DATEPICKER": "Kies einddatum"
   },
   "GENERIC": {
     "YES": "Ja",
@@ -209,5 +209,8 @@
     "NO_RESERVATIONS": "Geen reserveringen gevonden om te laten zien",
     "NO_RESPONSE_DATA": "Reservering gegevens konden niet opgehaald worden",
     "NO_PRODUCT_DATA": "Product gegevens konden niet opgehaald worden"
+  },
+  "FILTER": {
+    "SEARCHBAR": "Zoeken"
   }
 }

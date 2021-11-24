@@ -168,7 +168,7 @@
     "OPTIONS": "Options",
     "UNBLOCK_BUTTON": "Unblock user",
     "BLOCK_BUTTON": "Block user",
-    "BLOCK_DATEPICKER": "Choose enddate of block"
+    "BLOCK_DATEPICKER": "Choose enddate"
   },
   "GENERIC": {
     "YES": "Yes",
@@ -209,5 +209,8 @@
     "NO_RESERVATIONS": "No reservations were found to be displayed",
     "NO_RESPONSE_DATA": "Could not retrieve reservation data",
     "NO_PRODUCT_DATA": "Could not retrieve product data"
+  },
+  "FILTER": {
+    "SEARCHBAR": "Search"
   }
 }
