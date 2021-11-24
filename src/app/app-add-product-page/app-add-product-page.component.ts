@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../api.service';
 import { IAddCategoryObject } from '../models/add-category.model';
 import { IAddProductImage } from '../models/add-product-image.model';
-import { IAddProductPDF } from '../models/add-product-pdf';
+import { IAddProductPDF } from '../models/add-product-pdf.model';
 import { IAddProductObject } from '../models/add-product.model';
 import { ICategory } from '../models/category.model';
 
