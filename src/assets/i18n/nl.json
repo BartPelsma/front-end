@@ -146,6 +146,19 @@
       "USER": "Gebruiker",
       "EMPLOYEE": "Medewerker",
       "ADMIN": "Admin"
+    },
+    "ACTION": {
+      "ERROR": "Actie kan niet gedaan worden",
+      "EMPTY_DATE": "Voeg een toegestane einddatum toe voor het blokkeren",
+      "BLOCK_SUCCESS": "Blokkeren gelukt",
+      "UNBLOCK_SUCCESS": "Deblokkeren gelukt",
+      "UNSUCCESSFUL": "Actie is niet gelukt",
+      "INVALID": {
+        "CALL": "Ongeldig aanroep",
+        "ID": "Ongeldig ID meegegeven",
+        "BLOCK_ADMIN": "Admins kunnen niet worden geblokkeerd",
+        "ACTION":"Ongeldige actie op gebruiker"
+      }
     }
   },
   "USERINFO": {
