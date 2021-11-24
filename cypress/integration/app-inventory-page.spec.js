@@ -206,10 +206,25 @@ describe('Inventory tests', () => {
         cy.intercept('GET', /\/api\/product\/page\/1\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProductsNextPage');
         //cy.contains('Naam').click();
         cy.get(".mat-header-cell").contains('Name').click();
-        cy.get(".mat-header-cell").contains('Status').click();
-        cy.get(".mat-header-cell").contains('Location').click();
-        cy.get(".mat-header-cell").contains('Requires approval').click();
+        cy.get(':nth-child(2) > .cdk-column-name').contains("CANON R2")
+        cy.get(".mat-header-cell").contains('Name').click();
+        cy.get(':nth-child(2) > .cdk-column-name').contains("DJ set")
 
-        cy.get(".mat-table").find('.cdk-column-status').click();
+
+        cy.get(".mat-header-cell").contains('Status').click();
+        cy.get(':nth-child(2) > .cdk-column-status > .mat-chip').contains("Available")
+        cy.get(".mat-header-cell").contains('Status').click();
+        cy.get(':nth-child(2) > .cdk-column-status > .mat-chip').contains("Archived")
+
+        cy.get(".mat-header-cell").contains('Location').click();
+        cy.get(':nth-child(2) > .cdk-column-location').contains("A3.3")
+        cy.get(".mat-header-cell").contains('Location').click();
+        cy.get(':nth-child(2) > .cdk-column-location').contains('Die ene plank')
+
+        cy.get(".mat-header-cell").contains('Requires approval').click();
+        cy.get(':nth-child(2) > .cdk-column-requiresApproval').contains('No')
+        cy.get(".mat-header-cell").contains('Requires approval').click();
+        cy.get(':nth-child(2) > .cdk-column-requiresApproval').contains('Yes')
+
     });
 });
