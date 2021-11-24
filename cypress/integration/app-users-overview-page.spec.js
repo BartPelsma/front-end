@@ -7,6 +7,7 @@ describe('Users overview tests', () => {
         cy.visit('http://localhost:4200/users');
         cy.changeLanguage('en');
 
+        cy.get(".mat-column-personName").contains("Name").should("exist");
         cy.get(".mat-column-number").contains("Student number").should("exist");
         cy.get(".mat-column-blocked").contains("Blocked until").should("exist");
         cy.get(".mat-column-role").contains("Role").should("exist");
@@ -18,6 +19,7 @@ describe('Users overview tests', () => {
         cy.visit('http://localhost:4200/users');
         cy.changeLanguage('nl');
 
+        cy.get(".mat-column-personName").contains("Naam").should("exist");
         cy.get(".mat-column-number").contains("Studentennummer").should("exist");
         cy.get(".mat-column-blocked").contains("Geblokkeerd tot").should("exist");
         cy.get(".mat-column-role").contains("Rol").should("exist");
@@ -279,11 +281,15 @@ describe('Users overview tests', () => {
         cy.changeLanguage('en');
         cy.wait("@getUsers");
 
-        cy.get('.mat-table').find('.mat-column-number').contains(1).should('exist');
-        cy.get('.mat-table').find('.mat-column-number').contains(2).should('exist');
-        cy.get('.mat-table').find('.mat-column-number').contains(4).should('exist');
-        cy.get('.mat-table').find('.mat-column-number').contains(5).should('exist');
-        cy.get('.mat-table').find('.mat-column-number').contains(6).should('exist');
+        cy.get('.mat-table').find('.mat-column-number').contains("100").should('exist');
+        cy.get('.mat-table').find('.mat-column-number').contains("200").should('exist');
+        cy.get('.mat-table').find('.mat-column-number:contains("-")').should('have.length', 3);
+
+        cy.get('.mat-table').find('.mat-column-personName').contains("Fred").should('exist');
+        cy.get('.mat-table').find('.mat-column-personName').contains("Wil").should('exist');
+        cy.get('.mat-table').find('.mat-column-personName').contains("Miep").should('exist');
+        cy.get('.mat-table').find('.mat-column-personName:contains("Piet")').should('have.length', 2);
+
 
         cy.get('.mat-table').find('.mat-column-blocked:contains("Jan 2, 2022")').should('have.length', 1);
         cy.get('.mat-table').find('.mat-column-blocked:contains("-")').should('have.length', 1);

@@ -163,6 +163,7 @@
   },
   "USERINFO": {
     "NUMBER": "Student number",
+    "NAME": "Name",
     "BANNED": "Blocked until",
     "ROLE": "Role",
     "OPTIONS": "Options",
