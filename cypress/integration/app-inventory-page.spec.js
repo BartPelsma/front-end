@@ -185,14 +185,10 @@ describe('Inventory tests', () => {
         cy.changeLanguage('nl');
         cy.wait("@getProducts");
 
-        // cy.get('.mat-table').find('.mat-column-name').contains('DJ set').should('exist');
-        // cy.get('.mat-table').find('.mat-column-name').contains('CANON R5').should('exist');
-        // cy.get('.mat-table').find('.mat-column-name').contains('CANON R4').should('exist');
-        // cy.get('.mat-table').find('.mat-column-name').contains('CANON R3').should('exist');
-        // cy.get('.mat-table').find('.mat-column-name').contains('CANON R2').should('exist');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/[A-Z]+$/, { fixture: 'inventory-products-page-2.json' }).as('getSearchedProducts');
+        cy.get('#mat-input-0').type('C')
+        cy.wait("@getSearchedProducts");
 
-        // cy.get('.mat-table').find('.mat-column-location').contains('A3.3').should('exist');
-        // cy.get('.mat-table').find('.mat-column-location').contains('Die ene plank').should('exist');
-        // cy.get('.mat-table').find('.mat-column-location:contains("Balie")').should('have.length', 3);
+        cy.get('.mat-table').find('.mat-row').should('have.length', 1);
     });
 });
