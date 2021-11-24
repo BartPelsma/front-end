@@ -71,7 +71,10 @@
       "NO_CATALOG_NUMBER_RESPONSE": "Er is iets misgegaan met het ophalen van de catalogusnummers. Probeer het later opnieuw of contacteer een administrator",
       "NO_DATA": "Er is iets misgegaan met het opslaan van de gegevens. Probeer het later opnieuw of contacteer een administrator",
       "ADD_SUCCESSFUL": "Product is toegevoegd!",
-      "DIALOG_ADD_BUTTON": "PDF Toevoegen"
+      "DIALOG_ADD_BUTTON": "PDF Toevoegen",
+      "DIALOG_CHANGE_BUTTON": "PDF Vervangen",
+      "DIALOG_REPLACE": "Kies uw vervanging:",
+      "DIALOG_REPLACE_MESSAGE": "U staat op het punt de PDF van het volgende product te vervangen:"
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Bevestig",

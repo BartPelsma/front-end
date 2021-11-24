@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -7,6 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./app-add-pdf.component.scss']
 })
 export class AppAddPdfComponent implements OnInit {
+  fileName: any;
 
 
   public closeDialog(): void {
@@ -14,12 +15,18 @@ export class AppAddPdfComponent implements OnInit {
   }
   
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<AppAddPdfComponent>
   ) { }
 
   onClickAddPDF(): void {
     const element = document.getElementById('PDFInput') as HTMLElement;
     element.click();
+  }
+
+  onFileSelected(fileInput: any){
+    let file = fileInput.target.files[0];
+    this.fileName = file.name;
   }
 
   ngOnInit(): void {

@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../api.service';
 import { IAddCategoryObject } from '../models/add-category.model';
 import { IAddProductImage } from '../models/add-product-image.model';
+import { IAddProductPDF } from '../models/add-product-pdf';
 import { IAddProductObject } from '../models/add-product.model';
 import { ICategory } from '../models/category.model';
 
@@ -25,6 +26,8 @@ export class AppAddProductPageComponent implements OnInit {
   /* Contains all (temp) image objects  */
   images: Array<IAddProductImage> = [];
   /* Selected index of the image carousel. */
+  pdf: Array<IAddProductPDF> = [];
+  /* Selected index of the PDF */
   selectedImageIndex = 0;
   /* Selected image that has to be removed. Is null when confirm is not active. */
   removingImageIndex: number | null = null;
@@ -37,6 +40,7 @@ export class AppAddProductPageComponent implements OnInit {
     Disables all form inputs/buttons when true. Loading spinner is visible when true
   */
   isLoading = false;
+  fileName: any;
 
 
   constructor(
@@ -69,7 +73,8 @@ export class AppAddProductPageComponent implements OnInit {
       images: [],
       location: '',
       name: '',
-      requiresApproval: false
+      requiresApproval: false,
+      pdf: []
     };
 
     this.apiService.getAllCategories().subscribe({
@@ -230,11 +235,19 @@ export class AppAddProductPageComponent implements OnInit {
     Handle file changes. Loop through all added files and convert them to IAddProductImages.
     Compare base64 strings to block duplicate images.
   */
+
+    onFileSelected(fileInput: any){
+      let file = fileInput.target.files[0];
+      this.fileName = file.name;
+    }
+
   async onFileChanged(event: Event): Promise<void> {
     const element = document.getElementById('fileInput') as HTMLInputElement;
     if (element.files == null) {
       return;
     }
+
+    
 
     for (let i = 0; i < element.files?.length; i++) {
       const newImage: IAddProductImage = {
@@ -283,6 +296,9 @@ export class AppAddProductPageComponent implements OnInit {
     this.isLoading = true;
 
     this.product.images = this.images.map(x => x.base64);
+
+    // this.product.pdf = this.pdf.map(x => x.base64);
+    
 
     this.apiService.addProduct(this.product).subscribe({
       next: (resp) => {

@@ -71,7 +71,10 @@
       "NO_CATALOG_NUMBER_RESPONSE": "Something went wrong with receiving the catalog data. Please try again later or contact an administrator",
       "NO_DATA": "Something went wrong with saving your data. Please try again later or contact an administrator",
       "ADD_SUCCESSFUL": "Product has been added!",
-      "DIALOG_ADD_BUTTON": "Add PDF"
+      "DIALOG_ADD_BUTTON": "Add PDF",
+      "DIALOG_CHANGE_BUTTON": "Replace PDF",
+      "DIALOG_REPLACE": "Choose your replacement:",
+      "DIALOG_REPLACE_MESSAGE": "You are about to replace the PDF of the following product:"
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Confirm",

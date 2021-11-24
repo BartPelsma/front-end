@@ -1,14 +1,22 @@
 <h2 class="dialog-title">Upload PDF</h2>
+<p>
+  {{ 'PRODUCT.ADD.DIALOG_REPLACE_MESSAGE' | translate }}
+</p>
+<li name="archive-dialog-list-item">{{ data.name }}</li>
 <div class="upload">
-  <input id="PDFInput" type="file"  accept="application/pdf" hidden='true'
+  <input id="PDFInput" type="file" (change)="onFileSelected($event)" accept="application/pdf" hidden='true'
   multiple  name="file-input-button">
+  <p>
+    {{ 'PRODUCT.ADD.DIALOG_REPLACE' | translate }}
+  </p>
 <button mat-icon-button [title]="'PRODUCT.ADD.DIALOG_ADD_BUTTON' | translate" color="accent"
   (click)="onClickAddPDF()"  name="PDF-input-button">
   <mat-icon>picture_as_pdf</mat-icon>
 </button>
+<span style="color: rgb(105, 240, 174);" *ngIf="fileName">{{fileName}}</span>
 </div>
 <button class="submit-button" name="archive-dialog-archive-button" mat-button> 
-    {{ 'PRODUCT.ADD.DIALOG_ADD_BUTTON' | translate }}
+    {{ 'PRODUCT.ADD.DIALOG_CHANGE_BUTTON' | translate }}
   </button>
   <button class="cancel-button" (click)="closeDialog()" name="archive-dialog-cancel-button" mat-stroked-button>
     {{ 'PRODUCT.ARCHIVE.DIALOG_CANCEL_BUTTON' | translate }}

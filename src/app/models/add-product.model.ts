@@ -14,4 +14,6 @@ export interface IAddProductObject {
     images: Array<string>;
     /* Boolean to check if approval (action by the lender) is required before finalising the reservation. */
     requiresApproval: boolean;
+    /* the PDF of the product*/
+    pdf: Array<string>;
 }
