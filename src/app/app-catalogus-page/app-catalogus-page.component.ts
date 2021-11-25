@@ -232,16 +232,6 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  //Filter values
-  filter:string = '';
-  filterargs = {category: ''};
-
-  //Filter function
-  search(selectedFilter:string){
-    // this.filterargs = {category: this.filter};
-  }
-
-
   //Filter function
   searchfilter:string = '-';
   categoryfilter:string = '-';
@@ -257,6 +247,7 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   }
 
   searchCategory(selectedFilter:string){
+
     this.categoryfilter = selectedFilter;
 
     if (!this.categoryfilter){

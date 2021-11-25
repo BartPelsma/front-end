@@ -3,9 +3,10 @@
     <div class="header">
         <!-- Filter function-->
         <div class="filterbar">
-            <mat-form-field appearance="fill" class="sfilter" style="padding-top: 20px;">
+
+            <mat-form-field appearance="fill" style="padding-top: 20px;">
                 <mat-label>Choose a filter</mat-label>
-                <mat-select class="selector" [(ngModel)]="filter" #mySelect (change)='searchCategory(mySelect.value)'>
+                <mat-select class="selector" [(ngModel)]="categoryfilter" #mySelect (change)='searchCategory(mySelect.value)'>
                     <mat-option selected value="-">All</mat-option>
                     <mat-option *ngFor="let category of categories" class="dropdown"
                         value="{{category.name}}">{{category.name}}</mat-option>
