@@ -236,9 +236,22 @@ export class AppAddProductPageComponent implements OnInit {
     Compare base64 strings to block duplicate images.
   */
 
-    onFileSelected(fileInput: any){
-      let file = fileInput.target.files[0];
+    async onFileSelected(PDFInput: any){
+      let file = PDFInput.target.files[0];
       this.fileName = file.name;
+
+      const element = document.getElementById('PDFInput') as HTMLInputElement;
+      if (element.files == null) {
+        return
+      }
+
+      for (let i = 0; i< element.files?.length; i++) {
+        const newPDF: IAddProductPDF = {
+          base64: await this.PDFToBas64(element.files.item(i)).then(x => x) as string,
+          file: element.files.item(i) as File
+        };
+        this.pdf.push(newPDF);
+      }
     }
 
   async onFileChanged(event: Event): Promise<void> {
@@ -297,7 +310,7 @@ export class AppAddProductPageComponent implements OnInit {
 
     this.product.images = this.images.map(x => x.base64);
 
-    // this.product.pdf = this.pdf.map(x => x.base64);
+    this.product.pdf = this.pdf.map(x => x.base64);
     
 
     this.apiService.addProduct(this.product).subscribe({
@@ -323,6 +336,15 @@ export class AppAddProductPageComponent implements OnInit {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(image as File);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
+  private PDFToBas64(pdf: File | null): Promise<any>{
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(pdf as File);
       reader.onload = () => resolve(reader.result);
       reader.onerror = error => reject(error);
     });
