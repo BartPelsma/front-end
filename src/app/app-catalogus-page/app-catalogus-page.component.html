@@ -5,10 +5,10 @@
         <div class="filterbar">
             <mat-form-field appearance="fill" class="sfilter" style="padding-top: 20px;">
                 <mat-label>Choose a filter</mat-label>
-                <mat-select class="selector" [(ngModel)]="filter" #mySelect (change)='search(mySelect.value)'>
-                    <mat-option selected value="All">All</mat-option>
-                    <mat-option *ngFor="let catalogItem of catalogItemsWithCategory" class="dropdown"
-                        value="{{catalogItem.categoryName}}">{{catalogItem.categoryName}}</mat-option>
+                <mat-select class="selector" [(ngModel)]="filter" #mySelect (change)='searchCategory(mySelect.value)'>
+                    <mat-option selected value="-">All</mat-option>
+                    <mat-option *ngFor="let category of categories" class="dropdown"
+                        value="{{category.name}}">{{category.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
