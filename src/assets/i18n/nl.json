@@ -18,7 +18,8 @@
     "EMPTY_DATE": "Voeg een datum toe aan het product",
     "CART_ADD_SUCCESSFUL": "is toegevoegd aan winkelmandje",
     "NO_PRODUCTS": "Er zijn huidig geen producten aanwezig in de catalogus",
-    "LOADING": "Laden van catalogus"
+    "LOADING": "Laden van catalogus",
+    "ALREADY_IN_CART": "Product zit al in je winkelmandje!"
   },
   "INVENTORY": {
     "TITLE": "Inventaris",

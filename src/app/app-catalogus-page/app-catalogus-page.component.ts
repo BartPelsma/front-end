@@ -113,25 +113,43 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
    * @param item item object that should be handled to be added to the cart
    */
   addItemToCart(item: ICatalogFlat): void {
-    if (new Date(item.startDate) <= new Date() || new Date(item.endDate as Date) <= new Date()) {
-      this.showErrorNotification('CATALOG.EMPTY_DATE');
+    if (this.checkAmountofProductsInCart(this.cartItems, item) === true) {
+      if (new Date(item.startDate) <= new Date() || new Date(item.endDate as Date) <= new Date()) {
+        this.showErrorNotification('CATALOG.EMPTY_DATE');
+      }
+      else {
+        const modal = {} as ICartProduct;
+        modal.endDate = item.endDate;
+        modal.startDate = item.startDate;
+        modal.id = item.id;
+        this.cartItems.push(modal);
+  
+        localStorage.setItem('cart', JSON.stringify(this.cartItems));
+  
+        this.notificationService.open(item.name + ' ' + this.translateService.instant('CATALOG.CART_ADD_SUCCESSFUL'), undefined, {
+          panelClass: 'success-snack',
+          duration: 2500
+        });
+      }
     }
     else {
-      const modal = {} as ICartProduct;
-      modal.endDate = item.endDate;
-      modal.startDate = item.startDate;
-      modal.id = item.id;
-      this.cartItems.push(modal);
-
-      localStorage.setItem('cart', JSON.stringify(this.cartItems));
-
-      this.notificationService.open(item.name + ' ' + this.translateService.instant('CATALOG.CART_ADD_SUCCESSFUL'), undefined, {
-        panelClass: 'success-snack',
-        duration: 2500
-      });
+        this.showErrorNotification('CATALOG.ALREADY_IN_CART')
     }
+  
   }
 
+  test: boolean;
+  checkAmountofProductsInCart(cartItems: Array<ICartProduct>, item: ICatalogFlat): boolean {
+  this.test = true
+
+    cartItems.forEach(element => {
+      if (element.id == item.id) {
+        this.test = false;
+      }
+    });
+
+    return this.test;
+  }
   /**
    * Handles the checking of amount of images with a received item
    * @param images images object that should be handled
