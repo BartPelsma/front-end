@@ -62,4 +62,10 @@ describe('Side menu bar tests', () => {
     cy.get('button[name=menu-option-users]').click();
     cy.url().should('include', 'users');
   });
+  
+  it('Should show closed menu', () => {
+    cy.viewport(550, 750)
+    cy.contains('Vergrendel menu').should('not.visible')
+  });
+
 });

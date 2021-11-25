@@ -1,117 +1,124 @@
-// /// <reference types="cypress" />
+ /// <reference types="cypress" />
 
-// describe('Add product menu tests', () => {
-//     it('Should show initial page setup in English', () => {
-//         cy.intercept('GET', '/api/product/catalogEntries/0/5', { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+ describe('Add product menu tests', () => {
+     it('Should show initial page setup in English', () => {
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogItems');
+         //cy.intercept('GET', /\/api\/product\/page\/[0-9]\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
-//         cy.visit('http://localhost:4200/catalog')
+         cy.visit('http://localhost:4200/catalog')
 
-//         cy.changeIsMenuOpened(true);
-//         cy.changeLanguage('en');
+         cy.changeIsMenuOpened(true);
+         cy.changeLanguage('en');
+            cy.wait("@getCatalogItems")
 
-//         cy.get(".mat-card-title[name=cart-title]").contains("Camera")
+         cy.get(".mat-card-title[name=cart-title]").contains("Camera")
 
-//         cy.get("h2[name=item-name]").contains('Nikon Z50');
-//         cy.get("p[name=datepicker-not-available]").should("not.exist")
-//         cy.get("app-product-datepicker[name=datepicker]").should("exist")
-//         cy.get("app-product-datepicker[name=datepicker]").contains('Choose a date period')
+         cy.get("h2[name=item-name]").contains('Nikon Z50');
+         cy.get("p[name=datepicker-not-available]").should("not.exist")
+         cy.get("app-product-datepicker[name=datepicker]").should("exist")
+         cy.get("app-product-datepicker[name=datepicker]").contains('Choose a date period')
 
-//         cy.get("button[name=add-to-cart-button]").contains('+ Add to cart')
-//     });
+         cy.get("button[name=add-to-cart-button]").contains('+ Add to cart')
+     });
 
-//     it('Should show initial page setup in Dutch', () => {
-//         cy.intercept('GET', '/api/product/catalogEntries/0/5', { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+     it('Should show initial page setup in Dutch', () => {
+        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogItems');
 
-//         cy.visit('http://localhost:4200/catalog')
+         cy.visit('http://localhost:4200/catalog')
 
-//         cy.changeIsMenuOpened(true);
-//         cy.changeLanguage('nl');
+         cy.changeIsMenuOpened(true);
+         cy.changeLanguage('nl');
 
-//         cy.get(".mat-card-title[name=cart-title]").contains("Camera")
+         cy.get(".mat-card-title[name=cart-title]").contains("Camera")
 
-//         cy.get("h2[name=item-name]").contains('Nikon Z50');
-//         cy.get("p[name=datepicker-not-available]").should("not.exist")
-//         cy.get("app-product-datepicker[name=datepicker]").should("exist")
-//         cy.get("app-product-datepicker[name=datepicker]").contains('Kies een periode')
+         cy.get("h2[name=item-name]").contains('Nikon Z50');
+         cy.get("p[name=datepicker-not-available]").should("not.exist")
+         cy.get("app-product-datepicker[name=datepicker]").should("exist")
+         cy.get("app-product-datepicker[name=datepicker]").contains('Kies een periode')
 
-//         cy.get("button[name=add-to-cart-button]").contains('+ In winkelwagen')
-//     });
+         cy.get("button[name=add-to-cart-button]").contains('+ In winkelwagen')
 
-//     it('get 500 internal server error', () => {
-//         cy.intercept('GET', '/api/product/catalogEntries/0/5', { statusCode: 500 }).as('getCatalogEntries');
 
-//         cy.visit('http://localhost:4200/catalog')
-//         cy.wait("@getCatalogEntries")
+     });
 
-//         cy.get("snack-bar-container").contains('Something went wrong with receiving the products. Please try again later or contact an administrator.');
-//     })
+     it('get 500 internal server error', () => {
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]+$/ , { statusCode: 500 }).as('getCatalogEntries');
 
-//     it('Add catalog item to cart NL', () => {
-//         cy.intercept('GET', '/api/product/catalogEntries/0/5', { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+         cy.visit('http://localhost:4200/catalog')
 
-//         cy.visit('http://localhost:4200/catalog')
+         cy.wait("@getCatalogEntries")
 
-//         cy.changeIsMenuOpened(true);
-//         cy.changeLanguage('nl');
+         cy.get("snack-bar-container").contains('Er is iets misgegaan met het ophalen van de producten. Probeer het later opnieuw of contacteer een administrator.');
+     })
 
-//         cy.get("app-product-datepicker[name=datepicker]").should("exist")
+     it('Add catalog item to cart NL', () => {
+         cy.clock(new Date(2020,5,4))
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
-//         cy.get('app-product-datepicker[name=datepicker]').within(() => {
-//             cy.get("input[id=mat-date-range-input-0]").type('5/25/2021')
-//         })
-//         cy.get('app-product-datepicker[name=datepicker]').type('5/27/2021')
-//         cy.get("button[name=add-to-cart-button]").click()
+         cy.visit('http://localhost:4200/catalog')
 
-//         cy.get("snack-bar-container").contains('Nikon Z50 is toegevoegd aan winkelmandje');
-//     });
+         cy.changeIsMenuOpened(true);
+         cy.changeLanguage('nl');
 
-//     it('Add catalog item to cart EN', () => {
-//         cy.intercept('GET', '/api/product/catalogEntries/0/5', { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+         cy.get("app-product-datepicker[name=datepicker]").should("exist")
 
-//         cy.visit('http://localhost:4200/catalog')
+         cy.get('app-product-datepicker[name=datepicker]').within(() => {
+             cy.get("input[id=mat-date-range-input-0]").type('5/24/2021')
+         })
+         cy.get('app-product-datepicker[name=datepicker]').type('5/28/2021')
+         cy.get("button[name=add-to-cart-button]").click()
 
-//         cy.changeIsMenuOpened(true);
-//         cy.changeLanguage('en');
+         cy.get("snack-bar-container").contains('Nikon Z50 is toegevoegd aan winkelmandje');
+     });
 
-//         cy.get("app-product-datepicker[name=datepicker]").should("exist")
+     it('Add catalog item to cart EN', () => {
+        cy.clock(new Date(2020,5,4))
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
-//         cy.get('app-product-datepicker[name=datepicker]').within(() => {
-//             cy.get("input[id=mat-date-range-input-0]").type('5/25/2021')
-//         })
-//         cy.get('app-product-datepicker[name=datepicker]').type('5/27/2021')
-//         cy.get("button[name=add-to-cart-button]").click()
+         cy.visit('http://localhost:4200/catalog')
 
-//         cy.get("snack-bar-container").contains('Nikon Z50 has been added to the shopping cart');
-//     });
+         cy.changeIsMenuOpened(true);
+         cy.changeLanguage('en');
 
-//     it('Add to cart without date NL', () => {
-//         cy.intercept('GET', '/api/product/catalogEntries/0/5', { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+         cy.get("app-product-datepicker[name=datepicker]").should("exist")
 
-//         cy.visit('http://localhost:4200/catalog')
+         cy.get('app-product-datepicker[name=datepicker]').within(() => {
+             cy.get("input[id=mat-date-range-input-0]").type('5/24/2021')
+         })
+         cy.get('app-product-datepicker[name=datepicker]').type('5/28/2021')
+         cy.get("button[name=add-to-cart-button]").click()
 
-//         cy.changeIsMenuOpened(true);
-//         cy.changeLanguage('nl');
+         cy.get("snack-bar-container").contains('Nikon Z50 has been added to the shopping cart');
+     });
 
-//         cy.get("app-product-datepicker[name=datepicker]").should("exist")
+     it('Add to cart without date NL', () => {
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
-//         cy.get("button[name=add-to-cart-button]").click()
+         cy.visit('http://localhost:4200/catalog')
 
-//         cy.get("snack-bar-container").contains('Voeg een datum toe aan het product');
-//     });
+         cy.changeIsMenuOpened(true);
+         cy.changeLanguage('nl');
 
-//     it('Add to cart without date EN', () => {
-//         cy.intercept('GET', '/api/product/catalogEntries/0/5', { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+         cy.get("app-product-datepicker[name=datepicker]").should("exist")
 
-//         cy.visit('http://localhost:4200/catalog')
+         cy.get("button[name=add-to-cart-button]").click()
 
-//         cy.changeIsMenuOpened(true);
-//         cy.changeLanguage('en');
+         cy.get("snack-bar-container").contains('Voeg een datum toe aan het product');
+     });
 
-//         cy.get("app-product-datepicker[name=datepicker]").should("exist")
+     it('Add to cart without date EN', () => {
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
-//         cy.get("button[name=add-to-cart-button]").click()
+         cy.visit('http://localhost:4200/catalog')
 
-//         cy.get("snack-bar-container").contains('Add a date to the product');
-//     });
+         cy.changeIsMenuOpened(true);
+         cy.changeLanguage('en');
 
-// });
+         cy.get("app-product-datepicker[name=datepicker]").should("exist")
+
+         cy.get("button[name=add-to-cart-button]").click()
+
+         cy.get("snack-bar-container").contains('Add a date to the product');
+     });
+
+ });

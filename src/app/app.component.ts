@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { MatDrawerMode } from '@angular/material/sidenav';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, ViewChild } from '@angular/core';
+import { MatDrawer, MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
@@ -22,7 +23,8 @@ export class AppComponent {
   constructor(
     public translate: TranslateService,
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    private observer: BreakpointObserver
   ) {
     this.initLanguage();
     this.initMenuBar();
@@ -34,7 +36,25 @@ export class AppComponent {
   onClickSideBar(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
+  /*
+  checks what kind of screen you are using
+  */
+ @ViewChild(MatDrawer)
+ sidenav!: MatSidenav;
 
+ ngAfterViewInit(){
+   this.observer.observe('(max-width: 700px)').subscribe(result =>{
+    if(result.matches){
+      this.sidenav.mode = 'over';
+      this.sidenav.close();
+    } else{
+      this.sidenav.mode= 'side';
+      this.sidenav.open();
+    }
+
+   });
+
+ }
   /*
     Sets the correct menu state based on the pinned state.
   */
@@ -98,6 +118,7 @@ export class AppComponent {
       return;
     }
 
+   
     localStorage.setItem('menu-pinned', this.isMenuPinned.toString());
   }
 
