@@ -178,7 +178,7 @@ describe('Inventory tests', () => {
         cy.get('.mat-table').find('.cdk-column-requiresApproval:contains("Nee")').should('have.length', 3);
     });
 
-    it('Should show correct information in the table', () => {
+    it('Should show correct information in the table after searchfilter', () => {
         cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');

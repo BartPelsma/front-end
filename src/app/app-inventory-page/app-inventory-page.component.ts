@@ -153,9 +153,7 @@ export class AppInventoryPageComponent implements OnInit {
   searchfilter:string = '-';
   searchbar(selectedFilter:string){
     this.searchfilter = selectedFilter;
-
-    debounceTime(3000);
-
+    
     if (!this.searchfilter){
       this.searchfilter = "-";
     }
