@@ -1,0 +1,129 @@
+.mat-table {
+    width: 100%;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+  
+    .main-content {
+        max-width: 1000px;
+        min-width: 80%;
+  
+        .card-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            padding-top: 15px;
+        }
+    }
+  }
+  
+  .spinner-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin: auto;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 50px;
+    width: 70%;
+  }
+  
+  .empty-message {
+    text-align: center; 
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .Searchbar{
+    display: flex;
+    justify-content: flex-end;
+    flex: auto;
+  }
+
+  .DeleteInputPadding .mat-form-field-wrapper {
+    margin-top: -0.25em !important;
+    padding-bottom: 0px !important;
+  }
+
+  .mat-column-blocked {
+    padding-right: 50px;
+  }
+
+  @media screen and (min-width: 960px){
+    .table-row {
+      height: 70px !important;
+    }
+  
+    .my-form-field .mat-form-field-wrapper {
+      margin-bottom: -1.25em;
+  }
+  }
+  
+  @media screen and (max-width: 960px) {
+    .mat-header-row {
+      display: none;
+    }
+
+    .mat-table {
+      border: 0;
+      vertical-align: middle
+    }
+  
+    .mat-table caption {
+      font-size: 1em;
+    }
+    
+    .mat-table .mat-header-cell {
+      border: 10px solid;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+  
+    .mat-table .mat-row {
+      border-top: 5px solid rgba(255, 255, 255, 0.12);
+      display: block;
+      margin-bottom: -60px;
+    }
+  
+    .mat-table .mat-cell {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      display: block;
+      font-size: 1em;
+      text-align: right;
+      height:30px;
+      margin-bottom: 4%;
+    }
+    
+    .mat-table .mat-cell:before {
+      content: attr(data-label);
+      float: left;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  
+    .mat-table .mat-cell {
+      padding: 0%;
+    }
+    
+    .mat-table .mat-cell:last-child {
+      border-bottom: 0;
+    }
+
+    .mat-table .mat-row:last-child {
+      border-bottom: 0;
+    }
+    
+    .mat-table .mat-cell:first-child {
+      margin-top: 4%;
+    }
+  }

@@ -191,4 +191,35 @@ describe('Inventory tests', () => {
 
         cy.get('.mat-table').find('.mat-row').should('have.length', 1);
     });
+
+    it('Should change order of inventory', () => {
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+
+        cy.visit('http://localhost:4200/products');
+        cy.changeLanguage('en');
+        cy.wait("@getProducts");
+
+        cy.intercept('GET', /\/api\/product\/page\/1\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProductsNextPage');
+
+        cy.get(".mat-header-cell").contains('Name').click();
+        cy.get(':nth-child(2) > .cdk-column-name').contains("CANON R2")
+        cy.get(".mat-header-cell").contains('Name').click();
+        cy.get(':nth-child(2) > .cdk-column-name').contains("DJ set")
+
+        cy.get(".mat-header-cell").contains('Status').click();
+        cy.get(':nth-child(2) > .cdk-column-status > .mat-chip').contains("Available")
+        cy.get(".mat-header-cell").contains('Status').click();
+        cy.get(':nth-child(2) > .cdk-column-status > .mat-chip').contains("Archived")
+
+        cy.get(".mat-header-cell").contains('Location').click();
+        cy.get(':nth-child(2) > .cdk-column-location').contains("A3.3")
+        cy.get(".mat-header-cell").contains('Location').click();
+        cy.get(':nth-child(2) > .cdk-column-location').contains('Die ene plank')
+
+        cy.get(".mat-header-cell").contains('Requires approval').click();
+        cy.get(':nth-child(2) > .cdk-column-requiresApproval').contains('No')
+        cy.get(".mat-header-cell").contains('Requires approval').click();
+        cy.get(':nth-child(2) > .cdk-column-requiresApproval').contains('Yes')
+
+    });
 });

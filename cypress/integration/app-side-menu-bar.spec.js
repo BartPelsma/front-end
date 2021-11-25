@@ -13,6 +13,7 @@ describe('Side menu bar tests', () => {
     cy.get('div[name=menu-options-list]').contains('Shopping cart');
     cy.get('div[name=menu-options-list]').contains('Catalog');
     cy.get('div[name=menu-options-list]').contains('Reservation');
+    cy.get('div[name=menu-options-list]').contains('Users');
   });
 
   it('Should show menu options in Dutch', () => {
@@ -23,6 +24,7 @@ describe('Side menu bar tests', () => {
     cy.get('div[name=menu-options-list]').contains('Winkelmandje');
     cy.get('div[name=menu-options-list]').contains('Catalogus');
     cy.get('div[name=menu-options-list]').contains('Reserveringen');
+    cy.get('div[name=menu-options-list]').contains('Gebruikers');
   });
 
   it('Should navigate to correct add product url', () => {
@@ -54,4 +56,16 @@ describe('Side menu bar tests', () => {
     cy.get('button[name=menu-option-catalog]').click();
     cy.url().should('include', 'catalog');
   });
+
+  it('Should navigate to correct users url', () => {
+    cy.changeIsMenuOpened(true);
+    cy.get('button[name=menu-option-users]').click();
+    cy.url().should('include', 'users');
+  });
+  
+  it('Should show closed menu', () => {
+    cy.viewport(550, 750)
+    cy.contains('Vergrendel menu').should('not.visible')
+  });
+
 });

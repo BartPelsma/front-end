@@ -11,6 +11,8 @@ import { CatalogPage } from './models/catalog-page.model';
 import { IInventoryPage } from './models/inventory-page.model';
 import { environment } from '../environments/environment';
 import { IReservationAction } from './models/reservation-action.model';
+import { IUsersPage } from './models/users-page.model';
+import { IUserBlockAction } from './models/users-block-action.model';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +56,10 @@ export class ApiService {
     return this.http.get<Array<Array<IReservation>>>(`${this.API_GATEWAY}reservation/similar`, { observe: 'response' });
   }
 
+  getUsersForPage(pageNumber: number, pageSize: number): Observable<HttpResponse<IUsersPage>> {
+    return this.http.get<IUsersPage>(`${this.API_GATEWAY}user/page/${pageNumber}/${pageSize}`, { observe: 'response'});
+  }
+
   /* POST calls */
   addProduct(product: IAddProductObject): Observable<HttpResponse<any>> {
     return this.http.post<any>(`${this.API_GATEWAY}product`, product, { observe: 'response' });
@@ -70,6 +76,11 @@ export class ApiService {
   reservationAction(reservationAction: IReservationAction): Observable<HttpResponse<any>> {
     return this.http.post<any>(`${this.API_GATEWAY}reservation`, reservationAction, { observe: 'response' });
   }
+
+  userBlockAction(userBlockAction: IUserBlockAction): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.API_GATEWAY}user/block`, userBlockAction, {observe: 'response' });
+  }
+
   /* DELETE calls */
   archiveProduct(productid: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.API_GATEWAY}product/` + productid, { observe: 'response' });

@@ -1,0 +1,24 @@
+{
+    "currentPage": 1,
+    "totalUsersCount": 7,
+    "users": [
+      {
+        "studentNumber": 7,
+        "bannedUntil": null,
+        "role": {
+          "id": 1,
+          "name": "User",
+          "permissions": null
+        }
+      },
+      {
+        "studentNumber": 8,
+        "bannedUntil": null,
+        "role": {
+          "id": 1,
+          "name": "User",
+          "permissions": null
+        }
+      }
+    ]
+  }
