@@ -4,6 +4,15 @@
             <mat-card-title name="add-product-title">
                 <h1 class="mat-h1">{{ 'INVENTORY.TITLE' | translate }}</h1>
             </mat-card-title>
+
+            <div class="Searchbar">
+                <mat-form-field appearance="outline" class="DeleteInputPadding">
+                    <mat-label>{{ 'FILTER.SEARCHBAR' | translate }}</mat-label>
+                    <input #MySearchBar (keyup)='searchbar(MySearchBar.value)' matInput>
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+
         </mat-card-header>
         <mat-card-content class="card-content mat-elevation-z0">
             <mat-table [hidden]="dataSource.data.length > 0 && isLoading === false" [dataSource]="dataSource" matSort
@@ -15,7 +24,7 @@
                 <ng-container matColumnDef="status">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'ATTRIBUTES.STATUS' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'ATTRIBUTES.STATUS' | translate">
-                        <mat-chip [ngClass]="element.status | statusNameClass">
+                        <mat-chip [ngClass]="element.status | statusNameClass" style="background-color: green"> 
                             {{ element.status | statusNameKey | translate }}
                         </mat-chip>
                     </mat-cell>

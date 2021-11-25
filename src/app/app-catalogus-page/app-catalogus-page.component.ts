@@ -8,6 +8,7 @@ import { CatalogItemsWithCategory } from '../models/catalog-items-with-catogery.
 import { CatalogPage } from '../models/catalog-page.model';
 import { ICatalogFlat } from '../models/catalog-flat.model';
 import { IDateChangedEvent } from '../models/date-changed-event.model';
+import { ViewEncapsulation } from '@angular/core';
 
 /* const variables for page sizing and index */
 const PAGE_SIZE_DEFAULT = 5;
@@ -17,7 +18,8 @@ const PRODUCT_COUNT_DEFAULT = 0;
 @Component({
   selector: 'app-catalogus-page',
   templateUrl: './app-catalogus-page.component.html',
-  styleUrls: ['./app-catalogus-page.component.scss']
+  styleUrls: ['./app-catalogus-page.component.scss'],
+  // encapsulation: ViewEncapsulation.None,
 })
 export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   /* MatPaginator Inputs */
@@ -225,5 +227,15 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   //Filter function
   search(selectedFilter:string){
     this.filterargs = {category: this.filter};
+  }
+
+
+  //Filter values
+  searchfilter:string = '';
+  searchfilterargs = {productname: ''};
+
+  //Filter function
+  searchbar(selectedFilter:string){
+    this.searchfilterargs = {productname: this.searchfilter};
   }
 }

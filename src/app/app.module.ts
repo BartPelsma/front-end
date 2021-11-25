@@ -62,7 +62,7 @@ import { RoleNameKeyPipe } from './pipes/role-name-key.pipe';
         deps: [HttpClient]
       }
     }),
-    LayoutModule
+    LayoutModule,
   ],
   providers: [
     {
