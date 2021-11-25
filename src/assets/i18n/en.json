@@ -17,7 +17,9 @@
     "EMPTY_DATE": "Add a date to the product",
     "CART_ADD_SUCCESSFUL": "has been added to the shopping cart",
     "NO_PRODUCTS": "Currently there are no products in the catalog",
-    "LOADING": "Loading catalog"
+    "LOADING": "Loading catalog",
+    "ALREADY_IN_CART": "Product is already in cart!"
+    
   },
   "INVENTORY": {
     "TITLE": "Inventory",
@@ -70,6 +72,7 @@
       "NO_CATALOG_NUMBER_RESPONSE": "Something went wrong with receiving the catalog data. Please try again later or contact an administrator",
       "NO_DATA": "Something went wrong with saving your data. Please try again later or contact an administrator",
       "ADD_SUCCESSFUL": "Product has been added!"
+     
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Confirm",
