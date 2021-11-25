@@ -197,7 +197,7 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
    */
   private getCatalogItems(): void {
     this.isLoading = true;
-    this.apiService.getCatalogEntries(this.pageIndex, this.pageSize).subscribe({
+    this.apiService.getCatalogEntries(this.pageIndex, this.pageSize, this.searchfilter).subscribe({
       next: (resp) => {
         this.readCatalogPage(resp.body);
         this.isLoading = false;
@@ -226,16 +226,19 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
 
   //Filter function
   search(selectedFilter:string){
-    this.filterargs = {category: this.filter};
+    // this.filterargs = {category: this.filter};
   }
 
 
-  //Filter values
-  searchfilter:string = '';
-  searchfilterargs = {productname: ''};
-
   //Filter function
+  searchfilter:string = '-';
   searchbar(selectedFilter:string){
-    this.searchfilterargs = {productname: this.searchfilter};
+    this.searchfilter = selectedFilter;
+
+    if (!this.searchfilter){
+      this.searchfilter = "-";
+    }
+
+    this.getCatalogItems();
   }
 }

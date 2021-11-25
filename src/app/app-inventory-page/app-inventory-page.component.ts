@@ -149,10 +149,8 @@ export class AppInventoryPageComponent implements OnInit {
     }
   }
 
-  //Filter values
-  searchfilter:string = '-';
-
   //Filter function
+  searchfilter:string = '-';
   searchbar(selectedFilter:string){
     this.searchfilter = selectedFilter;
 
@@ -173,7 +171,9 @@ export class AppInventoryPageComponent implements OnInit {
     this.apiService.getInventoryProducts(this.pageIndex, this.pageSize, this.searchfilter)
       .subscribe({
         next: (response) => {
+          
           this.readInventoryPage(response.body);
+          
           this.isLoading = false;
         },
         error: (err: any) => {
