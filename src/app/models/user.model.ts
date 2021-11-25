@@ -1,8 +1,13 @@
 import { IRole } from "./role.model";
 
 export interface IUser {
+    // The ID of the user
+    id: number;
     // The student number of the user
-    studentNumber: number;
+    // Only needed if a user
+    studentNumber: string;
+    // The name of the user
+    name: string;
     // Date to when the person is banned
     bannedUntil: Date;
     // The role assigned to this user

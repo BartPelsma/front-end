@@ -163,6 +163,7 @@
   },
   "USERINFO": {
     "NUMBER": "Studentennummer",
+    "NAME": "Naam",
     "BANNED": "Geblokkeerd tot",
     "ROLE": "Rol",
     "OPTIONS": "Opties",

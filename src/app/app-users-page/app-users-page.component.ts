@@ -30,7 +30,7 @@ export class AppUsersPageComponent implements OnInit {
   isLoading = true;
 
   // determined whch columns that are displayed in the users table and in which order.
-  displayedColumns: string[] = ['number', 'role', 'blocked', 'blockOptions'];
+  displayedColumns: string[] = ['personName', 'number', 'role', 'blocked', 'blockOptions'];
 
   // MatPaginator Inputs
   totalUsersCount = USERS_COUNT_DEFAULT;
@@ -206,8 +206,9 @@ export class AppUsersPageComponent implements OnInit {
    * @param blockDate Date; the date until when the user will be blocked
    */
   private updateUser(id: number, action: UsersBlockAction, blockDate: Date): void {
+      
     this.dataSource.data.forEach(user => {
-      if (user.studentNumber === id) {
+      if (user.id === id) {
         switch (action) {
           case UsersBlockAction.Block: {
             user.unblocked = false;
