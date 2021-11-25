@@ -121,4 +121,27 @@
          cy.get("snack-bar-container").contains('Add a date to the product');
      });
 
+     it('Try to add the same product twice to cart', () => {
+        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+
+        cy.visit('http://localhost:4200/catalog')
+
+        cy.changeIsMenuOpened(true);
+        cy.changeLanguage('en');
+
+        cy.get("app-product-datepicker[name=datepicker]").should("exist")
+
+        cy.get('app-product-datepicker[name=datepicker]').within(() => {
+            cy.get("input[id=mat-date-range-input-0]").type('5/24/2022')
+        })
+        cy.get('app-product-datepicker[name=datepicker]').type('5/28/2022')
+
+        cy.get("button[name=add-to-cart-button]").click()
+        cy.get("snack-bar-container").contains('Nikon Z50 has been added to the shopping cart');
+
+        cy.get("button[name=add-to-cart-button]").click()
+        cy.get("snack-bar-container").contains('Product is already in cart!');
+
+    });
+
  });
