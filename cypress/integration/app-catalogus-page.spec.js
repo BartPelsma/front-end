@@ -137,7 +137,7 @@
         cy.get('h2').contains('Cannon Z50');
     });
      it('Try to add the same product twice to cart', () => {
-        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
         cy.visit('http://localhost:4200/catalog')
 
