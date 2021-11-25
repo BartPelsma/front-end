@@ -239,6 +239,8 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   searchbar(selectedFilter:string){
     this.searchfilter = selectedFilter;
 
+    console.log('search')
+
     if (!this.searchfilter){
       this.searchfilter = "-";
     }
@@ -249,6 +251,9 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   searchCategory(selectedFilter:string){
 
     this.categoryfilter = selectedFilter;
+
+    console.log('filter')
+
 
     if (!this.categoryfilter){
       this.categoryfilter = "-";

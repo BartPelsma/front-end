@@ -6,7 +6,7 @@
             
             <mat-form-field appearance="fill" style="padding-top: 20px;">
                 <mat-label>Choose a filter</mat-label>
-                <mat-select class="selector" [(ngModel)]="categoryfilter" #mySelect (change)='searchCategory(mySelect.value)' (selectionChange)='searchCategory()'>
+                <mat-select class="selector" [(ngModel)]="categoryfilter" #mySelect (selectionChange)='searchCategory(mySelect.value)'>
                     <mat-option selected value="-">All</mat-option>
                     <mat-option *ngFor="let category of categories" class="dropdown"
                         value="{{category.name}}">{{category.name}}</mat-option>
