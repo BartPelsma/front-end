@@ -1,8 +1,8 @@
  /// <reference types="cypress" />
 
- describe('Add product menu tests', () => {
+ describe('Catalog page tests', () => {
      it('Should show initial page setup in English', () => {
-         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogItems');
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogItems');
          //cy.intercept('GET', /\/api\/product\/page\/[0-9]\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
          cy.visit('http://localhost:4200/catalog')
@@ -22,7 +22,7 @@
      });
 
      it('Should show initial page setup in Dutch', () => {
-        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogItems');
+        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogItems');
 
          cy.visit('http://localhost:4200/catalog')
 
@@ -42,7 +42,7 @@
      });
 
      it('get 500 internal server error', () => {
-         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/ , { statusCode: 500 }).as('getCatalogEntries');
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-\/-+$/ , { statusCode: 500 }).as('getCatalogEntries');
 
          cy.changeLanguage('nl');
 
@@ -55,7 +55,7 @@
 
      it('Add catalog item to cart NL', () => {
          cy.clock(new Date(2020,5,4))
-         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
          cy.visit('http://localhost:4200/catalog')
 
@@ -75,7 +75,7 @@
 
      it('Add catalog item to cart EN', () => {
         cy.clock(new Date(2020,5,4))
-         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
          cy.visit('http://localhost:4200/catalog')
 
@@ -94,7 +94,7 @@
      });
 
      it('Add to cart without date NL', () => {
-         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
          cy.visit('http://localhost:4200/catalog')
 
@@ -109,7 +109,7 @@
      });
 
      it('Add to cart without date EN', () => {
-         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+         cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
          cy.visit('http://localhost:4200/catalog')
 
@@ -124,20 +124,20 @@
      });
 
      it('Should show correct information after searchfilter', () => {
-        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/, { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-\/-+$/, { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
         cy.visit('http://localhost:4200/catalog')
         cy.changeLanguage('nl');
         cy.wait("@getCatalogEntries");
 
-        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/[A-Z]+$/, { fixture: 'catalog-products-page2.json' }).as('getCatalogEntries2');
+        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/[A-Z]\/-+$/, { fixture: 'catalog-products-page2.json' }).as('getCatalogEntries2');
         cy.get('#mat-input-0').type('C')
         cy.wait("@getCatalogEntries2");
 
         cy.get('h2').contains('Cannon Z50');
     });
-     it('Try to add the same product twice to cart', () => {
-        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
+     it('Try to add the same product twice to cart should fail', () => {
+        cy.intercept('GET', /\/api\/product\/catalogentries\/[0-9]\/[0-9]\/-\/-+$/ , { fixture: 'catalog-products-page.json' }).as('getCatalogEntries');
 
         cy.visit('http://localhost:4200/catalog')
 

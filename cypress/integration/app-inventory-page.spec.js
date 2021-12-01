@@ -193,7 +193,7 @@ describe('Inventory tests', () => {
     });
 
     it('Should change order of inventory', () => {
-        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');
         cy.changeLanguage('en');

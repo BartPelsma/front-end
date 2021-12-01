@@ -268,35 +268,6 @@ describe('Shopping cart tests', () => {
         cy.get(".mat-chip").contains('De geselecteerde datum is al gereserveerd').should('exist');
     });
 
-    it('Should enable reserve button when choosing free date', () => {
-        cy.clock();
-        cy.fixture('shopping-cart-storage-all-ok').then((content) => {
-            window.localStorage.setItem('cart', JSON.stringify(content));
-        });
-        cy.intercept('GET', '/api/product/flat/1', { fixture: 'shopping-cart-product-flats-1' });
-        cy.intercept('GET', '/api/product/flat/3', { fixture: 'shopping-cart-product-flats-3' }).as('getProductFlat-3');
-
-        cy.intercept('GET', '/api/reservation/1', []).as('getReservation-1');
-        cy.intercept('GET', '/api/reservation/3', { fixture: 'shopping-cart-reservation-3' });
-
-        cy.visit('http://localhost:4200/cart');
-        cy.changeLanguage('nl');
-
-        cy.wait('@getProductFlat-3');
-
-        cy.get(".mat-chip").contains('De geselecteerde datum is al gereserveerd').should('exist');
-        cy.get(".mat-card-content:last button").should('be.disabled');
-
-        cy.get('app-product-datepicker[ng-reflect-product-id="3"]').within(() => {
-            cy.get("input[id=mat-date-range-input-1]").clear().type('6/28/2021');
-        });
-
-        cy.get('app-product-datepicker[ng-reflect-product-id="3"]').clear().type('6/30/2021');
-
-        cy.get(".mat-chip").contains('De geselecteerde datum is al gereserveerd').should('not.exist');
-        cy.get(".mat-card-content:last button").should('be.enabled');
-    });
-
     it('Remove product on button click', () => {
         cy.clock();
         cy.fixture('shopping-cart-storage-all-ok').then((content) => {
