@@ -135,6 +135,7 @@
     "NAME": "Naam",
     "STATUS": "Status",
     "LOCATION": "Locatie",
+    "CATEGORY": "Categorie",
     "REQUIRES_APPROVAL": "Goedkeuring vereist",
     "OPTIONS": "Opties"
   },

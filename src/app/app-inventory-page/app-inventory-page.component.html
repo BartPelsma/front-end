@@ -24,7 +24,7 @@
                 <ng-container matColumnDef="status">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'ATTRIBUTES.STATUS' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'ATTRIBUTES.STATUS' | translate">
-                        <mat-chip [ngClass]="element.status | statusNameClass" style="background-color: green"> 
+                        <mat-chip [ngClass]="element.status | statusNameClass" style="background-color: green">
                             {{ element.status | statusNameKey | translate }}
                         </mat-chip>
                     </mat-cell>
@@ -55,6 +55,16 @@
                     </mat-cell>
                 </ng-container>
 
+
+                <!-- Category Column -->
+                <ng-container matColumnDef="category">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'ATTRIBUTES.CATEGORY' | translate }}
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let element" [attr.data-label]="'ATTRIBUTES.CATEGORY' | translate">
+                      {{element.category }}
+                  </mat-cell>
+              </ng-container>
+
                 <!-- Options Column -->
                 <ng-container matColumnDef="options">
                     <mat-header-cell *matHeaderCellDef> {{ 'ATTRIBUTES.OPTIONS' | translate }} </mat-header-cell>
@@ -72,6 +82,9 @@
                         </div>
                     </mat-cell>
                 </ng-container>
+
+
+
 
                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
