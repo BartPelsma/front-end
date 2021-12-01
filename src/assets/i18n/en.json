@@ -20,7 +20,7 @@
     "NO_PRODUCTS": "Currently there are no products in the catalog",
     "LOADING": "Loading catalog",
     "ALREADY_IN_CART": "Product is already in cart!"
-    
+
   },
   "INVENTORY": {
     "TITLE": "Inventory",
@@ -74,7 +74,7 @@
       "NO_CATALOG_NUMBER_RESPONSE": "Something went wrong with receiving the catalog data. Please try again later or contact an administrator",
       "NO_DATA": "Something went wrong with saving your data. Please try again later or contact an administrator",
       "ADD_SUCCESSFUL": "Product has been added!"
-     
+
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Confirm",
@@ -136,6 +136,7 @@
     "NAME": "Name",
     "STATUS": "Status",
     "LOCATION": "Location",
+    "CATEGORY": "Category",
     "REQUIRES_APPROVAL": "Requires approval",
     "OPTIONS": "Options"
   },
