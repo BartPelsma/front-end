@@ -8,6 +8,8 @@ export interface IProductData {
   name: string;
   // The physical location of the product
   location: string;
+  // The category of the product
+  category: string;
   // Whether the product requires approval to be rented
   requiresApproval: boolean;
   // The availability status of the product
