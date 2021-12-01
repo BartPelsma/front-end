@@ -31,7 +31,7 @@ export class AppInventoryPageComponent implements OnInit {
   isLoading = true;
 
   // determined whch columns that are displayed in the inventory table and in which order.
-  displayedColumns: string[] = ['name', 'location', 'requiresApproval', 'status', 'options'];
+  displayedColumns: string[] = ['name', 'location','category', 'requiresApproval', 'status', 'options'];
 
 
   // MatPaginator Inputs
@@ -153,7 +153,7 @@ export class AppInventoryPageComponent implements OnInit {
   searchfilter:string = '-';
   searchbar(selectedFilter:string){
     this.searchfilter = selectedFilter;
-    
+
     if (!this.searchfilter){
       this.searchfilter = "-";
     }
@@ -169,9 +169,9 @@ export class AppInventoryPageComponent implements OnInit {
     this.apiService.getInventoryProducts(this.pageIndex, this.pageSize, this.searchfilter)
       .subscribe({
         next: (response) => {
-          
+
           this.readInventoryPage(response.body);
-          
+
           this.isLoading = false;
         },
         error: (err: any) => {
