@@ -48,8 +48,8 @@ export class ApiService {
     return this.http.get<IInventoryPage>(`${this.API_GATEWAY}product/page/${pageNumber}/${pageSize}/${searchfilter}`, { observe: 'response' });
   }
 
-  getCatalogEntries(pageNumber: number, pageSize: number, searchfilter: string): Observable<HttpResponse<CatalogPage>> {
-    return this.http.get<CatalogPage>(`${this.API_GATEWAY}product/catalogentries/${pageNumber}/${pageSize}/${searchfilter}`, { observe: 'response' });
+  getCatalogEntries(pageNumber: number, pageSize: number, searchfilter:string, categoryfilter:string): Observable<HttpResponse<CatalogPage>> {
+    return this.http.get<CatalogPage>(`${this.API_GATEWAY}product/catalogentries/${pageNumber}/${pageSize}/${searchfilter}/${categoryfilter}`, { observe: 'response' });
   }
 
   getSimilarReservations(): Observable<HttpResponse<Array<Array<IReservation>>>> {
