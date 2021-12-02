@@ -154,6 +154,7 @@
       "ERROR": "Unable to complete action",
       "EMPTY_DATE": "Add a valid end date for the block",
       "BLOCK_SUCCESS": "Blocking successful",
+      "PERMABLOCK_SUCCESS": "Indefinite blocking successful",
       "UNBLOCK_SUCCESS": "Unblocking successful",
       "UNSUCCESSFUL": "Action was unsuccessful",
       "INVALID": {
@@ -168,6 +169,7 @@
     "NUMBER": "Student number",
     "NAME": "Name",
     "BANNED": "Blocked until",
+    "INDEFINITE": "No end date",
     "ROLE": "Role",
     "OPTIONS": "Options",
     "UNBLOCK_BUTTON": "Unblock user",
