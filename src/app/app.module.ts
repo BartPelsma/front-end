@@ -27,6 +27,7 @@ import { AppShoppingCartDatepickerComponent } from './app-shopping-cart-datepick
 import { MyFilterPipe } from './pipes/MyFilterPipe';
 import { AppUsersPageComponent } from './app-users-page/app-users-page.component';
 import { RoleNameKeyPipe } from './pipes/role-name-key.pipe';
+import { AppEditInventoryPageComponent } from './app-edit-inventory-page/app-edit-inventory-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RoleNameKeyPipe } from './pipes/role-name-key.pipe';
     MyFilterPipe,
     AppShoppingCartDatepickerComponent,
     AppUsersPageComponent,
-    RoleNameKeyPipe
+    RoleNameKeyPipe,
+    AppEditInventoryPageComponent
   ],
   imports: [
     BrowserModule,

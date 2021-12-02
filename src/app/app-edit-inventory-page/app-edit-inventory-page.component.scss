@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+
+  .main-content {
+      flex: 1;
+      max-width: 1000px;
+      margin-left: 10px;
+      margin-right: 10px;
+
+      .card-content {
+          display: flex;
+          flex-wrap: wrap;
+          padding-top: 15px;
+
+          .input-field-full-width {
+              width: 100%;
+          }
+
+          .card-left,
+          .card-right {
+              flex: 1;
+          }
+
+          .card-left,
+          .card-middle {
+              margin-right: 10px;
+          }
+
+          .card-middle {
+              flex: 2;
+          }
+
+          .card-right {
+              .approval-checkbox {
+                  margin-left: 15px;
+                  margin-top: 3px;
+              }
+          }
+      }
+  }
+}

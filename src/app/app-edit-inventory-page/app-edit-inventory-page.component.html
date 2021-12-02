@@ -1,0 +1,104 @@
+<div class="container">
+  <mat-card class="main-content">
+      <mat-card-header>
+          <mat-card-title name="add-product-title">
+              {{ 'PRODUCT.ADD.TITLE' | translate }}
+          </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content class="card-content">
+          <div class="card-left">
+              <mat-form-field appearance="fill" class="input-field-full-width">
+                  <mat-label name="product-name-input-label">{{ 'PRODUCT.ADD.NAME' | translate }}</mat-label>
+                  <input matInput [(ngModel)]="product.name" [disabled]="isLoading" name="product-name-input">
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="input-field-full-width">
+                  <mat-label name="catalog-number-input-label">{{ 'PRODUCT.ADD.CATALOG_NUMBER' | translate }}
+                  </mat-label>
+                  <input matInput type="number" [(ngModel)]="product.catalogNumber"
+                      [disabled]="isLoading || maxCatalogNumber === 0" name="catalog-number-input"
+                      [max]="maxCatalogNumber" min="1">
+                  <mat-hint>{{ 'PRODUCT.ADD.CATALOG_BETWEEN' | translate }} {{ maxCatalogNumber }}</mat-hint>
+              </mat-form-field>
+              <mat-form-field name="category-mat-form-field" *ngIf="addNewCategory" style="padding-bottom: 2px;" class="input-field-full-width" appearance="fill" >
+                  <mat-label name="category-id-input-label">{{ 'CATEGORY.ADD.ADD_NEW_CATEGORY_INPUT' | translate }}</mat-label>
+                  <input matInput name="newcategory-input" [(ngModel)]="newCategory.name">
+              </mat-form-field>
+              <button name="category-save-button" mat-flat-button style="float: right; margin-bottom: 10px;" (click)="onClickSaveCategory()" *ngIf="addNewCategory" [title]="'CATEGORY.ADD.SAVE_NEW_CATEGORY' | translate" color="accent">{{ 'CATEGORY.ADD.SAVE_NEW_CATEGORY' | translate }}</button>
+              <mat-form-field *ngIf="!addNewCategory" appearance="fill" class="input-field-full-width" style="padding-top:5px;">
+                  <mat-label name="category-id-select-label">{{ 'PRODUCT.ADD.CATEGORY' | translate }}</mat-label>
+                  <mat-select [(ngModel)]="product.categoryId" [disabled]="isLoading || categories == null"
+                      name="category-id-select">
+                      <mat-option name="category-matoption-new" (onSelectionChange)="onChange($event)" value="addNewCategory"><mat-icon style="margin-bottom:2px;margin-right: 5px;">add</mat-icon> {{ 'CATEGORY.ADD.ADD_NEW_CATEGORY' | translate }} </mat-option>
+                      <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="input-field-full-width">
+                  <mat-label name="product-location-input-label">{{ 'PRODUCT.ADD.LOCATION' | translate }}</mat-label>
+                  <input matInput [(ngModel)]="product.location" [disabled]="isLoading" name="product-location-input">
+              </mat-form-field>
+          </div>
+          <div class="card-middle">
+              <mat-form-field appearance="fill" class="input-field-full-width">
+                  <mat-label name="description-textarea-label">{{ 'PRODUCT.ADD.DESCRIPTION' | translate }}</mat-label>
+                  <textarea matInput style="height: 231px;" [(ngModel)]="product.description" [disabled]="isLoading"
+                      name="description-textarea"></textarea>
+              </mat-form-field>
+          </div>
+          <div class="card-right">
+              <img src="/assets/images/no_image_found.png" alt="" width="200vh" height="200vh" id="imagePreview"><br>
+              <div *ngIf='removingImageIndex === null || removingImageIndex < 0'>
+                  <button mat-icon-button [title]="'PRODUCT.ADD.LEFT' | translate" color="accent"
+                      (click)="onClickPreviousImage()" [disabled]="isLoading || images.length < 1"
+                      name="previous-image-button">
+                      <mat-icon>arrow_left</mat-icon>
+                  </button>
+                  <span name="amount-images">{{ selectedImageIndex }} / {{ images.length }}</span>
+                  <button mat-icon-button [title]="'PRODUCT.ADD.RIGHT' | translate" color="accent"
+                      (click)="onClickNextImage()" [disabled]="isLoading || images.length < 1"
+                      name="next-image-button">
+                      <mat-icon>arrow_right</mat-icon>
+                  </button>
+                  |
+                  <input id="fileInput" type="file" (change)="onFileChanged($event)" accept="image/*" hidden='true'
+                      multiple [disabled]="isLoading" name="file-input-button">
+                  <button mat-icon-button [title]="'PRODUCT.ADD.ADD_IMAGE' | translate" color="accent"
+                      (click)="onClickAddImage()" [disabled]="isLoading" name="image-input-button">
+                      <mat-icon>insert_photo</mat-icon>
+                  </button>
+                  <button mat-icon-button [title]="'PRODUCT.ADD.REMOVE_IMAGE' | translate" color="accent"
+                      (click)="removingImageIndex = selectedImageIndex - 1"
+                      [disabled]="isLoading || images.length < 1" name="remove-image-button">
+                      <mat-icon>delete</mat-icon>
+                  </button>
+                  <br>
+              </div>
+              <div *ngIf='removingImageIndex !== null && removingImageIndex > -1' style="margin-bottom: 4px;">
+                  <button mat-raised-button color='warn' (click)="onConfirmRemoveImage()" [disabled]="isLoading"
+                      name="confirm-remove-image-button">
+                      <mat-icon>delete</mat-icon>
+                      {{ 'PRODUCT.ADD.REMOVE_IMAGE' | translate }}
+                  </button>
+                  <button mat-raised-button (click)='removingImageIndex = null' name="cancel-remove-image-button">
+                      {{ 'PRODUCT.ADD.CANCEL' | translate }}
+                  </button>
+              </div>
+
+
+              <mat-checkbox class="approval-checkbox" [(ngModel)]="product.requiresApproval" [disabled]="isLoading"
+                  name="requires-approval-checkbox">
+                  {{ 'PRODUCT.ADD.REQUIRES_APPROVAL' | translate }}
+              </mat-checkbox>
+          </div>
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-stroked-button class="green" style="float:right;" (click)="onClickUpdateProduct()"
+              *ngIf="!isLoading" name="save-product-button">
+              {{ 'PRODUCT.ADD.SAVE' | translate }}
+          </button>
+          <mat-spinner *ngIf="isLoading" diameter="35" style="margin:auto; padding-bottom: 10px;"
+              name="save-product-loading-spinner"></mat-spinner>
+      </mat-card-actions>
+  </mat-card>
+</div>
