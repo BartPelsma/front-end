@@ -38,7 +38,7 @@
                 <ng-container matColumnDef="personName">
                     <mat-header-cell *matHeaderCellDef>{{ 'USERINFO.NAME' | translate }}</mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.NAME' | translate">
-                        {{ element.name}}
+                        {{ element.name }}
                     </mat-cell>
                 </ng-container>
 
@@ -46,10 +46,14 @@
                 <ng-container matColumnDef="blocked">
                     <mat-header-cell *matHeaderCellDef> {{ 'USERINFO.BANNED' | translate }} </mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.BANNED' | translate">
-                        <div *ngIf="element.bannedUntil && !element.unblocked">
+                        <div *ngIf="!element.bannedUntil && element.banned">
+                            {{ 'USERINFO.INDEFINITE' | translate }}
+                        </div>
+                        <div *ngIf="element.bannedUntil && element.banned">
                             {{ element.bannedUntil | date }}
                         </div>
-                        <div *ngIf="!element.bannedUntil && element.role.name !== 'Admin' || element.unblocked && element.role.name !== 'Admin'" >
+        
+                        <div *ngIf="element.role.name !== 'Admin' && !element.banned" >
                             <mat-form-field appearance="fill" class="my-form-field">
                                 <mat-label> {{ 'USERINFO.BLOCK_DATEPICKER' | translate }} </mat-label>
                                 <input matInput [matDatepicker]="banPicker" [id]="element.id" (dateChange)="datepickerDateChanged(element, $event)" [min]="minDate">
@@ -77,10 +81,10 @@
                     <mat-header-cell *matHeaderCellDef> {{ 'USERINFO.OPTIONS' | translate }} </mat-header-cell>
                     <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.OPTIONS' | translate">
                         <button name="unblock-button" [id]="element.id" (click)="userUnblockAction(element.id)"
-                        *ngIf="element.bannedUntil && !element.unblocked" mat-flat-button color="primary">
+                        *ngIf="element.banned" mat-flat-button color="primary">
                             {{ 'USERINFO.UNBLOCK_BUTTON' | translate }}
                         </button>
-                        <div *ngIf="!element.bannedUntil && element.role.name !== 'Admin' || element.unblocked && element.role.name !== 'Admin'" >
+                        <div *ngIf="!element.banned && element.role.name !== 'Admin'" >
                             <button name="block-button" [id]="element.id" mat-flat-button color="warn" (click)="userBlockAction(element.id, element.bannedSelected)">
                                 {{ 'USERINFO.BLOCK_BUTTON' | translate }}
                             </button>

@@ -155,6 +155,7 @@
       "ERROR": "Actie kan niet gedaan worden",
       "EMPTY_DATE": "Voeg een toegestane einddatum toe voor het blokkeren",
       "BLOCK_SUCCESS": "Blokkeren gelukt",
+      "PERMABLOCK_SUCCESS": "Oneindig blokkeren gelukt",
       "UNBLOCK_SUCCESS": "Deblokkeren gelukt",
       "UNSUCCESSFUL": "Actie is niet gelukt",
       "INVALID": {
@@ -169,6 +170,7 @@
     "NUMBER": "Studentennummer",
     "NAME": "Naam",
     "BANNED": "Geblokkeerd tot",
+    "INDEFINITE": "Geen einddatum",
     "ROLE": "Rol",
     "OPTIONS": "Opties",
     "UNBLOCK_BUTTON": "Deblokkeren",
