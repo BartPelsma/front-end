@@ -9,6 +9,7 @@ export interface ICatalogFlat {
     requiresApproval: boolean;
     status: ProductStatus;
     images: Array<string>;
+    pdfs: Array<string>;
     category: ICategory;
     imageIndex: number;
     endDate: Date | null;
