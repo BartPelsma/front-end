@@ -75,8 +75,12 @@
                     <div *ngFor="let item of catalogItem.catalogItems">
                         <mat-divider></mat-divider>
 
-                        <div *ngFor="let pdf of item.pdfs">
+                        <div>
+                            <button name= "PDFbutton"
+                            *ngFor="let pdf of item.pdfs"
+                            (click)="DownloadPDF(data)">
                             <h1>{{pdf}}</h1>
+                            </button>
                         </div>
 
                         <div class="catalogItemBox">

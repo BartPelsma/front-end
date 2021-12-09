@@ -11,6 +11,7 @@ import { IDateChangedEvent } from '../models/date-changed-event.model';
 import { ViewEncapsulation } from '@angular/core';
 import { ICategory } from '../models/category.model';
 
+
 /* const variables for page sizing and index */
 const PAGE_SIZE_DEFAULT = 5;
 const INDEX_DEFAULT = 0;
@@ -112,6 +113,14 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     this.onChangeSelectedImageIndex(item);
   }
 
+  public DownloadPDF(data: any){
+    var blob = new Blob([data], {type: 'application/pdf'})
+    var link=document.createElement('a');
+    link.href=window.URL.createObjectURL(Blob);
+    link.download="myFileName.pdf";
+    link.click();
+  }
+
   /*
     Changes the image after changing the index.
   */
@@ -119,6 +128,7 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     const imageElement = this.previewImageElement.filter((element, index) => element.nativeElement.id === 'image-' + item.id)[0];
     imageElement.nativeElement.src = 'data:image/png;base64,' + item.images[item.imageIndex];
   }
+
 
   /**
    * Handles the adding of a item to the cart
