@@ -133,12 +133,12 @@
                                 </div>
                             </div>
                             <div>
-                                <button name= "download"
-                                *ngFor="let pdf of item.pdfs"
-                                mat-flat-button
-                                color="primary"
-                                (click)="DownloadPDF(pdf)">
-                                {{DownloadPDF}}
+                                <button name="download"
+                                        *ngFor="let pdf of item.pdfs"
+                                        mat-flat-button
+                                        color="primary"
+                                        (click)="DownloadPDF(pdf)">
+                                    DownloadPDF
                                 </button>
                             </div>
                             <div class="catalogItemBox-datepicker">

@@ -10,6 +10,7 @@ import { ICatalogFlat } from '../models/catalog-flat.model';
 import { IDateChangedEvent } from '../models/date-changed-event.model';
 import { ViewEncapsulation } from '@angular/core';
 import { ICategory } from '../models/category.model';
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 
 
 /* const variables for page sizing and index */
@@ -113,12 +114,40 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     this.onChangeSelectedImageIndex(item);
   }
 
-  public DownloadPDF(pdf: any){
-    var blob = new Blob([pdf], {type: 'application/pdf'})
-    var link=document.createElement('a');
-    link.href=window.URL.createObjectURL(Blob);
-    link.download="myFileName.pdf";
-    link.click();
+  public DownloadPDF(pdf: any) {
+    var blob = this.base64toBlob(pdf);
+
+
+    var file = new Blob([blob], { type: 'application/pdf' })
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL)
+
+
+    // const source = `data:application/pdf;base64,${pdf}`;
+    // const link = document.createElement("a");
+    // link.href = source;
+    // link.download = `${"fileName"}.pdf`
+    // link.click();
+  }
+
+  public base64toBlob(base64Data: string) {
+    const sliceSize = 1024;
+    const byteCharacters = atob(base64Data);
+    const bytesLength = byteCharacters.length;
+    const slicesCount = Math.ceil(bytesLength / sliceSize);
+    const byteArrays = new Array(slicesCount);
+
+    for (let sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+      const begin = sliceIndex * sliceSize;
+      const end = Math.min(begin + sliceSize, bytesLength);
+
+      const bytes = new Array(end - begin);
+      for (let offset = begin, i = 0; offset < end; ++i, ++offset) {
+        bytes[i] = byteCharacters[offset].charCodeAt(0);
+      }
+      byteArrays[sliceIndex] = new Uint8Array(bytes);
+    }
+    return new Blob(byteArrays, { type: "application/pdf" });
   }
 
   /*
@@ -145,9 +174,9 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
         modal.startDate = item.startDate;
         modal.id = item.id;
         this.cartItems.push(modal);
-  
+
         localStorage.setItem('cart', JSON.stringify(this.cartItems));
-  
+
         this.notificationService.open(item.name + ' ' + this.translateService.instant('CATALOG.CART_ADD_SUCCESSFUL'), undefined, {
           panelClass: 'success-snack',
           duration: 2500
@@ -155,14 +184,14 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
       }
     }
     else {
-        this.showErrorNotification('CATALOG.ALREADY_IN_CART')
+      this.showErrorNotification('CATALOG.ALREADY_IN_CART')
     }
-  
+
   }
 
   test: boolean;
   checkAmountofProductsInCart(cartItems: Array<ICartProduct>, item: ICatalogFlat): boolean {
-  this.test = true
+    this.test = true
 
     cartItems.forEach(element => {
       if (element.id == item.id) {
@@ -237,7 +266,7 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
    */
   private getCatalogItems(): void {
     this.isLoading = true;
-    this.apiService.getCatalogEntries(this.pageIndex, this.pageSize, this.searchfilter,this.categoryfilter).subscribe({
+    this.apiService.getCatalogEntries(this.pageIndex, this.pageSize, this.searchfilter, this.categoryfilter).subscribe({
       next: (resp) => {
         this.readCatalogPage(resp.body);
         this.isLoading = false;
@@ -261,29 +290,29 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   }
 
   //Filter function
-  searchfilter:string = '-';
-  categoryfilter:string = '-';
+  searchfilter: string = '-';
+  categoryfilter: string = '-';
 
-  searchbar(selectedFilter:string){
+  searchbar(selectedFilter: string) {
     this.searchfilter = selectedFilter;
 
     console.log('search')
 
-    if (!this.searchfilter){
+    if (!this.searchfilter) {
       this.searchfilter = "-";
     }
 
     this.getCatalogItems();
   }
 
-  searchCategory(selectedFilter:string){
+  searchCategory(selectedFilter: string) {
 
     this.categoryfilter = selectedFilter;
 
     console.log('filter')
 
 
-    if (!this.categoryfilter){
+    if (!this.categoryfilter) {
       this.categoryfilter = "-";
     }
 
