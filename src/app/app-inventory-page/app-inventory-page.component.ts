@@ -13,6 +13,7 @@ import { ViewEncapsulation } from '@angular/core';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
+import { AppEditInventoryPageComponent } from '../app-edit-inventory-page/app-edit-inventory-page.component';
 
 const PAGE_SIZE_DEFAULT = 50;
 const INDEX_DEFAULT = 0;
@@ -90,24 +91,6 @@ export class AppInventoryPageComponent implements OnInit {
     this.paginator.pageIndex = INDEX_DEFAULT;
   }
 
-  /*
-    Shows the confirm dialog for archiving a product
-  */
-  openDialog(element: any): void {
-    const dialogRef = this.dialog.open(AppArchiveDialogComponent, {
-      data: {
-        id: element.id,
-        name: element.name
-      },
-      backdropClass: 'no-backdrop',
-    });
-
-    dialogRef.afterClosed().subscribe(val => {
-      if (val) {
-        this.getProductData();
-      }
-    });
-  }
 
   /*
     Show error notification
@@ -153,7 +136,7 @@ export class AppInventoryPageComponent implements OnInit {
   searchfilter:string = '-';
   searchbar(selectedFilter:string){
     this.searchfilter = selectedFilter;
-    
+
     if (!this.searchfilter){
       this.searchfilter = "-";
     }
@@ -169,9 +152,9 @@ export class AppInventoryPageComponent implements OnInit {
     this.apiService.getInventoryProducts(this.pageIndex, this.pageSize, this.searchfilter)
       .subscribe({
         next: (response) => {
-          
+
           this.readInventoryPage(response.body);
-          
+
           this.isLoading = false;
         },
         error: (err: any) => {
@@ -180,5 +163,39 @@ export class AppInventoryPageComponent implements OnInit {
         }
       });
   }
+
+  goToEdit(element: any): void{
+    const dialogRef = this.dialog.open(AppEditInventoryPageComponent,{
+      data:{
+        id: element.id,
+        name: element.name,
+        categoryId: element.categoryId,
+        location: element.location,
+        description: element.description,
+        images: element.images,
+        requiresApproval: element.requiresApproval
+      }
+    });
+  }
+
+    /*
+    Shows the confirm dialog for archiving a product
+  */
+    openDialog(element: any): void {
+      const dialogRef = this.dialog.open(AppArchiveDialogComponent, {
+        data: {
+          id: element.id,
+          name: element.name
+        },
+        backdropClass: 'no-backdrop',
+      });
+
+      dialogRef.afterClosed().subscribe(val => {
+        if (val) {
+          this.getProductData();
+        }
+      });
+    }
+
 }
 

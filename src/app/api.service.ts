@@ -66,7 +66,7 @@ export class ApiService {
   }
 
   updateProduct(product: IAddProductObject): Observable<HttpResponse<any>>{
-    return this.http.post<any>(`${this.API_GATEWAY}products/update`,product,{observe:'response'});
+    return this.http.post<any>(`${this.API_GATEWAY}product/update`,product,{observe:'response'});
   }
 
   reserveProducts(cartProducts: IAddReservation): Observable<HttpResponse<any>> {

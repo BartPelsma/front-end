@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../api.service';
 import { IAddCategoryObject } from '../models/add-category.model';
 import { IAddProductImage } from '../models/add-product-image.model';
-import { IAddProductObject } from '../models/add-product.model';
 import { ICategory } from '../models/category.model';
 import { IUpdateProductObject } from '../models/update-product.model';
 
@@ -41,10 +41,12 @@ export class AppEditInventoryPageComponent implements OnInit {
 
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private translate: TranslateService,
     private snackbarService: MatSnackBar,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private dialogRef: MatDialogRef<AppEditInventoryPageComponent>
   ) { }
 
   /*
@@ -64,14 +66,14 @@ export class AppEditInventoryPageComponent implements OnInit {
     this.addNewCategory = false;
 
     this.product = {
-      id: 1,
-      categoryId: -1,
-      catalogNumber: 0,
-      description: '',
-      images: [],
-      location: '',
-      name: '',
-      requiresApproval: false
+      id: this.data.id,
+      categoryId: this.data.categoryId,
+      catalogNumber: this.data.catalogNumber,
+      description: this.data.description,
+      images: this.data.images,
+      location: this.data.location,
+      name: this.data.name,
+      requiresApproval: this.data.requiresApproval
     };
 
     this.apiService.getAllCategories().subscribe({
@@ -111,7 +113,7 @@ export class AppEditInventoryPageComponent implements OnInit {
       this.apiService.addCategory(this.newCategory).subscribe({
         next: (resp) => {
           this.isLoading = false;
-          this.snackbarService.open(this.translate.instant('CATEGORY.ADD.ADD_CATEGORY_SUCCESFUL'), undefined, {
+          this.snackbarService.open(this.translate.instant('CATEGORY.UPDATE.UPDATE_CATEGORY_SUCCESFUL'), undefined, {
             panelClass: 'success-snack',
             duration: 2500
           });
@@ -126,7 +128,7 @@ export class AppEditInventoryPageComponent implements OnInit {
       });
     }
     else {
-      this.snackbarService.open(this.translate.instant('CATEGORY.ADD.ADD_CATEGORY_UNSUCCESFUL'), undefined, {
+      this.snackbarService.open(this.translate.instant('CATEGORY.UPDATE.UPDATE_CATEGORY_UNSUCCESFUL'), undefined, {
         panelClass: 'error-snack',
         duration: 2500
       });
@@ -256,24 +258,24 @@ export class AppEditInventoryPageComponent implements OnInit {
   /*
     Checks all product values. Shows error if incorrect or saves data if correct.
   */
-  onClickUpdateProduct(): void {
+  onClickUpdateProduct(){
     if (this.product.name == null || this.product.name.trim() === '') {
-      this.showErrorNotification('PRODUCT.ADD.NO_NAME');
+      this.showErrorNotification('PRODUCT.UPDATE.NO_NAME');
       return;
     }
 
     if (this.product.catalogNumber == null || this.product.catalogNumber < 0 || this.product.catalogNumber > this.maxCatalogNumber) {
-      this.showErrorNotification('PRODUCT.ADD.CATALOG_NUMBER_INCORRECT');
+      this.showErrorNotification('PRODUCT.UPDATE.CATALOG_NUMBER_INCORRECT');
       return;
     }
 
     if (this.product.categoryId < 1) {
-      this.showErrorNotification('PRODUCT.ADD.NO_CATEGORY');
+      this.showErrorNotification('PRODUCT.UPDATE.NO_CATEGORY');
       return;
     }
 
     if (this.product.description == null || this.product.description.trim() === '') {
-      this.showErrorNotification('PRODUCT.ADD.NO_DESCRIPTION');
+      this.showErrorNotification('PRODUCT.UPDATE.NO_DESCRIPTION');
       return;
     }
 
@@ -295,6 +297,7 @@ export class AppEditInventoryPageComponent implements OnInit {
         this.showErrorNotification(err.error);
       }
     });
+    this.ngOnInit();
   }
 
   /*

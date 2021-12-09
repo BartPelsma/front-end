@@ -2,7 +2,7 @@
   <mat-card class="main-content">
       <mat-card-header>
           <mat-card-title name="add-product-title">
-              {{ 'PRODUCT.ADD.TITLE' | translate }}
+              Edit product <!--{{ 'PRODUCT.ADD.TITLE' | translate }}-->
           </mat-card-title>
       </mat-card-header>
       <mat-divider></mat-divider>
@@ -95,7 +95,7 @@
       <mat-card-actions>
           <button mat-stroked-button class="green" style="float:right;" (click)="onClickUpdateProduct()"
               *ngIf="!isLoading" name="save-product-button">
-              {{ 'PRODUCT.ADD.SAVE' | translate }}
+              Update<!--{{ 'PRODUCT.ADD.SAVE' | translate }}-->
           </button>
           <mat-spinner *ngIf="isLoading" diameter="35" style="margin:auto; padding-bottom: 10px;"
               name="save-product-loading-spinner"></mat-spinner>
