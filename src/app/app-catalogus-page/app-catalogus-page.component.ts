@@ -113,8 +113,8 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     this.onChangeSelectedImageIndex(item);
   }
 
-  public DownloadPDF(data: any){
-    var blob = new Blob([data], {type: 'application/pdf'})
+  public DownloadPDF(pdf: any){
+    var blob = new Blob([pdf], {type: 'application/pdf'})
     var link=document.createElement('a');
     link.href=window.URL.createObjectURL(Blob);
     link.download="myFileName.pdf";

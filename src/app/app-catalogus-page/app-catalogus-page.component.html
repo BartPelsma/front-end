@@ -75,13 +75,6 @@
                     <div *ngFor="let item of catalogItem.catalogItems">
                         <mat-divider></mat-divider>
 
-                        <div>
-                            <button name= "PDFbutton"
-                            *ngFor="let pdf of item.pdfs"
-                            (click)="DownloadPDF(data)">
-                            <h1>{{pdf}}</h1>
-                            </button>
-                        </div>
 
                         <div class="catalogItemBox">
                             <div class="catalogItemBox-imgbox">
@@ -138,6 +131,15 @@
                                 <div class="catalogItemBox-description">
                                     {{item.description}}
                                 </div>
+                            </div>
+                            <div>
+                                <button name= "download"
+                                *ngFor="let pdf of item.pdfs"
+                                mat-flat-button
+                                color="primary"
+                                (click)="DownloadPDF(pdf)">
+                                {{DownloadPDF}}
+                                </button>
                             </div>
                             <div class="catalogItemBox-datepicker">
                                 <p name="datepicker-not-available"
