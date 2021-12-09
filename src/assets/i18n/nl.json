@@ -123,7 +123,7 @@
   },
   "RESERVATIONS": {
     "TITLE": "Reserveringen",
-    "START_DATE": "Start datum",
+    "START_DATE": "Startdatum",
     "RENTER": "Lener",
     "PRODUCTS": "Producten",
     "OPEN_RESERVATION": "Reservering openen",
@@ -143,6 +143,7 @@
     "LOADING": "Laden van gebruikers",
     "NO_USERS": "Geen gebruikers gevonden",
     "NO_USERS_RESPONSE": "Er is iets misgegaan, probeer later opnieuw",
+    "INCORRECT_INDEX": "Er is iets misgegaan met de index, probeer later opnieuw",
     "ROLETYPE": {
       "USER": "Gebruiker",
       "EMPLOYEE": "Medewerker",
@@ -186,6 +187,7 @@
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} van {{length}}"
   },
   "RESERVATION": {
+    "INCORRECT_INDEX": "Er is iets misgegaan met de index, probeer later opnieuw",
     "ACTION": {
       "OUT": "Uitgeven",
       "TITLE": "Reservering acties",
@@ -194,7 +196,7 @@
       "LOADING": "Laden...",
       "ERROR": "Actie kan niet gedaan worden",
       "NOT_FOUND": "Reservatie kan niet gevonden worden",
-      "SUCCESS": "Reservering actie geluk",
+      "SUCCESS": "Reservering actie gelukt",
       "UNSUCCESSFUL": "Reservering actie is niet gelukt",
       "INVALID": {
         "CALL": "Ongeldig aanroep",
@@ -203,11 +205,11 @@
       }
     },
     "DATE": {
-      "TERM": "Datum",
+      "TERM": "Datum: ",
       "PICKUP": "Opgehaald",
       "RETURN": "Teruggebracht"
     },
-    "LOCATION": "Locatie",
+    "LOCATION": "Locatie:",
     "NO_RESERVATIONS": "Geen reserveringen gevonden om te laten zien",
     "NO_RESPONSE_DATA": "Reservering gegevens konden niet opgehaald worden",
     "NO_PRODUCT_DATA": "Product gegevens konden niet opgehaald worden"

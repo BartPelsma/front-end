@@ -1,0 +1,8 @@
+{
+    "id": 7,
+    "name": "Test ID 7",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": null,
+    "inventoryLocation": "Unknown",
+    "productState": 0
+  }

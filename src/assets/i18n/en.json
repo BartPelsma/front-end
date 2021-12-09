@@ -145,6 +145,7 @@
     "LOADING": "Loading users",
     "NO_USERS": "No users found",
     "NO_USERS_RESPONSE": "Something went wrong, please try again later",
+    "INCORRECT_INDEX": "Something went wrong with the index, please try again later",
     "ROLETYPE": {
       "USER": "User",
       "EMPLOYEE": "Employee",
@@ -188,6 +189,7 @@
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} of {{length}}"
   },
   "RESERVATION": {
+    "INCORRECT_INDEX": "Something went wrong with the index, please try again later",
     "ACTION": {
       "TITLE": "Reservation actions",
       "OUT": "Out",
@@ -205,11 +207,11 @@
       }
     },
     "DATE": {
-      "TERM": "Date",
-      "PICKUP": "Pickup",
-      "RETURN": "Return"
+      "TERM": "Date: ",
+      "PICKUP": "Picked up",
+      "RETURN": "Returned"
     },
-    "LOCATION": "Location",
+    "LOCATION": "Location:",
     "NO_RESERVATIONS": "No reservations were found to be displayed",
     "NO_RESPONSE_DATA": "Could not retrieve reservation data",
     "NO_PRODUCT_DATA": "Could not retrieve product data"
