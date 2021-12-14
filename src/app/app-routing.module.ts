@@ -6,6 +6,7 @@ import { AppInventoryPageComponent } from './app-inventory-page/app-inventory-pa
 import { AppReservationsOverviewPageComponent } from './app-reservations-overview-page/app-reservations-overview-page.component';
 import { AppReservationActionPageComponent } from './app-reservation-action-page/app-reservation-action-page.component';
 import { AppShoppingCartPageComponent } from './app-shopping-cart-page/app-shopping-cart-page.component';
+import { LoginComponent } from './app-login-page/login.component';
 
 
 /*
@@ -14,6 +15,7 @@ import { AppShoppingCartPageComponent } from './app-shopping-cart-page/app-shopp
 */
 const routes: Routes = [
   { path: 'cart', component: AppShoppingCartPageComponent },
+  {path: 'login', component: LoginComponent},
   { path: 'products/add', component: AppAddProductPageComponent },
   { path: 'catalog', component: AppCatalogusPageComponent },
   { path: 'products', component: AppInventoryPageComponent },

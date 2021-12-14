@@ -1,0 +1,15 @@
+<form *ngIf="(accountService.currentUser$ | async) === null" #LoginForm="ngForm" class="d-flex" (ngSubmit) = "Login()" autocomplete="off">
+    <input 
+    name="username"
+    [(ngModel)]="model.username"
+    class="form-control me-2" 
+    type="text" 
+    placeholder="Username">
+    <input
+    name="password" 
+    [(ngModel)]="model.password"
+    class="form-control me-2" 
+    type="password" 
+    placeholder="Password">
+    <button class="btn btn-success" type="submit">Login</button>
+  </form>

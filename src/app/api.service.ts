@@ -11,6 +11,7 @@ import { CatalogPage } from './models/catalog-page.model';
 import { IInventoryPage } from './models/inventory-page.model';
 import { environment } from '../environments/environment';
 import { IReservationAction } from './models/reservation-action.model';
+import { Iuser } from './models/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,10 @@ export class ApiService {
 
   reservationAction(reservationAction: IReservationAction): Observable<HttpResponse<any>> {
     return this.http.post<any>(`${this.API_GATEWAY}reservation`, reservationAction, { observe: 'response' });
+  }
+
+  Login(loginAction: Iuser): Observable<HttpResponse<any>>{
+    return this.http.post<any>(`https://localhost:44379/api/account/login`, loginAction, {observe: 'response'} );
   }
   /* DELETE calls */
   archiveProduct(productid: number): Observable<HttpResponse<any>> {

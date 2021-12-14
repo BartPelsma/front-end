@@ -25,6 +25,7 @@ import { AppReservationsOverviewPageComponent } from './app-reservations-overvie
 import { AppReservationActionPageComponent } from './app-reservation-action-page/app-reservation-action-page.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { LoginComponent } from './app-login-page/login.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatSortModule } from '@angular/material/sort';
     AppArchiveDialogComponent,
     AppCatalogusPageComponent,
     AppReservationsOverviewPageComponent,
-    AppReservationActionPageComponent
+    AppReservationActionPageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
