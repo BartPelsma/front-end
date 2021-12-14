@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   model: any = {}
 
 
-  constructor(public accountService: AccountService, private router: Router, private apiService: ApiService  ) { }
+  constructor(private router: Router, private apiService: ApiService  ) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   Logout(){
-    this.accountService.logout();
+    this.apiService
     this.router.navigateByUrl('/')
   }
 
