@@ -9,6 +9,10 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { AppArchiveDialogComponent } from '../app-archive-dialog/app-archive-dialog.component';
 import { IInventoryPage } from '../models/inventory-page.model';
+import { ViewEncapsulation } from '@angular/core';
+import {
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
 
 const PAGE_SIZE_DEFAULT = 50;
 const INDEX_DEFAULT = 0;
@@ -17,7 +21,8 @@ const PRODUCT_COUNT_DEFAULT = 0;
 @Component({
   selector: 'app-inventory-page',
   templateUrl: './app-inventory-page.component.html',
-  styleUrls: ['./app-inventory-page.component.scss']
+  styleUrls: ['./app-inventory-page.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppInventoryPageComponent implements OnInit {
 
@@ -38,6 +43,8 @@ export class AppInventoryPageComponent implements OnInit {
   // MatPaginator Output
   pageEvent: PageEvent | undefined;
 
+  filterValue: string;
+
   dataSource: MatTableDataSource<IProductData>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -55,7 +62,7 @@ export class AppInventoryPageComponent implements OnInit {
     this.getProductData();
     this.dataSource.sort = this.sort;
   }
-  
+
   @ViewChild(MatSort) sort: MatSort;
   ngAfterViewInit(){
     this.dataSource.sort = this.sort;
@@ -142,15 +149,29 @@ export class AppInventoryPageComponent implements OnInit {
     }
   }
 
+  //Filter function
+  searchfilter:string = '-';
+  searchbar(selectedFilter:string){
+    this.searchfilter = selectedFilter;
+    
+    if (!this.searchfilter){
+      this.searchfilter = "-";
+    }
+
+    this.getProductData();
+  }
+
   /**
    * Get product data that gets displayed in the inventory
    */
   getProductData(): void {
     this.isLoading = true;
-    this.apiService.getInventoryProducts(this.pageIndex, this.pageSize)
+    this.apiService.getInventoryProducts(this.pageIndex, this.pageSize, this.searchfilter)
       .subscribe({
         next: (response) => {
+          
           this.readInventoryPage(response.body);
+          
           this.isLoading = false;
         },
         error: (err: any) => {

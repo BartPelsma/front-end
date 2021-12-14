@@ -6,7 +6,8 @@
       "CART": "Winkelmandje",
       "CATALOG": "Catalogus",
       "RESERVATIONS": "Reserveringen",
-      "RESERVATION": "Reservering"
+      "RESERVATION": "Reservering",
+      "USERS": "Gebruikers"
     }
   },
   "CATALOG": {
@@ -39,6 +40,7 @@
     "ADD_PRODUCT": "Product toevoegen",
     "SHOPPING_CART": "Winkelmandje",
     "RESERVATIONS": "Reserveringen",
+    "USERS": "Gebruikers",
     "LANGUAGE": "Taal",
     "LANGUAGES": {
       "NL": "Nederlands",
@@ -98,6 +100,7 @@
   },
   "PRODUCT_DATEPICKER": {
     "LABEL": "Kies een periode",
+    "LABEL_DISABLED": "Gekozen periode",
     "ERROR": {
       "START_DATE_WEEKEND": "Startdatum kan niet in het weekend zijn",
       "END_DATE_WEEKEND": "Einddatum kan niet in het weekend zijn",
@@ -133,6 +136,43 @@
     "LOCATION": "Locatie",
     "REQUIRES_APPROVAL": "Goedkeuring vereist",
     "OPTIONS": "Opties"
+  },
+  "USERS": {
+    "TITLE": "Gebruikers",
+    "USERS_EMPTY": "Geen gebruikers gevonden",
+    "LOADING": "Laden van gebruikers",
+    "NO_USERS": "Geen gebruikers gevonden",
+    "NO_USERS_RESPONSE": "Er is iets misgegaan, probeer later opnieuw",
+    "ROLETYPE": {
+      "USER": "Gebruiker",
+      "EMPLOYEE": "Medewerker",
+      "ADMIN": "Admin"
+    },
+    "ACTION": {
+      "ERROR": "Actie kan niet gedaan worden",
+      "EMPTY_DATE": "Voeg een toegestane einddatum toe voor het blokkeren",
+      "BLOCK_SUCCESS": "Blokkeren gelukt",
+      "PERMABLOCK_SUCCESS": "Oneindig blokkeren gelukt",
+      "UNBLOCK_SUCCESS": "Deblokkeren gelukt",
+      "UNSUCCESSFUL": "Actie is niet gelukt",
+      "INVALID": {
+        "CALL": "Ongeldig aanroep",
+        "ID": "Ongeldig ID meegegeven",
+        "BLOCK_ADMIN": "Admins kunnen niet worden geblokkeerd",
+        "ACTION":"Ongeldige actie op gebruiker"
+      }
+    }
+  },
+  "USERINFO": {
+    "NUMBER": "Studentennummer",
+    "NAME": "Naam",
+    "BANNED": "Geblokkeerd tot",
+    "INDEFINITE": "Geen einddatum",
+    "ROLE": "Rol",
+    "OPTIONS": "Opties",
+    "UNBLOCK_BUTTON": "Deblokkeren",
+    "BLOCK_BUTTON": "Blokkeer",
+    "BLOCK_DATEPICKER": "Kies einddatum"
   },
   "GENERIC": {
     "YES": "Ja",
@@ -173,5 +213,8 @@
     "NO_RESERVATIONS": "Geen reserveringen gevonden om te laten zien",
     "NO_RESPONSE_DATA": "Reservering gegevens konden niet opgehaald worden",
     "NO_PRODUCT_DATA": "Product gegevens konden niet opgehaald worden"
+  },
+  "FILTER": {
+    "SEARCHBAR": "Zoeken"
   }
 }

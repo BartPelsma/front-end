@@ -84,6 +84,8 @@ export class AppSideMenuBarComponent {
         break;
       case 'login':
         this.router.navigate(['login']);
+      case 'users':
+        this.router.navigate(['users']);
         break;
       default:
         break;

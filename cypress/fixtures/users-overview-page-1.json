@@ -1,0 +1,63 @@
+{
+    "currentPage": 0,
+    "totalUsersCount": 7,
+    "users": [
+      {
+        "id": 1,
+        "studentNumber": 100,
+        "name": "Fred",
+        "banned": false,
+        "bannedUntil": null,
+        "role": {
+          "id": 1,
+          "name": "User",
+          "permissions": null
+        }
+      },
+      {
+        "id": 2,
+        "studentNumber": 200,
+        "name": "Piet",
+        "banned": true,
+        "bannedUntil": "2022-01-02T10:00:00",
+        "role": {
+          "id": 1,
+          "name": "User",
+          "permissions": null
+        }
+      },
+      {
+        "id": 3,
+        "name": "Wil",
+        "banned": false,
+        "bannedUntil": null,
+        "role": {
+          "id": 2,
+          "name": "Employee",
+          "permissions": null
+        }
+      },
+      {
+        "id": 4,
+        "name": "Piet",
+        "banned": false,
+        "bannedUntil": null,
+        "role": {
+          "id": 3,
+          "name": "Admin",
+          "permissions": null
+        }
+      },
+      {
+        "id": 5,
+        "name": "Miep",
+        "banned": true,
+        "bannedUntil": null,
+        "role": {
+          "id": 2,
+          "name": "Employee",
+          "permissions": null
+        }
+      }
+    ]
+  }

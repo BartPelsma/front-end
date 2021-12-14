@@ -1,0 +1,122 @@
+<div class="container" style="padding-bottom: 10px;">
+    <mat-card *ngIf="!isLoading" class="main-content">
+        <mat-card-header>
+            <mat-card-title name="users-title">
+                <h1 class="mat-h1">{{ 'USERS.TITLE' | translate }}</h1>
+            </mat-card-title>
+
+            <div class="Searchbar">
+                <mat-form-field appearance="outline" class="DeleteInputPadding">
+                    <mat-label> {{ 'FILTER.SEARCHBAR' | translate }} </mat-label>
+                    <input  matInput>
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+
+        </mat-card-header>
+        <mat-card-content class="card-content mat-elevation-z0">
+
+            <mat-table *ngIf="dataSource.data.length > 0 && isLoading === false" [dataSource]="dataSource"
+                class="mat-elevation-z0">
+                <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+                <!-- Student Number Column -->
+                <ng-container matColumnDef="number">
+                    <mat-header-cell *matHeaderCellDef>{{ 'USERINFO.NUMBER' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.NUMBER' | translate">
+                        <div *ngIf="element.studentNumber">
+                            {{ element.studentNumber}}
+                        </div>
+                        <div *ngIf="!element.studentNumber">
+                            -
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="personName">
+                    <mat-header-cell *matHeaderCellDef>{{ 'USERINFO.NAME' | translate }}</mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.NAME' | translate">
+                        {{ element.name }}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Blocked Column -->
+                <ng-container matColumnDef="blocked">
+                    <mat-header-cell *matHeaderCellDef> {{ 'USERINFO.BANNED' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.BANNED' | translate">
+                        <div *ngIf="!element.bannedUntil && element.banned">
+                            {{ 'USERINFO.INDEFINITE' | translate }}
+                        </div>
+                        <div *ngIf="element.bannedUntil && element.banned">
+                            {{ element.bannedUntil | date }}
+                        </div>
+        
+                        <div *ngIf="element.role.name !== 'Admin' && !element.banned" >
+                            <mat-form-field appearance="fill" class="my-form-field">
+                                <mat-label> {{ 'USERINFO.BLOCK_DATEPICKER' | translate }} </mat-label>
+                                <input matInput [matDatepicker]="banPicker" [id]="element.id" (dateChange)="datepickerDateChanged(element, $event)" [min]="minDate">
+                                <mat-datepicker-toggle matSuffix [for]="banPicker"></mat-datepicker-toggle>
+                                <mat-datepicker #banPicker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div *ngIf="element.role.name === 'Admin'">
+                            -
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Role Column -->
+                <ng-container matColumnDef="role">
+                    <mat-header-cell *matHeaderCellDef> {{ 'USERINFO.ROLE' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.ROLE' | translate">
+                        {{ element.role.name | roleNameKey | translate }}
+                    </mat-cell>
+                </ng-container>
+
+                <!-- Blocking Options -->
+                <ng-container matColumnDef="blockOptions">
+                    <mat-header-cell *matHeaderCellDef> {{ 'USERINFO.OPTIONS' | translate }} </mat-header-cell>
+                    <mat-cell *matCellDef="let element" [attr.data-label]="'USERINFO.OPTIONS' | translate">
+                        <button name="unblock-button" [id]="element.id" (click)="userUnblockAction(element.id)"
+                        *ngIf="element.banned" mat-flat-button color="primary">
+                            {{ 'USERINFO.UNBLOCK_BUTTON' | translate }}
+                        </button>
+                        <div *ngIf="!element.banned && element.role.name !== 'Admin'" >
+                            <button name="block-button" [id]="element.id" mat-flat-button color="warn" (click)="userBlockAction(element.id, element.bannedSelected)">
+                                {{ 'USERINFO.BLOCK_BUTTON' | translate }}
+                            </button>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+                <mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></mat-row>
+            </mat-table>
+            <div *ngIf="dataSource.data.length === 0 && !isLoading" class="empty-message">
+                <mat-divider></mat-divider>
+                <mat-icon style="padding-top: 30px;">sentiment_dissatisfied</mat-icon>
+                <br>
+                {{ 'USERS.NO_USERS' | translate }}
+            </div>
+            <mat-paginator *ngIf="dataSource.data.length > 0" [length]="totalUsersCount" [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" (page)="pageEvent = handlePageEvent($event)"
+                showFirstLastButtons>
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div *ngIf="isLoading">
+    <mat-card class="spinner-container">
+        <mat-card-header>
+            <mat-card-title>{{ 'USERS.LOADING' | translate }}</mat-card-title>
+        </mat-card-header>
+        <mat-progress-spinner color="primary" mode="indeterminate">
+        </mat-progress-spinner>
+    </mat-card>
+</div>

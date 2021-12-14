@@ -21,11 +21,11 @@
                             <div class="description">{{ getFlatProductById(cartProduct.id).description }}</div>
                         </div>
                         <div class="product-list-info-item product-datepicker">
-                            <app-product-datepicker [productId]="cartProduct.id" [startDate]="cartProduct.startDate"
+                            <app-shopping-cart-datepicker [productId]="cartProduct.id" [startDate]="cartProduct.startDate"
                                 [endDate]="cartProduct.endDate" [localId]="cartProduct.localId"
                                 (errorsChanged)="datepickerErrorChanged(cartProduct.localId, $event)"
                                 (datesChanged)="datepickerDatesChanged(cartProduct.localId, $event)" #productdatepicker>
-                            </app-product-datepicker>
+                            </app-shopping-cart-datepicker>
                             <button mat-stroked-button color="primary" class="delete-entry-button"
                                 (click)="onClickRemove(cartProduct.localId)">
                                 <mat-icon>delete</mat-icon> {{ 'CART.REMOVE_PRODUCT' | translate }}

@@ -1,23 +1,7 @@
 .mat-table {
     width: 100%;
   }
-  
-  .available-status {
-    background-color: #006600;
-  }
-  
-  .requires-approval-status {
-    background-color: rgb(152, 79, 241);
-  }
-  
-  .unavailable-status {
-    background-color: #FF8000;
-  }
-  
-  .archived-status {
-    background-color: red;
-  }
-  
+
   .container {
     display: flex;
     justify-content: center;
@@ -37,42 +21,6 @@
     }
   }
   
-  // mat chip classes are replicates so the chip does not have to be in chip list
-  // this is necessary for mobile view
-  .mat-standard-chip {
-    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-flex;
-    padding: 7px 12px;
-    border-radius: 16px;
-    align-items: center;
-    cursor: default;
-    min-height: 32px;
-    height: 1px;
-  }
-  
-  .mat-chip {
-    position: relative;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    transform: translateZ(0);
-    border: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  
-  .mat-chip-ripple {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    pointer-events: none;
-    border-radius: inherit;
-    overflow: hidden;
-  }
-  
   .spinner-container {
     display: flex; 
     justify-content: center; 
@@ -90,13 +38,6 @@
     width: 100%;
   }
 
-//   ::ng-deep .mat-form-field-wrapper{
-//     margin-bottom: -1.25em !important;
-//  }
-
-//  ::ng-deep .mat-form-field-wrapper .mat-form-field-flex{
-//     margin-top: -0.50em !important;
-//  } 
   .Searchbar{
     display: flex;
     justify-content: flex-end;
@@ -104,14 +45,24 @@
   }
 
   .DeleteInputPadding .mat-form-field-wrapper {
-      margin-top: -0.25em !important;
-      padding-bottom: 0 !important;
+    margin-top: -0.25em !important;
+    padding-bottom: 0px !important;
   }
 
-  .DeleteInputPadding .mat-form-field-wrapper .mat-form-field-flex{
-      margin-top: 0em !important;
+  .mat-column-blocked {
+    padding-right: 50px;
   }
 
+  @media screen and (min-width: 960px){
+    .table-row {
+      height: 70px !important;
+    }
+  
+    .my-form-field .mat-form-field-wrapper {
+      margin-bottom: -1.25em;
+  }
+  }
+  
   @media screen and (max-width: 960px) {
     .mat-header-row {
       display: none;
@@ -176,5 +127,3 @@
       margin-top: 4%;
     }
   }
-
-  

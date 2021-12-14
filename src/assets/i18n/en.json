@@ -6,7 +6,8 @@
       "CART": "Shopping cart",
       "CATALOG": "Catalog",
       "RESERVATIONS": "Reservations",
-      "RESERVATION": "Reservation"
+      "RESERVATION": "Reservation",
+      "USERS": "Users"
     }
   },
   "CATALOG": {
@@ -40,6 +41,7 @@
     "ADD_PRODUCT": "Add product",
     "SHOPPING_CART": "Shopping cart",
     "RESERVATIONS": "Reservations",
+    "USERS": "Users",
     "LANGUAGE": "Language",
     "LANGUAGES": {
       "NL": "Dutch",
@@ -100,6 +102,7 @@
   },
   "PRODUCT_DATEPICKER": {
     "LABEL": "Choose a date period",
+    "LABEL_DISABLED": "Chosen period",
     "ERROR": {
       "START_DATE_WEEKEND": "Start date cannot be in the weekend",
       "END_DATE_WEEKEND": "End date cannot be in the weekend",
@@ -135,6 +138,43 @@
     "LOCATION": "Location",
     "REQUIRES_APPROVAL": "Requires approval",
     "OPTIONS": "Options"
+  },
+  "USERS": {
+    "TITLE": "Users",
+    "USERS_EMPTY": "No users found",
+    "LOADING": "Loading users",
+    "NO_USERS": "No users found",
+    "NO_USERS_RESPONSE": "Something went wrong, please try again later",
+    "ROLETYPE": {
+      "USER": "User",
+      "EMPLOYEE": "Employee",
+      "ADMIN": "Admin"
+    },
+    "ACTION": {
+      "ERROR": "Unable to complete action",
+      "EMPTY_DATE": "Add a valid end date for the block",
+      "BLOCK_SUCCESS": "Blocking successful",
+      "PERMABLOCK_SUCCESS": "Indefinite blocking successful",
+      "UNBLOCK_SUCCESS": "Unblocking successful",
+      "UNSUCCESSFUL": "Action was unsuccessful",
+      "INVALID": {
+        "CALL": "Invalid call",
+        "ID": "Invalid ID given",
+        "BLOCK_ADMIN": "Admins cannot be blocked",
+        "ACTION":"Invalid action on user"
+      }
+    }
+  },
+  "USERINFO": {
+    "NUMBER": "Student number",
+    "NAME": "Name",
+    "BANNED": "Blocked until",
+    "INDEFINITE": "No end date",
+    "ROLE": "Role",
+    "OPTIONS": "Options",
+    "UNBLOCK_BUTTON": "Unblock user",
+    "BLOCK_BUTTON": "Block user",
+    "BLOCK_DATEPICKER": "Choose enddate"
   },
   "GENERIC": {
     "YES": "Yes",
@@ -175,5 +215,8 @@
     "NO_RESERVATIONS": "No reservations were found to be displayed",
     "NO_RESPONSE_DATA": "Could not retrieve reservation data",
     "NO_PRODUCT_DATA": "Could not retrieve product data"
+  },
+  "FILTER": {
+    "SEARCHBAR": "Search"
   }
 }

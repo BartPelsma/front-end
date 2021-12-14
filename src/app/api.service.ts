@@ -12,6 +12,8 @@ import { IInventoryPage } from './models/inventory-page.model';
 import { environment } from '../environments/environment';
 import { IReservationAction } from './models/reservation-action.model';
 import { Iuser } from './models/login.model';
+import { IUsersPage } from './models/users-page.model';
+import { IUserBlockAction } from './models/users-block-action.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,16 +45,20 @@ export class ApiService {
     return this.http.get<IProductFlat>(`${this.API_GATEWAY}product/flat/${productId}`, { observe: 'response' });
   }
 
-  getInventoryProducts(pageNumber: number, pageSize: number): Observable<HttpResponse<IInventoryPage>> {
-    return this.http.get<IInventoryPage>(`${this.API_GATEWAY}product/page/${pageNumber}/${pageSize}`, { observe: 'response' });
+  getInventoryProducts(pageNumber: number, pageSize: number, searchfilter: string): Observable<HttpResponse<IInventoryPage>> {
+    return this.http.get<IInventoryPage>(`${this.API_GATEWAY}product/page/${pageNumber}/${pageSize}/${searchfilter}`, { observe: 'response' });
   }
 
-  getCatalogEntries(pageNumber: number, pageSize: number): Observable<HttpResponse<CatalogPage>> {
-    return this.http.get<CatalogPage>(`${this.API_GATEWAY}product/catalogentries/${pageNumber}/${pageSize}`, { observe: 'response' });
+  getCatalogEntries(pageNumber: number, pageSize: number, searchfilter:string, categoryfilter:string): Observable<HttpResponse<CatalogPage>> {
+    return this.http.get<CatalogPage>(`${this.API_GATEWAY}product/catalogentries/${pageNumber}/${pageSize}/${searchfilter}/${categoryfilter}`, { observe: 'response' });
   }
 
   getSimilarReservations(): Observable<HttpResponse<Array<Array<IReservation>>>> {
     return this.http.get<Array<Array<IReservation>>>(`${this.API_GATEWAY}reservation/similar`, { observe: 'response' });
+  }
+
+  getUsersForPage(pageNumber: number, pageSize: number): Observable<HttpResponse<IUsersPage>> {
+    return this.http.get<IUsersPage>(`${this.API_GATEWAY}user/page/${pageNumber}/${pageSize}`, { observe: 'response'});
   }
 
   /* POST calls */
@@ -75,6 +81,10 @@ export class ApiService {
   Login(loginAction: Iuser): Observable<HttpResponse<any>>{
     return this.http.post<any>(`https://localhost:44379/api/account/login`, loginAction, {observe: 'response'} );
   }
+  userBlockAction(userBlockAction: IUserBlockAction): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.API_GATEWAY}user/block`, userBlockAction, {observe: 'response' });
+  }
+
   /* DELETE calls */
   archiveProduct(productid: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.API_GATEWAY}product/` + productid, { observe: 'response' });

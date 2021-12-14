@@ -26,6 +26,10 @@ import { AppReservationActionPageComponent } from './app-reservation-action-page
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { LoginComponent } from './app-login-page/login.component';
+import { AppShoppingCartDatepickerComponent } from './app-shopping-cart-datepicker/app-shopping-cart-datepicker.component';
+import { MyFilterPipe } from './pipes/MyFilterPipe';
+import { AppUsersPageComponent } from './app-users-page/app-users-page.component';
+import { RoleNameKeyPipe } from './pipes/role-name-key.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { LoginComponent } from './app-login-page/login.component';
     AppCatalogusPageComponent,
     AppReservationsOverviewPageComponent,
     AppReservationActionPageComponent,
-    LoginComponent
+    LoginComponent,
+    MyFilterPipe,
+    AppShoppingCartDatepickerComponent,
+    AppUsersPageComponent,
+    RoleNameKeyPipe
   ],
   imports: [
     BrowserModule,
@@ -51,8 +59,6 @@ import { LoginComponent } from './app-login-page/login.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatSortModule,
-    MatTableModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -60,7 +66,7 @@ import { LoginComponent } from './app-login-page/login.component';
         deps: [HttpClient]
       }
     }),
-    LayoutModule
+    LayoutModule,
   ],
   providers: [
     {

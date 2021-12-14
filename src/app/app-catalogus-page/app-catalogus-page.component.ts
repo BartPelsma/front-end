@@ -8,6 +8,8 @@ import { CatalogItemsWithCategory } from '../models/catalog-items-with-catogery.
 import { CatalogPage } from '../models/catalog-page.model';
 import { ICatalogFlat } from '../models/catalog-flat.model';
 import { IDateChangedEvent } from '../models/date-changed-event.model';
+import { ViewEncapsulation } from '@angular/core';
+import { ICategory } from '../models/category.model';
 
 /* const variables for page sizing and index */
 const PAGE_SIZE_DEFAULT = 5;
@@ -17,7 +19,8 @@ const PRODUCT_COUNT_DEFAULT = 0;
 @Component({
   selector: 'app-catalogus-page',
   templateUrl: './app-catalogus-page.component.html',
-  styleUrls: ['./app-catalogus-page.component.scss']
+  styleUrls: ['./app-catalogus-page.component.scss'],
+  // encapsulation: ViewEncapsulation.None,
 })
 export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   /* MatPaginator Inputs */
@@ -44,6 +47,8 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   isLoading = true;
   /* All catalog items with their category */
   catalogItemsWithCategory: Array<CatalogItemsWithCategory>;
+  /* Categories for dropdown*/
+  categories: Array<ICategory>;
 
   constructor(
     private apiService: ApiService,
@@ -63,6 +68,15 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     if (catalogPageOptions != null) {
       this.pageSize = JSON.parse(catalogPageOptions);
     }
+
+    this.apiService.getAllCategories().subscribe({
+      next: (resp) => {
+        this.categories = resp.body;
+      },
+      error: (err) => {
+        this.showErrorNotification('PRODUCT.ADD.NO_CATEGORIES_RESPONSE');
+      }
+    });
   }
 
   /*
@@ -213,7 +227,7 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
    */
   private getCatalogItems(): void {
     this.isLoading = true;
-    this.apiService.getCatalogEntries(this.pageIndex, this.pageSize).subscribe({
+    this.apiService.getCatalogEntries(this.pageIndex, this.pageSize, this.searchfilter,this.categoryfilter).subscribe({
       next: (resp) => {
         this.readCatalogPage(resp.body);
         this.isLoading = false;
@@ -236,4 +250,33 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     });
   }
 
+  //Filter function
+  searchfilter:string = '-';
+  categoryfilter:string = '-';
+
+  searchbar(selectedFilter:string){
+    this.searchfilter = selectedFilter;
+
+    console.log('search')
+
+    if (!this.searchfilter){
+      this.searchfilter = "-";
+    }
+
+    this.getCatalogItems();
+  }
+
+  searchCategory(selectedFilter:string){
+
+    this.categoryfilter = selectedFilter;
+
+    console.log('filter')
+
+
+    if (!this.categoryfilter){
+      this.categoryfilter = "-";
+    }
+
+    this.getCatalogItems();
+  }
 }
