@@ -297,6 +297,7 @@ export class AppEditInventoryPageComponent implements OnInit {
         this.showErrorNotification(err.error);
       }
     });
+    this.dialogRef.close(true);
     this.ngOnInit();
   }
 
