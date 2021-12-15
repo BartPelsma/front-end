@@ -11,9 +11,9 @@ import { CatalogPage } from './models/catalog-page.model';
 import { IInventoryPage } from './models/inventory-page.model';
 import { environment } from '../environments/environment';
 import { IReservationAction } from './models/reservation-action.model';
-import { Iuser } from './models/login.model';
 import { IUsersPage } from './models/users-page.model';
 import { IUserBlockAction } from './models/users-block-action.model';
+import { IUserLogin } from './models/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -78,9 +78,10 @@ export class ApiService {
     return this.http.post<any>(`${this.API_GATEWAY}reservation`, reservationAction, { observe: 'response' });
   }
 
-  Login(loginAction: Iuser): Observable<HttpResponse<any>>{
-    return this.http.post<any>(`https://localhost:44379/api/account/login`, loginAction, {observe: 'response'} );
+  Login(loginAction: IUserLogin): Observable<HttpResponse<any>>{
+    return this.http.post<any>(`${this.API_GATEWAY}account/login`, loginAction, {observe: 'response'} );
   }
+
   userBlockAction(userBlockAction: IUserBlockAction): Observable<HttpResponse<any>> {
     return this.http.post<any>(`${this.API_GATEWAY}user/block`, userBlockAction, {observe: 'response' });
   }

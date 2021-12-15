@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService } from '../services/account.service';
 import { ApiService } from '../api.service';
+import { IUserLogin } from '../models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { ApiService } from '../api.service';
 
 
 export class LoginComponent implements OnInit {
-  model: any = {}
+  model: IUserLogin = {} as IUserLogin;
 
 
   constructor(private router: Router, private apiService: ApiService  ) { }
@@ -20,11 +20,18 @@ export class LoginComponent implements OnInit {
   }
 
   Login() {
-    this.apiService.Login(this.model).subscribe(response => {
-      this.router.navigateByUrl('/login')
-
-    }, error => {
-    console.log(error);})
+    if(!this.model){
+      (      error: any) => {
+        console.log(error);}
+    }
+    else{
+      console.log(this.model);
+      this.apiService.Login(this.model).subscribe(response => {
+        this.router.navigateByUrl('/login')
+  
+      }, error => {
+      console.log(error);})
+    }
   }
 
   Logout(){

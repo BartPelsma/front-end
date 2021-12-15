@@ -1,4 +1,4 @@
-export interface Iuser {
+export interface IUserLogin {
     username: string;
-    token: string;
+    password: string;
 }
