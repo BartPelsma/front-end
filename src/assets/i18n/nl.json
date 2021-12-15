@@ -72,7 +72,8 @@
       "NO_CATEGORIES_RESPONSE": "Er is iets misgegaan met het ophalen van de categorieën. Probeer het later opnieuw of contacteer een administrator",
       "NO_CATALOG_NUMBER_RESPONSE": "Er is iets misgegaan met het ophalen van de catalogusnummers. Probeer het later opnieuw of contacteer een administrator",
       "NO_DATA": "Er is iets misgegaan met het opslaan van de gegevens. Probeer het later opnieuw of contacteer een administrator",
-      "ADD_SUCCESSFUL": "Product is toegevoegd!"
+      "ADD_SUCCESSFUL": "Product is toegevoegd!",
+      "ADD_PDF": "Pdf toevoegen"
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Bevestig",
