@@ -14,6 +14,7 @@ import { IReservationAction } from './models/reservation-action.model';
 import { IUsersPage } from './models/users-page.model';
 import { IUserBlockAction } from './models/users-block-action.model';
 import { IUserLogin } from './models/login.model';
+import { IUserReturn } from './models/loginreturn.model';
 
 @Injectable({
   providedIn: 'root'
@@ -78,8 +79,8 @@ export class ApiService {
     return this.http.post<any>(`${this.API_GATEWAY}reservation`, reservationAction, { observe: 'response' });
   }
 
-  Login(loginAction: IUserLogin): Observable<HttpResponse<any>>{
-    return this.http.post<any>(`${this.API_GATEWAY}account/login`, loginAction, {observe: 'response'} );
+  Login(loginAction: IUserLogin): Observable<HttpResponse<IUserReturn>>{
+    return this.http.post<IUserReturn>(`${this.API_GATEWAY}account/login`, loginAction, {observe: 'response'} );
   }
 
   userBlockAction(userBlockAction: IUserBlockAction): Observable<HttpResponse<any>> {

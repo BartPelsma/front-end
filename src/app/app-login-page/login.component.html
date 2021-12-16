@@ -1,4 +1,4 @@
-<form #LoginForm="ngForm" class="d-flex" (ngSubmit) = "Login()" autocomplete="off">
+<form *ngIf="(accountService.currentUser$ | async) === null" #LoginForm="ngForm" class="d-flex" (ngSubmit) = "Login()" autocomplete="off">
     <input 
     name="username"
     [(ngModel)]="model.username"
