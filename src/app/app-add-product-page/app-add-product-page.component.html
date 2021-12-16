@@ -73,6 +73,7 @@
                         (click)="onClickAddPdf()" [disabled]="isLoading" name="pdf-input-button">
                         <mat-icon>picture_as_pdf</mat-icon>
                     </button>
+                    <span style="color: rgb(105, 240, 174);" *ngIf="fileName">{{fileName}}</span>
                     <button mat-icon-button [title]="'PRODUCT.ADD.REMOVE_IMAGE' | translate" color="accent"
                         (click)="removingImageIndex = selectedImageIndex - 1"
                         [disabled]="isLoading || images.length < 1" name="remove-image-button">

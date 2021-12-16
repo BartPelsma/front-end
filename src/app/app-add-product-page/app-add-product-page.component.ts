@@ -27,6 +27,7 @@ export class AppAddProductPageComponent implements OnInit {
   images: Array<IAddProductImage> = [];
   /* Selected index of the image carousel. */
   pdf: Array<IAddProductPDF> = [];
+  /* Selected index of the PDF */
   selectedImageIndex = 0;
   /* Selected image that has to be removed. Is null when confirm is not active. */
   removingImageIndex: number | null = null;
@@ -260,8 +261,8 @@ export class AppAddProductPageComponent implements OnInit {
   }
 
 
-  async onFileSelected(PDFInput: any){
-    let file = PDFInput.target.files[0];
+  async onFileSelected(pdfInput: any){
+    let file = pdfInput.target.files[0];
     this.fileName = file.name;
 
     const element = document.getElementById('pdfInput') as HTMLInputElement;
