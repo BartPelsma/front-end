@@ -12,6 +12,14 @@
 
     }
   },
+
+  "LOGIN": {
+    "USERNAME": "Gebruikersnaam",
+    "PASSWORD": "Wachtwoord",
+    "SIGNIN": "Inloggen",
+    "SIGNOUT": "Uitloggen"
+    
+  },
   "CATALOG": {
     "TITLE": "Catalogus",
     "APPROVAL_TEXT_YES": "Goedkeuring nodig",

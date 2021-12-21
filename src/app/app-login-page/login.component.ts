@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { ViewEncapsulation } from '@angular/core';
 import { AccountService } from '../account.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   private currentUserSource = new ReplaySubject<IUserReturn>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
+
   constructor(
     private router: Router, 
     private apiService: ApiService,
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
   Login() {
     if(!this.model){
       (      error: any) => {
-        console.log(error);}
+        this.showSuccessNotification("Logged in");}
     }
     else{
       console.log(this.model);
@@ -49,6 +51,7 @@ export class LoginComponent implements OnInit {
   }
 
     Logout(){
+    this.accountService.logout();
     this.router.navigateByUrl('/');
     }
   

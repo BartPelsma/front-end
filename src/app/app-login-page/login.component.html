@@ -1,15 +1,18 @@
-<form *ngIf="(accountService.currentUser$ | async) === null" #LoginForm="ngForm" class="d-flex" (ngSubmit) = "Login()" autocomplete="off">
-    <input 
-    name="username"
-    [(ngModel)]="model.username"
-    class="form-control me-2" 
-    type="text" 
-    placeholder="Username">
-    <input
-    name="password" 
-    [(ngModel)]="model.password"
-    class="form-control me-2" 
-    type="password" 
-    placeholder="Password">
-    <button class="btn btn-success" type="submit">Login</button>
+<div> 
+
+  <div *ngIf="(accountService.currentUser$ | async) as user" button>
+      <button name="category-save-button" (click)="Logout()" mat-flat-button style="float: right; margin-bottom: 10px;" [title]="'LOGIN.SIGNOUT' | translate" color="accent">{{ 'LOGIN.SIGNOUT' | translate }}</button>
+  </div>
+
+  <form *ngIf="(accountService.currentUser$ | async) === null" #LoginForm="ngForm" class="d-flex" (ngSubmit) = "Login()" autocomplete="off">
+    <mat-form-field appearance="fill" class="input-field-full-width">
+      <mat-label name="login-username-input-label">{{ 'LOGIN.USERNAME' | translate }}</mat-label>
+      <input matInput [(ngModel)]="model.username" name="login-username-input">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="input-field-full-width">
+      <mat-label name="login-password-input-label">{{ 'LOGIN.PASSWORD' | translate }}</mat-label>
+      <input matInput [(ngModel)]="model.password" type="password" name="login-password-input">
+    </mat-form-field>
+    <button name="category-save-button" type="submit" mat-flat-button style="float: right; margin-bottom: 10px;" [title]="'LOGIN.SIGNIN' | translate" color="accent">{{ 'LOGIN.SIGNIN' | translate }}</button>
   </form>
+</div>

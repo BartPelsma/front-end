@@ -11,6 +11,14 @@
       "LOGIN": "Login"
     }
   },
+
+  "LOGIN": {
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "SIGNIN": "Login",
+    "SIGNOUT": "Sign out"
+  },
+
   "CATALOG": {
     "TITLE": "Catalog",
     "APPROVAL_TEXT_YES": "Approval necessary",
