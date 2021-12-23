@@ -3,20 +3,30 @@
     <div class="header">
         <!-- Filter function-->
         <div class="filterbar">
-            
-            <mat-form-field appearance="fill" style="padding-top: 20px;">
+
+            <mat-form-field appearance="fill"
+                            style="padding-top: 20px;">
                 <mat-label>Choose a filter</mat-label>
-                <mat-select class="selector" [(ngModel)]="categoryfilter" #mySelect (selectionChange)='searchCategory(mySelect.value)'>
-                    <mat-option selected value="-">All</mat-option>
-                    <mat-option *ngFor="let category of categories" class="dropdown"
-                        value="{{category.name}}">{{category.name}}</mat-option>
+                <mat-select class="selector"
+                            [(ngModel)]="categoryfilter"
+                            #mySelect
+                            (selectionChange)='searchCategory(mySelect.value)'>
+                    <mat-option selected
+                                value="-">All</mat-option>
+                    <mat-option *ngFor="let category of categories"
+                                class="dropdown"
+                                value="{{category.name}}">{{category.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <div class="Searchbar" style="padding-top: 20px; padding-left: 10px; padding-right: 20%;">
-                <mat-form-field appearance="outline" class="DeleteInputPadding">
+            <div class="Searchbar"
+                 style="padding-top: 20px; padding-left: 10px; padding-right: 20%;">
+                <mat-form-field appearance="outline"
+                                class="DeleteInputPadding">
                     <mat-label>{{ 'FILTER.SEARCHBAR' | translate }}</mat-label>
-                    <input #MySearchBar (keyup)='searchbar(MySearchBar.value)' matInput>
+                    <input #MySearchBar
+                           (keyup)='searchbar(MySearchBar.value)'
+                           matInput>
                     <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
             </div>
@@ -24,7 +34,8 @@
     </div>
 
     <!-- Loading spinner when page is loading -->
-    <div class="loading-spinner" *ngIf="isLoading">
+    <div class="loading-spinner"
+         *ngIf="isLoading">
         <mat-card style="display: flex; flex-direction: column; align-items: center; margin-top: 70px;">
             <h2 style=" padding-right: 20px;">{{ 'CATALOG.LOADING' | translate }}</h2>
             <mat-spinner diameter="70"></mat-spinner>
@@ -33,7 +44,7 @@
 
     <!-- Display box if there are no catalog items to be found -->
     <div *ngIf="!isLoading && catalogItemsWithCategory !== null && catalogItemsWithCategory.length < 1"
-        style="text-align: center; margin-top: 10px;">
+         style="text-align: center; margin-top: 10px;">
         <mat-card class="empty-catalog-card">
             <mat-card-header>
                 <mat-card-title name="cart-title">
@@ -49,44 +60,66 @@
         </mat-card>
     </div>
 
-    <div class="body" *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0">
-        <div *ngFor="let catalogItem of catalogItemsWithCategory" class="main-container">
+    <div class="body"
+         *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0">
+        <div *ngFor="let catalogItem of catalogItemsWithCategory"
+             class="main-container">
             <mat-card class="catalog-card">
                 <mat-card-header>
                     <mat-card-title name="cart-title">
                         <h1>{{catalogItem.categoryName}}</h1>
                     </mat-card-title>
                 </mat-card-header>
-                <mat-card-content style="overflow: hidden;" class="catalog-content">
+                <mat-card-content style="overflow: hidden;"
+                                  class="catalog-content">
                     <div *ngFor="let item of catalogItem.catalogItems">
                         <mat-divider></mat-divider>
+
+
                         <div class="catalogItemBox">
                             <div class="catalogItemBox-imgbox">
-                                <img *ngIf="item.images?.length; else elseImageBlock" class="image-div"
-                                    src="data:image/png;base64,{{item.images[0]}}" #previewimage id="image-{{item.id}}">
+                                <img *ngIf="item.images?.length; else elseImageBlock"
+                                     class="image-div"
+                                     src="data:image/png;base64,{{item.images[0]}}"
+                                     #previewimage
+                                     id="image-{{item.id}}">
                                 <ng-template #elseImageBlock>
-                                    <img class="image-div" src="/assets/images/image-not-found.jpg">
+                                    <img class="image-div"
+                                         src="/assets/images/image-not-found.jpg">
                                 </ng-template>
-                                <div class="image-div" *ngIf="checkAmountOfImages(item.images)">
-                                    <button style="font-size: 28px;" mat-icon-button disableRipple
-                                        [title]="'PRODUCT.ADD.LEFT' | translate" color="accent"
-                                        (click)="onClickPreviousImage(item)" name="previous-image-button">
+                                <div class="image-div"
+                                     *ngIf="checkAmountOfImages(item.images)">
+                                    <button style="font-size: 28px;"
+                                            mat-icon-button
+                                            disableRipple
+                                            [title]="'PRODUCT.ADD.LEFT' | translate"
+                                            color="accent"
+                                            (click)="onClickPreviousImage(item)"
+                                            name="previous-image-button">
                                         &laquo;
                                     </button>
-                                    <button style="padding-left: 25px; font-size: 28px;" disableRipple mat-icon-button
-                                        [title]="'PRODUCT.ADD.RIGHT' | translate" color="accent"
-                                        (click)="onClickNextImage(item)" name="next-image-button">
+                                    <button style="padding-left: 25px; font-size: 28px;"
+                                            disableRipple
+                                            mat-icon-button
+                                            [title]="'PRODUCT.ADD.RIGHT' | translate"
+                                            color="accent"
+                                            (click)="onClickNextImage(item)"
+                                            name="next-image-button">
                                         &raquo;
                                     </button>
                                 </div>
                             </div>
                             <div class="catalogItemBox-middle">
                                 <div class="catalogItemBox-status">
-                                    <h2 name="item-name" style="padding-right: 10px;">{{item.name}}</h2>
+                                    <h2 name="item-name"
+                                        style="padding-right: 10px;">{{item.name}}</h2>
                                     <div>
-                                        <mat-chip-list *ngIf="item.requiresApproval" style="margin-top: 5px;"
-                                            class="mat-chip-list-stacked" aria-label="Color selection">
-                                            <mat-chip selected color="accent">
+                                        <mat-chip-list *ngIf="item.requiresApproval"
+                                                       style="margin-top: 5px;"
+                                                       class="mat-chip-list-stacked"
+                                                       aria-label="Color selection">
+                                            <mat-chip selected
+                                                      color="accent">
                                                 {{
                                                 (item.requiresApproval ? 'CATALOG.APPROVAL_TEXT_YES' :
                                                 'CATALOG.APPROVAL_TEXT_NO') |
@@ -101,18 +134,33 @@
                             </div>
                             <div class="catalogItemBox-datepicker">
                                 <p name="datepicker-not-available"
-                                    style="width: 100%; padding-top: 40px; padding-right: 20px; margin:auto"
-                                    *ngIf="item.status == 1; else elseBlock">
+                                   style="width: 100%; padding-top: 40px; padding-right: 20px; margin:auto"
+                                   *ngIf="item.status == 1; else elseBlock">
                                     Product niet beschikbaar
                                 </p>
                                 <ng-template #elseBlock>
-                                    <app-product-datepicker name="datepicker" [productId]="item.id" #productdatepicker
-                                        (datesChanged)="datepickerDatesChanged(item, $event)">
+                                    <app-product-datepicker name="datepicker"
+                                                            [productId]="item.id"
+                                                            #productdatepicker
+                                                            (datesChanged)="datepickerDatesChanged(item, $event)">
                                     </app-product-datepicker>
                                 </ng-template>
-                                <button name="add-to-cart-button" *ngIf="item.status != 1" mat-flat-button
-                                    color="primary" (click)="addItemToCart(item)"> {{ 'CATALOG.ADD_TO_CART'
-                                    | translate }} </button>
+                                <button name="add-to-cart-button"
+                                        *ngIf="item.status != 1"
+                                        margin-right="20px"
+                                        mat-flat-button
+                                        color="primary"
+                                        (click)="addItemToCart(item)"> {{ 'CATALOG.ADD_TO_CART'
+                                    | translate }} 
+                                </button>
+                                    <button name="pdfdownload"
+                                    *ngFor="let pdf of item.pdfs"
+                                    margin-left="20px"
+                                    mat-flat-button
+                                    color="primary"
+                                    (click)="DownloadPDF(pdf)">
+                                    DownloadPDF
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -122,8 +170,12 @@
     </div>
     <div class="footer">
         <mat-paginator *ngIf="catalogItemsWithCategory !== null && !isLoading && catalogItemsWithCategory.length > 0"
-            style="margin-top: 30px;" [length]="totalProductCount" [pageSize]="pageSize"
-            [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex" (page)="pageEvent = handlePageEvent($event)"
-            showFirstLastButtons></mat-paginator>
+                       style="margin-top: 30px;"
+                       [length]="totalProductCount"
+                       [pageSize]="pageSize"
+                       [pageSizeOptions]="pageSizeOptions"
+                       [pageIndex]="pageIndex"
+                       (page)="pageEvent = handlePageEvent($event)"
+                       showFirstLastButtons></mat-paginator>
     </div>
 </div>

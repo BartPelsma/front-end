@@ -1,0 +1,35 @@
+[
+    {
+      "id": 16,
+      "startDate": "2021-12-16T22:59:58",
+      "endDate": "2021-12-17T22:59:59",
+      "pickedUpDate": null,
+      "returnDate": null,
+      "renterId": 0,
+      "reviewerId": null,
+      "isApproved": null,
+      "productId": 21
+    },
+    {
+      "id": 17,
+      "startDate": "2021-12-16T22:59:58",
+      "endDate": "2021-12-17T22:59:59",
+      "pickedUpDate": "2022-01-01T22:59:59",
+      "returnDate": null,
+      "renterId": 0,
+      "reviewerId": null,
+      "isApproved": null,
+      "productId": 8
+    },
+    {
+      "id": 18,
+      "startDate": "2021-12-16T22:59:58",
+      "endDate": "2021-12-17T22:59:59",
+      "pickedUpDate": "2022-03-02T22:59:59",
+      "returnDate": "2022-03-05T22:59:59",
+      "renterId": 0,
+      "reviewerId": null,
+      "isApproved": null,
+      "productId": 9
+    }
+  ]

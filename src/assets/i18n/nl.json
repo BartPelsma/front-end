@@ -72,7 +72,8 @@
       "NO_CATEGORIES_RESPONSE": "Er is iets misgegaan met het ophalen van de categorieën. Probeer het later opnieuw of contacteer een administrator",
       "NO_CATALOG_NUMBER_RESPONSE": "Er is iets misgegaan met het ophalen van de catalogusnummers. Probeer het later opnieuw of contacteer een administrator",
       "NO_DATA": "Er is iets misgegaan met het opslaan van de gegevens. Probeer het later opnieuw of contacteer een administrator",
-      "ADD_SUCCESSFUL": "Product is toegevoegd!"
+      "ADD_SUCCESSFUL": "Product is toegevoegd!",
+      "ADD_PDF": "Pdf toevoegen"
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Bevestig",
@@ -123,7 +124,7 @@
   },
   "RESERVATIONS": {
     "TITLE": "Reserveringen",
-    "START_DATE": "Start datum",
+    "START_DATE": "Startdatum",
     "RENTER": "Lener",
     "PRODUCTS": "Producten",
     "OPEN_RESERVATION": "Reservering openen",
@@ -134,6 +135,7 @@
     "NAME": "Naam",
     "STATUS": "Status",
     "LOCATION": "Locatie",
+    "CATEGORY": "Categorie",
     "REQUIRES_APPROVAL": "Goedkeuring vereist",
     "OPTIONS": "Opties"
   },
@@ -143,6 +145,7 @@
     "LOADING": "Laden van gebruikers",
     "NO_USERS": "Geen gebruikers gevonden",
     "NO_USERS_RESPONSE": "Er is iets misgegaan, probeer later opnieuw",
+    "INCORRECT_INDEX": "Er is iets misgegaan met de index, probeer later opnieuw",
     "ROLETYPE": {
       "USER": "Gebruiker",
       "EMPLOYEE": "Medewerker",
@@ -152,6 +155,7 @@
       "ERROR": "Actie kan niet gedaan worden",
       "EMPTY_DATE": "Voeg een toegestane einddatum toe voor het blokkeren",
       "BLOCK_SUCCESS": "Blokkeren gelukt",
+      "PERMABLOCK_SUCCESS": "Oneindig blokkeren gelukt",
       "UNBLOCK_SUCCESS": "Deblokkeren gelukt",
       "UNSUCCESSFUL": "Actie is niet gelukt",
       "INVALID": {
@@ -166,6 +170,7 @@
     "NUMBER": "Studentennummer",
     "NAME": "Naam",
     "BANNED": "Geblokkeerd tot",
+    "INDEFINITE": "Geen einddatum",
     "ROLE": "Rol",
     "OPTIONS": "Opties",
     "UNBLOCK_BUTTON": "Deblokkeren",
@@ -186,6 +191,7 @@
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} van {{length}}"
   },
   "RESERVATION": {
+    "INCORRECT_INDEX": "Er is iets misgegaan met de index, probeer later opnieuw",
     "ACTION": {
       "OUT": "Uitgeven",
       "TITLE": "Reservering acties",
@@ -194,7 +200,7 @@
       "LOADING": "Laden...",
       "ERROR": "Actie kan niet gedaan worden",
       "NOT_FOUND": "Reservatie kan niet gevonden worden",
-      "SUCCESS": "Reservering actie geluk",
+      "SUCCESS": "Reservering actie gelukt",
       "UNSUCCESSFUL": "Reservering actie is niet gelukt",
       "INVALID": {
         "CALL": "Ongeldig aanroep",
@@ -203,11 +209,11 @@
       }
     },
     "DATE": {
-      "TERM": "Datum",
+      "TERM": "Datum: ",
       "PICKUP": "Opgehaald",
       "RETURN": "Teruggebracht"
     },
-    "LOCATION": "Locatie",
+    "LOCATION": "Locatie:",
     "NO_RESERVATIONS": "Geen reserveringen gevonden om te laten zien",
     "NO_RESPONSE_DATA": "Reservering gegevens konden niet opgehaald worden",
     "NO_PRODUCT_DATA": "Product gegevens konden niet opgehaald worden"

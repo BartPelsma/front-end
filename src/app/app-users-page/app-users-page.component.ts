@@ -52,6 +52,7 @@ export class AppUsersPageComponent implements OnInit {
     {
       this.dataSource = new MatTableDataSource();
       this.minDate = new Date();
+      this.minDate.setDate(this.minDate.getDate() + 1);
      }
 
   ngOnInit(): void {
@@ -136,6 +137,9 @@ export class AppUsersPageComponent implements OnInit {
     if (date.value) {
       user.bannedSelected = date.value;
     }
+    else {
+      user.bannedSelected = undefined;
+    }
   }
 
   /**
@@ -146,12 +150,24 @@ export class AppUsersPageComponent implements OnInit {
   userBlockAction(id: number, blockDate: Date): void {
     this.isLoading = true;
 
-    console.log("DATE GIVEN: " + blockDate);
-    console.log("NEW DATE: " + new Date());
-    
-    if ( new Date(blockDate) <= new Date() || new Date(blockDate as Date) <= new Date() || !blockDate ) {
+    if ( !blockDate ) {
+      const blockAction: IUserBlockAction = { userId: id, action: UsersBlockAction.Permablock, blockUntil: blockDate };
+
+      this.apiService.userBlockAction(blockAction).subscribe({
+        next: (resp) => {
+          this.isLoading = false;
+          this.showSuccessNotification('USERS.ACTION.PERMABLOCK_SUCCESS');
+          this.updateUser(id, UsersBlockAction.Permablock, blockDate);
+        },
+        error: (err) => {
+          this.isLoading = false;
+          this.showErrorNotification(err.error);
+        }
+      });
+    }
+    else if ( new Date(blockDate) <= new Date() || new Date(blockDate as Date) <= new Date() ) {
       this.isLoading = false;
-      this.showErrorNotification('USERS.ACTION.EMPTY_DATE')
+      this.showErrorNotification('USERS.ACTION.EMPTY_DATE');
     }
     else if (id > -1) {
       const blockAction: IUserBlockAction = { userId: id, action: UsersBlockAction.Block, blockUntil: blockDate };
@@ -211,12 +227,17 @@ export class AppUsersPageComponent implements OnInit {
       if (user.id === id) {
         switch (action) {
           case UsersBlockAction.Block: {
-            user.unblocked = false;
+            user.banned = true;
             user.bannedUntil = blockDate;
             break;
           }
           case UsersBlockAction.Unblock: {
-            user.unblocked = true;
+            user.banned = false;
+            break;
+          }
+          case UsersBlockAction.Permablock: {
+            user.banned = true;
+            user.bannedUntil = null;
             break;
           }
           default: {

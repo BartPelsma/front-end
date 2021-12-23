@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { IReservationAction } from './models/reservation-action.model';
 import { IUsersPage } from './models/users-page.model';
 import { IUserBlockAction } from './models/users-block-action.model';
+import { IReservationOverviewPage } from './models/reservation-overview-page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,8 +53,8 @@ export class ApiService {
     return this.http.get<CatalogPage>(`${this.API_GATEWAY}product/catalogentries/${pageNumber}/${pageSize}/${searchfilter}/${categoryfilter}`, { observe: 'response' });
   }
 
-  getSimilarReservations(): Observable<HttpResponse<Array<Array<IReservation>>>> {
-    return this.http.get<Array<Array<IReservation>>>(`${this.API_GATEWAY}reservation/similar`, { observe: 'response' });
+  getSimilarReservations(pageNumber: number, pageSize: number): Observable<HttpResponse<IReservationOverviewPage>> {
+    return this.http.get<IReservationOverviewPage>(`${this.API_GATEWAY}reservation/similar/${pageNumber}/${pageSize}`, { observe: 'response' });
   }
 
   getUsersForPage(pageNumber: number, pageSize: number): Observable<HttpResponse<IUsersPage>> {

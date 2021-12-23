@@ -6,6 +6,7 @@
         "id": 6,
         "studentNumber": 700,
         "name": "Frans",
+        "banned": false,
         "bannedUntil": null,
         "role": {
           "id": 1,
@@ -17,6 +18,7 @@
         "id": 7,
         "studentNumber": 900,
         "name": "Jo",
+        "banned": false,
         "bannedUntil": null,
         "role": {
           "id": 1,

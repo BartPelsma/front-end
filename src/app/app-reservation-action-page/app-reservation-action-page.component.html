@@ -27,7 +27,7 @@
                         translate}}
             </div>
             <div class="item-box-reservation col">
-              {{ 'RESERVATION.DATE.TERM' | translate }} {{reservation.startDate | date}} /
+              {{ 'RESERVATION.DATE.TERM' | translate }} {{reservation.startDate | date}} -
               {{reservation.endDate | date}}
             </div>
           </div>
@@ -52,7 +52,7 @@
           </div>
           <div *ngIf="reservation.pickedUpDate && reservation.returnDate">
             <div>{{ 'RESERVATION.DATE.PICKUP' | translate }} {{reservation.pickedUpDate | date}}</div>
-            <div>{{ 'RESERVATION.DATE.RETURN' | translate }} {{reservation.pickedUpDate | date}}</div>
+            <div>{{ 'RESERVATION.DATE.RETURN' | translate }} {{reservation.returnDate | date}}</div>
           </div>
           <mat-spinner *ngIf="isLoading" diameter="35" style="margin:auto; padding-bottom: 10px;"
             name="reservation-loading-spinner"></mat-spinner>
