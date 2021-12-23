@@ -72,7 +72,7 @@
                         [disabled]="isLoading || images.length < 1" name="remove-image-button">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <input id="PDFInput" type="file" (change)="onFileChanged($event)" accept="application/pdf" hidden='true'
+                    <input id="PDFInput" type="file" (change)="onFileSelected($event)" accept="application/pdf" hidden='true'
                     multiple [disabled]="isLoading" name="file-input-button">
                     <button mat-icon-button [title]="'PRODUCT.ADD.ADD_PDF' | translate" color="accent"
                         (click)="onClickAddPdf()" [disabled]="isLoading" name="PDF-input-button">
