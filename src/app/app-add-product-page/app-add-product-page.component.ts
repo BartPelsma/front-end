@@ -214,7 +214,7 @@ export class AppAddProductPageComponent implements OnInit {
   }
 
   onClickAddPdf(): void {
-    const element = document.getElementById('pdfInput') as HTMLElement;
+    const element = document.getElementById('PDFInput') as HTMLElement;
     element.click();
   }
 
@@ -261,11 +261,12 @@ export class AppAddProductPageComponent implements OnInit {
   }
 
 
-  async onFileSelected(pdfInput: any){
-    let file = pdfInput.target.files[0];
-    this.fileName = file.name;
 
-    const element = document.getElementById('pdfInput') as HTMLInputElement;
+  async onFileSelected(PDFInput: any){
+    let file = PDFInput.target.files[0];
+    this.fileName = file.name;  
+
+    const element = document.getElementById('PDFInput') as HTMLInputElement;
     if (element.files == null) {
       return
     }
