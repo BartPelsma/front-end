@@ -26,7 +26,7 @@ export class AppAddProductPageComponent implements OnInit {
   /* Contains all (temp) image objects  */
   images: Array<IAddProductImage> = [];
   /* Selected index of the image carousel. */
-  pdf: Array<IAddProductPDF> = [];
+  pdfs: Array<IAddProductPDF> = [];
   /* Selected index of the PDF */
   selectedImageIndex = 0;
   /* Selected image that has to be removed. Is null when confirm is not active. */
@@ -63,6 +63,8 @@ export class AppAddProductPageComponent implements OnInit {
   */
   initialisePage(): void {
     this.images = [];
+    this.pdfs = [];
+    this.fileName = '';
 
     this.addNewCategory = false;
 
@@ -71,6 +73,7 @@ export class AppAddProductPageComponent implements OnInit {
       catalogNumber: 0,
       description: '',
       images: [],
+      pdfs:[],
       location: '',
       name: '',
       requiresApproval: false
@@ -214,7 +217,7 @@ export class AppAddProductPageComponent implements OnInit {
   }
 
   onClickAddPdf(): void {
-    const element = document.getElementById('pdfInput') as HTMLElement;
+    const element = document.getElementById('PDFInput') as HTMLElement;
     element.click();
   }
 
@@ -261,11 +264,13 @@ export class AppAddProductPageComponent implements OnInit {
   }
 
 
-  async onFileSelected(pdfInput: any){
-    let file = pdfInput.target.files[0];
-    this.fileName = file.name;
 
-    const element = document.getElementById('pdfInput') as HTMLInputElement;
+  async onFileSelected(PDFInput: any){
+    let file = PDFInput.target.files[0];
+    this.fileName = file.name;  
+
+    console.log("text")
+    const element = document.getElementById('PDFInput') as HTMLInputElement;
     if (element.files == null) {
       return
     }
@@ -275,7 +280,7 @@ export class AppAddProductPageComponent implements OnInit {
         base64: await this.PDFToBas64(element.files.item(i)).then(x => x) as string,
         file: element.files.item(i) as File
       };
-      this.pdf.push(newPDF);
+      this.pdfs.push(newPDF);
     }
   }
 
@@ -306,6 +311,7 @@ export class AppAddProductPageComponent implements OnInit {
     this.isLoading = true;
 
     this.product.images = this.images.map(x => x.base64);
+    this.product.pdfs = this.pdfs.map(x => x.base64);
 
     this.apiService.addProduct(this.product).subscribe({
       next: (resp) => {

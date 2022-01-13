@@ -147,7 +147,7 @@
                                 </ng-template>
                                 <button name="add-to-cart-button"
                                         *ngIf="item.status != 1"
-                                        margin-right="20px"
+                                        style="margin-right:20px"
                                         mat-flat-button
                                         color="primary"
                                         (click)="addItemToCart(item)"> {{ 'CATALOG.ADD_TO_CART'
@@ -155,7 +155,7 @@
                                 </button>
                                     <button name="pdfdownload"
                                     *ngFor="let pdf of item.pdfs"
-                                    margin-left="20px"
+                                    style="margin-left:20px"
                                     mat-flat-button
                                     color="primary"
                                     (click)="DownloadPDF(pdf)">
