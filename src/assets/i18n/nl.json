@@ -7,8 +7,18 @@
       "CATALOG": "Catalogus",
       "RESERVATIONS": "Reserveringen",
       "RESERVATION": "Reservering",
-      "USERS": "Gebruikers"
+      "USERS": "Gebruikers",
+      "LOGIN": "Login"
+
     }
+  },
+
+  "LOGIN": {
+    "USERNAME": "Gebruikersnaam",
+    "PASSWORD": "Wachtwoord",
+    "SIGNIN": "Inloggen",
+    "SIGNOUT": "Uitloggen"
+    
   },
   "CATALOG": {
     "TITLE": "Catalogus",

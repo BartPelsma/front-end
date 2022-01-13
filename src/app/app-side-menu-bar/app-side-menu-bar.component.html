@@ -59,12 +59,13 @@
       </mat-form-field>
     </div>
   </div>
-  <div class="session-buttons">
-    <button mat-stroked-button class="session-button" style="width: 100%" (click)="onClickLogout()">
+  <div>
+    <button mat-stroked-button class="session-button" style="width: 100%; text-align: center;" (click)="onClickNavigate('login')"
+      [style]="isOnRoute('login')" name="menu-option-login">
       <mat-icon>exit_to_app</mat-icon>
-      {{ 'SIDE_BAR.LOGOUT' | translate }}
-    </button>
+      <mat-label>Login</mat-label>
 
+    </button>
   </div>
   <div>
     <button mat-button style="width: 100%; text-align: center;" (click)="onClickPinMenu()">

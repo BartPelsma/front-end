@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { AccountService } from '../account.service';
 
 
 @Component({
@@ -81,6 +82,9 @@ export class AppSideMenuBarComponent {
         break;
       case 'reservations':
         this.router.navigate(['reservations']);
+        break;
+      case 'login':
+        this.router.navigate(['login']);
         break;
       case 'users':
         this.router.navigate(['users']);
