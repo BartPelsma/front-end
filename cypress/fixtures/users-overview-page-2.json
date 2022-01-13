@@ -3,7 +3,10 @@
     "totalUsersCount": 7,
     "users": [
       {
-        "studentNumber": 7,
+        "id": 6,
+        "studentNumber": 700,
+        "name": "Frans",
+        "banned": false,
         "bannedUntil": null,
         "role": {
           "id": 1,
@@ -12,7 +15,10 @@
         }
       },
       {
-        "studentNumber": 8,
+        "id": 7,
+        "studentNumber": 900,
+        "name": "Jo",
+        "banned": false,
         "bannedUntil": null,
         "role": {
           "id": 1,

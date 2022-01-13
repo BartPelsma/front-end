@@ -6,6 +6,10 @@ import { ApiService } from '../api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { UsersBlockAction } from '../enum/users-block-action.enum';
+import { IUserBlockAction } from '../models/users-block-action.model';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import * as moment from 'moment';
 import { ViewEncapsulation } from '@angular/core';
 
 const PAGE_SIZE_DEFAULT = 25;
@@ -26,7 +30,7 @@ export class AppUsersPageComponent implements OnInit {
   isLoading = true;
 
   // determined whch columns that are displayed in the users table and in which order.
-  displayedColumns: string[] = ['number', 'role', 'blocked', 'blockOptions'];
+  displayedColumns: string[] = ['personName', 'number', 'role', 'blocked', 'blockOptions'];
 
   // MatPaginator Inputs
   totalUsersCount = USERS_COUNT_DEFAULT;
@@ -48,6 +52,7 @@ export class AppUsersPageComponent implements OnInit {
     {
       this.dataSource = new MatTableDataSource();
       this.minDate = new Date();
+      this.minDate.setDate(this.minDate.getDate() + 1);
      }
 
   ngOnInit(): void {
@@ -77,18 +82,6 @@ export class AppUsersPageComponent implements OnInit {
     this.paginator.pageIndex = INDEX_DEFAULT;
   }
 
-  /*
-    Show error notification
-
-    @param translateableMessage: string
-    String that has to be presented in the error notification (gets translated)
-  */
-    showErrorNotification(translateableMessage: string): void {
-      this.notificationService.open(this.translateService.instant(translateableMessage), undefined, {
-        panelClass: 'error-snack',
-        duration: 2500
-      });
-    }
 
     /**
    * Gets the data from the usersPage object
@@ -133,6 +126,148 @@ export class AppUsersPageComponent implements OnInit {
           this.isLoading = false;
         }
       });
+  }
+
+  /**
+   * Handles datepicker date changed event
+   * @param user IUser; the user whose blocking date is changed
+   * @param date Date; the new blocking date
+   */
+  datepickerDateChanged(user: IUser, date: MatDatepickerInputEvent<Date>): void {
+    if (date.value) {
+      user.bannedSelected = date.value;
+    }
+    else {
+      user.bannedSelected = undefined;
+    }
+  }
+
+  /**
+   * Action function to block a user
+   * @param id number; the id of the user
+   * @param blockDate Date; the date until when the user will be blocked
+   */
+  userBlockAction(id: number, blockDate: Date): void {
+    this.isLoading = true;
+
+    if ( !blockDate ) {
+      const blockAction: IUserBlockAction = { userId: id, action: UsersBlockAction.Permablock, blockUntil: blockDate };
+
+      this.apiService.userBlockAction(blockAction).subscribe({
+        next: (resp) => {
+          this.isLoading = false;
+          this.showSuccessNotification('USERS.ACTION.PERMABLOCK_SUCCESS');
+          this.updateUser(id, UsersBlockAction.Permablock, blockDate);
+        },
+        error: (err) => {
+          this.isLoading = false;
+          this.showErrorNotification(err.error);
+        }
+      });
+    }
+    else if ( new Date(blockDate) <= new Date() || new Date(blockDate as Date) <= new Date() ) {
+      this.isLoading = false;
+      this.showErrorNotification('USERS.ACTION.EMPTY_DATE');
+    }
+    else if (id > -1) {
+      const blockAction: IUserBlockAction = { userId: id, action: UsersBlockAction.Block, blockUntil: blockDate };
+
+      this.apiService.userBlockAction(blockAction).subscribe({
+        next: (resp) => {
+          this.isLoading = false;
+          this.showSuccessNotification('USERS.ACTION.BLOCK_SUCCESS');
+          this.updateUser(id, UsersBlockAction.Block, blockDate);
+        },
+        error: (err) => {
+          this.isLoading = false;
+          this.showErrorNotification(err.error);
+        }
+      });
+    }
+    else {
+      this.showErrorNotification('USERS.ACTION.UNSUCCESSFUL');
+    }
+  }
+
+  /**
+   * Action function to unblock a user
+   * @param id number; the id of the user
+   */
+   userUnblockAction(id: number): void {
+    this.isLoading =true;
+    const blockDate: Date = new Date();
+    const blockAction: IUserBlockAction = { userId: id, action: UsersBlockAction.Unblock, blockUntil: blockDate};
+    if (id > -1) {
+      this.apiService.userBlockAction(blockAction).subscribe({
+        next: (resp) => {
+          this.isLoading = false;
+          this.showSuccessNotification('USERS.ACTION.UNBLOCK_SUCCESS');
+          this.updateUser(id, UsersBlockAction.Unblock, blockDate);
+        },
+        error: (err) => {
+          this.isLoading = false;
+          this.showErrorNotification(err.error);
+        }
+      });
+    }
+    else {
+      this.showErrorNotification('USERS.ACTION.UNSUCCESSFUL');
+    }
+  }
+
+  /**
+   * Updates the current list
+   * @param id number; the id of the user
+   * @param action number; 0 Block, 1 Unblock
+   * @param blockDate Date; the date until when the user will be blocked
+   */
+  private updateUser(id: number, action: UsersBlockAction, blockDate: Date): void {
+      
+    this.dataSource.data.forEach(user => {
+      if (user.id === id) {
+        switch (action) {
+          case UsersBlockAction.Block: {
+            user.banned = true;
+            user.bannedUntil = blockDate;
+            break;
+          }
+          case UsersBlockAction.Unblock: {
+            user.banned = false;
+            break;
+          }
+          case UsersBlockAction.Permablock: {
+            user.banned = true;
+            user.bannedUntil = null;
+            break;
+          }
+          default: {
+            this.showErrorNotification('USERS.ACTION.ERROR');
+            break;
+          }
+        }
+      }
+    });
+  }
+
+
+  
+  /*
+    Show error notification
+
+    @param translateableMessage: string
+    String that has to be presented in the error notification (gets translated)
+  */
+  private showErrorNotification(translateableMessage: string): void {
+    this.notificationService.open(this.translateService.instant(translateableMessage), undefined, {
+      panelClass: 'error-snack',
+      duration: 2500
+     });
+  }
+  private showSuccessNotification(translatableMessage: string): void {
+    this.notificationService.open(this.translateService.instant(translatableMessage), undefined, {
+      panelClass: 'success-snack',
+      duration: 2500
+    });
   }
 
 }

@@ -92,13 +92,13 @@ describe('Inventory tests', () => {
     });
 
     it('Should go to next page', () => {
-        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');
         cy.changeLanguage('en');
         cy.wait("@getProducts");
 
-        cy.intercept('GET', /\/api\/product\/page\/1\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProductsNextPage');
+        cy.intercept('GET', /\/api\/product\/page\/1\/[0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProductsNextPage');
         cy.get('.mat-paginator-container mat-select').click().get('mat-option').contains(5).click();
         cy.get(".mat-paginator-navigation-next").click();
 
@@ -107,21 +107,21 @@ describe('Inventory tests', () => {
 
 
     it('Should change page size', () => {
-        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');
         cy.changeLanguage('en');
         cy.wait("@getProducts");
 
-        cy.intercept('GET', '/api/product/page/0/100', { fixture: 'inventory-products.json' }).as('getProducts');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts2');
 
         cy.get('.mat-paginator-container mat-select').click().get('mat-option').contains(100).click();
 
-        cy.wait("@getProducts");
+        cy.wait("@getProducts2");
     });
 
     it('Should have 5 products', () => {
-        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');
         cy.changeLanguage('en');
@@ -131,13 +131,13 @@ describe('Inventory tests', () => {
     });
 
     it('Should change product amount on page change', () => {
-        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');
         cy.changeLanguage('en');
         cy.wait("@getProducts");
 
-        cy.intercept('GET', /\/api\/product\/page\/1\/[0-9]+$/, { fixture: 'inventory-products-page-2.json' }).as('getProductsNextPage');
+        cy.intercept('GET', /\/api\/product\/page\/1\/[0-9]\/-+$/, { fixture: 'inventory-products-page-2.json' }).as('getProductsNextPage');
         cy.get('.mat-paginator-container mat-select').click().get('mat-option').contains(5).click();
         cy.get(".mat-paginator-navigation-next").click();
 
@@ -147,7 +147,7 @@ describe('Inventory tests', () => {
     });
 
     it('Should menu button on archived product should be disabled', () => {
-        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');
         cy.changeLanguage('en');
@@ -157,7 +157,7 @@ describe('Inventory tests', () => {
     });
 
     it('Should show require approval labels in English', () => {
-        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');
         cy.changeLanguage('en');
@@ -168,7 +168,7 @@ describe('Inventory tests', () => {
     });
 
     it('Should show require approval labels in Dutch', () => {
-        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');
         cy.changeLanguage('nl');
@@ -178,21 +178,48 @@ describe('Inventory tests', () => {
         cy.get('.mat-table').find('.cdk-column-requiresApproval:contains("Nee")').should('have.length', 3);
     });
 
-    it('Should show correct information in the table', () => {
-        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+    it('Should show correct information in the table after searchfilter', () => {
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
 
         cy.visit('http://localhost:4200/products');
         cy.changeLanguage('nl');
         cy.wait("@getProducts");
 
-        cy.get('.mat-table').find('.mat-column-name').contains('DJ set').should('exist');
-        cy.get('.mat-table').find('.mat-column-name').contains('CANON R5').should('exist');
-        cy.get('.mat-table').find('.mat-column-name').contains('CANON R4').should('exist');
-        cy.get('.mat-table').find('.mat-column-name').contains('CANON R3').should('exist');
-        cy.get('.mat-table').find('.mat-column-name').contains('CANON R2').should('exist');
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/[A-Z]+$/, { fixture: 'inventory-products-page-2.json' }).as('getSearchedProducts');
+        cy.get('#mat-input-0').type('C')
+        cy.wait("@getSearchedProducts");
 
-        cy.get('.mat-table').find('.mat-column-location').contains('A3.3').should('exist');
-        cy.get('.mat-table').find('.mat-column-location').contains('Die ene plank').should('exist');
-        cy.get('.mat-table').find('.mat-column-location:contains("Balie")').should('have.length', 3);
+        cy.get('.mat-table').find('.mat-row').should('have.length', 1);
+    });
+
+    it('Should change order of inventory', () => {
+        cy.intercept('GET', /\/api\/product\/page\/0\/[0-9][0-9]\/-+$/, { fixture: 'inventory-products.json' }).as('getProducts');
+
+        cy.visit('http://localhost:4200/products');
+        cy.changeLanguage('en');
+        cy.wait("@getProducts");
+
+        cy.intercept('GET', /\/api\/product\/page\/1\/[0-9]+$/, { fixture: 'inventory-products.json' }).as('getProductsNextPage');
+
+        cy.get(".mat-header-cell").contains('Name').click();
+        cy.get(':nth-child(2) > .cdk-column-name').contains("CANON R2")
+        cy.get(".mat-header-cell").contains('Name').click();
+        cy.get(':nth-child(2) > .cdk-column-name').contains("DJ set")
+
+        cy.get(".mat-header-cell").contains('Status').click();
+        cy.get(':nth-child(2) > .cdk-column-status > .mat-chip').contains("Available")
+        cy.get(".mat-header-cell").contains('Status').click();
+        cy.get(':nth-child(2) > .cdk-column-status > .mat-chip').contains("Archived")
+
+        cy.get(".mat-header-cell").contains('Location').click();
+        cy.get(':nth-child(2) > .cdk-column-location').contains("A3.3")
+        cy.get(".mat-header-cell").contains('Location').click();
+        cy.get(':nth-child(2) > .cdk-column-location').contains('Die ene plank')
+
+        cy.get(".mat-header-cell").contains('Requires approval').click();
+        cy.get(':nth-child(2) > .cdk-column-requiresApproval').contains('No')
+        cy.get(".mat-header-cell").contains('Requires approval').click();
+        cy.get(':nth-child(2) > .cdk-column-requiresApproval').contains('Yes')
+
     });
 });

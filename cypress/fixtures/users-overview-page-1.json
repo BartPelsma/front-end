@@ -3,7 +3,10 @@
     "totalUsersCount": 7,
     "users": [
       {
-        "studentNumber": 1,
+        "id": 1,
+        "studentNumber": 100,
+        "name": "Fred",
+        "banned": false,
         "bannedUntil": null,
         "role": {
           "id": 1,
@@ -12,7 +15,10 @@
         }
       },
       {
-        "studentNumber": 2,
+        "id": 2,
+        "studentNumber": 200,
+        "name": "Piet",
+        "banned": true,
         "bannedUntil": "2022-01-02T10:00:00",
         "role": {
           "id": 1,
@@ -21,7 +27,9 @@
         }
       },
       {
-        "studentNumber": 4,
+        "id": 3,
+        "name": "Wil",
+        "banned": false,
         "bannedUntil": null,
         "role": {
           "id": 2,
@@ -30,7 +38,9 @@
         }
       },
       {
-        "studentNumber": 5,
+        "id": 4,
+        "name": "Piet",
+        "banned": false,
         "bannedUntil": null,
         "role": {
           "id": 3,
@@ -39,7 +49,9 @@
         }
       },
       {
-        "studentNumber": 6,
+        "id": 5,
+        "name": "Miep",
+        "banned": true,
         "bannedUntil": null,
         "role": {
           "id": 2,

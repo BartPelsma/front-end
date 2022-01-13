@@ -8,6 +8,10 @@ import { CatalogItemsWithCategory } from '../models/catalog-items-with-catogery.
 import { CatalogPage } from '../models/catalog-page.model';
 import { ICatalogFlat } from '../models/catalog-flat.model';
 import { IDateChangedEvent } from '../models/date-changed-event.model';
+import { ViewEncapsulation } from '@angular/core';
+import { ICategory } from '../models/category.model';
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
+
 
 /* const variables for page sizing and index */
 const PAGE_SIZE_DEFAULT = 5;
@@ -17,7 +21,8 @@ const PRODUCT_COUNT_DEFAULT = 0;
 @Component({
   selector: 'app-catalogus-page',
   templateUrl: './app-catalogus-page.component.html',
-  styleUrls: ['./app-catalogus-page.component.scss']
+  styleUrls: ['./app-catalogus-page.component.scss'],
+  // encapsulation: ViewEncapsulation.None,
 })
 export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   /* MatPaginator Inputs */
@@ -44,6 +49,8 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
   isLoading = true;
   /* All catalog items with their category */
   catalogItemsWithCategory: Array<CatalogItemsWithCategory>;
+  /* Categories for dropdown*/
+  categories: Array<ICategory>;
 
   constructor(
     private apiService: ApiService,
@@ -63,6 +70,15 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     if (catalogPageOptions != null) {
       this.pageSize = JSON.parse(catalogPageOptions);
     }
+
+    this.apiService.getAllCategories().subscribe({
+      next: (resp) => {
+        this.categories = resp.body;
+      },
+      error: (err) => {
+        this.showErrorNotification('PRODUCT.ADD.NO_CATEGORIES_RESPONSE');
+      }
+    });
   }
 
   /*
@@ -98,6 +114,42 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     this.onChangeSelectedImageIndex(item);
   }
 
+  public DownloadPDF(pdf: any) {
+    var blob = this.base64toBlob(pdf);
+
+
+    var file = new Blob([blob], { type: 'application/pdf' })
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL)
+
+
+    // const source = `data:application/pdf;base64,${pdf}`;
+    // const link = document.createElement("a");
+    // link.href = source;
+    // link.download = `${"fileName"}.pdf`
+    // link.click();
+  }
+
+  public base64toBlob(base64Data: string) {
+    const sliceSize = 1024;
+    const byteCharacters = atob(base64Data);
+    const bytesLength = byteCharacters.length;
+    const slicesCount = Math.ceil(bytesLength / sliceSize);
+    const byteArrays = new Array(slicesCount);
+
+    for (let sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+      const begin = sliceIndex * sliceSize;
+      const end = Math.min(begin + sliceSize, bytesLength);
+
+      const bytes = new Array(end - begin);
+      for (let offset = begin, i = 0; offset < end; ++i, ++offset) {
+        bytes[i] = byteCharacters[offset].charCodeAt(0);
+      }
+      byteArrays[sliceIndex] = new Uint8Array(bytes);
+    }
+    return new Blob(byteArrays, { type: "application/pdf" });
+  }
+
   /*
     Changes the image after changing the index.
   */
@@ -106,30 +158,49 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     imageElement.nativeElement.src = 'data:image/png;base64,' + item.images[item.imageIndex];
   }
 
+
   /**
    * Handles the adding of a item to the cart
    * @param item item object that should be handled to be added to the cart
    */
   addItemToCart(item: ICatalogFlat): void {
-    if (new Date(item.startDate) <= new Date() || new Date(item.endDate as Date) <= new Date()) {
-      this.showErrorNotification('CATALOG.EMPTY_DATE');
+    if (this.checkAmountofProductsInCart(this.cartItems, item) === true) {
+      if (new Date(item.startDate) <= new Date() || new Date(item.endDate as Date) <= new Date()) {
+        this.showErrorNotification('CATALOG.EMPTY_DATE');
+      }
+      else {
+        const modal = {} as ICartProduct;
+        modal.endDate = item.endDate;
+        modal.startDate = item.startDate;
+        modal.id = item.id;
+        this.cartItems.push(modal);
+
+        localStorage.setItem('cart', JSON.stringify(this.cartItems));
+
+        this.notificationService.open(item.name + ' ' + this.translateService.instant('CATALOG.CART_ADD_SUCCESSFUL'), undefined, {
+          panelClass: 'success-snack',
+          duration: 2500
+        });
+      }
     }
     else {
-      const modal = {} as ICartProduct;
-      modal.endDate = item.endDate;
-      modal.startDate = item.startDate;
-      modal.id = item.id;
-      this.cartItems.push(modal);
-
-      localStorage.setItem('cart', JSON.stringify(this.cartItems));
-
-      this.notificationService.open(item.name + ' ' + this.translateService.instant('CATALOG.CART_ADD_SUCCESSFUL'), undefined, {
-        panelClass: 'success-snack',
-        duration: 2500
-      });
+      this.showErrorNotification('CATALOG.ALREADY_IN_CART')
     }
+
   }
 
+  test: boolean;
+  checkAmountofProductsInCart(cartItems: Array<ICartProduct>, item: ICatalogFlat): boolean {
+    this.test = true
+
+    cartItems.forEach(element => {
+      if (element.id == item.id) {
+        this.test = false;
+      }
+    });
+
+    return this.test;
+  }
   /**
    * Handles the checking of amount of images with a received item
    * @param images images object that should be handled
@@ -195,7 +266,7 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
    */
   private getCatalogItems(): void {
     this.isLoading = true;
-    this.apiService.getCatalogEntries(this.pageIndex, this.pageSize).subscribe({
+    this.apiService.getCatalogEntries(this.pageIndex, this.pageSize, this.searchfilter, this.categoryfilter).subscribe({
       next: (resp) => {
         this.readCatalogPage(resp.body);
         this.isLoading = false;
@@ -218,22 +289,33 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  //Filter values
-  filter:string = '';
-  filterargs = {category: ''};
-
   //Filter function
-  search(selectedFilter:string){
-    this.filterargs = {category: this.filter};
+  searchfilter: string = '-';
+  categoryfilter: string = '-';
+
+  searchbar(selectedFilter: string) {
+    this.searchfilter = selectedFilter;
+
+    console.log('search')
+
+    if (!this.searchfilter) {
+      this.searchfilter = "-";
+    }
+
+    this.getCatalogItems();
   }
 
+  searchCategory(selectedFilter: string) {
 
-  //Filter values
-  searchfilter:string = '';
-  searchfilterargs = {productname: ''};
+    this.categoryfilter = selectedFilter;
 
-  //Filter function
-  searchbar(selectedFilter:string){
-    this.searchfilterargs = {productname: this.searchfilter};
+    console.log('filter')
+
+
+    if (!this.categoryfilter) {
+      this.categoryfilter = "-";
+    }
+
+    this.getCatalogItems();
   }
 }

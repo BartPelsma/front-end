@@ -1,0 +1,32 @@
+{
+    "reservations": [
+        [
+            {
+              "id": 20,
+              "startDate": "2021-10-20T21:59:58",
+              "endDate": "2021-10-22T21:59:59",
+              "pickedUpDate": null,
+              "returnDate": null,
+              "renterId": 0,
+              "reviewerId": null,
+              "isApproved": null,
+              "productId": 21
+            }
+          ],
+          [
+            {
+              "id": 21,
+              "startDate": "2021-10-25T21:59:58",
+              "endDate": "2021-10-27T21:59:59",
+              "pickedUpDate": "2021-10-20T10:34:35.0539898",
+              "returnDate": "2021-10-20T10:34:35.7640458",
+              "renterId": 0,
+              "reviewerId": null,
+              "isApproved": null,
+              "productId": 21
+            }
+        ]
+    ],
+    "currentPage": 1,
+    "totalReservationCount": 7
+  }

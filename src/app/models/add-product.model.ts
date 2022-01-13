@@ -13,5 +13,8 @@ export interface IAddProductObject {
     /* All images of the product (does not include note images) */
     images: Array<string>;
     /* Boolean to check if approval (action by the lender) is required before finalising the reservation. */
+    pdfs: Array<string>;
     requiresApproval: boolean;
+    /* the PDF of the product*/
+    // pdf: Array<string>;
 }
