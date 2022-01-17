@@ -9,6 +9,8 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { AppArchiveDialogComponent } from '../app-archive-dialog/app-archive-dialog.component';
 import { IInventoryPage } from '../models/inventory-page.model';
+import { AppAddPdfComponent } from '../app-add-pdf/app-add-pdf.component';
+import { AppDeletePdfComponent } from '../app-delete-pdf/app-delete-pdf.component';
 import { ViewEncapsulation } from '@angular/core';
 import {
   debounceTime, distinctUntilChanged, switchMap
@@ -109,18 +111,38 @@ export class AppInventoryPageComponent implements OnInit {
     });
   }
 
+  openAddPDF(element: any): void{
+    const dialogRef = this.dialog.open(AppAddPdfComponent, {
+      data: {
+        id: element.id,
+        name: element.name
+      },
+      backdropClass: 'no-backdrop',
+    });
+  }
+
+  openDeletePDF(element: any): void{
+    const dialogRef = this.dialog.open(AppDeletePdfComponent, {
+      data: {
+        id: element.id,
+        name: element.name
+      },
+      backdropClass: 'no-backdrop',
+    });
+  }
   /*
     Show error notification
 
     @param translateableMessage: string
     String that has to be presented in the error notification (gets translated)
   */
-  showErrorNotification(translateableMessage: string): void {
-    this.notificationService.open(this.translateService.instant(translateableMessage), undefined, {
-      panelClass: 'error-snack',
-      duration: 2500
-    });
-  }
+
+    showErrorNotification(translateableMessage: string): void {
+      this.notificationService.open(this.translateService.instant(translateableMessage), undefined, {
+        panelClass: 'error-snack',
+        duration: 2500
+      });
+    }
 
   /**
    * Gets the data from the inventoryPage object

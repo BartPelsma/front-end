@@ -1,0 +1,29 @@
+<div class="container">
+  <mat-card class="main-content">
+    <mat-card-header>
+      <mat-card-title name="login-title">
+        {{ 'LOGIN.SIGNIN' | translate }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+  <div class="loginfield">
+    <div  *ngIf="(accountService.currentUser$ | async) as user" button>
+      <button name="category-save-button" (click)="Logout()" mat-flat-button style="float: right; margin-bottom: 10px; " [title]="'LOGIN.SIGNOUT' | translate" color="accent">{{ 'LOGIN.SIGNOUT' | translate }}</button>
+    </div>
+
+    <li class="mat-form-field--inline">
+  <form *ngIf="(accountService.currentUser$ | async) === null" #LoginForm="ngForm" class="d-flex" (ngSubmit) = "Login()" autocomplete="off">
+    <mat-form-field appearance="fill" class="input-field-full-width">
+      <mat-label name="login-username-input-label">{{ 'LOGIN.USERNAME' | translate }}</mat-label>
+      <input matInput [(ngModel)]="model.username" name="login-username-input">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="input-field-full-width">
+      <mat-label name="login-password-input-label">{{ 'LOGIN.PASSWORD' | translate }}</mat-label>
+      <input matInput [(ngModel)]="model.password" type="password" name="login-password-input">
+    </mat-form-field>
+    <button name="category-save-button" type="submit" mat-flat-button style="float: right; margin-bottom: 10px;" [title]="'LOGIN.SIGNIN' | translate" color="accent">{{ 'LOGIN.SIGNIN' | translate }}</button>
+  </form>
+</li>
+</div>
+</mat-card>
+</div>

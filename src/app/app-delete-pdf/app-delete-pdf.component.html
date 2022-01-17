@@ -1,0 +1,17 @@
+<h2 class="dialog-title">Delete PDF</h2>
+
+<div class="delete">
+    <p>
+        {{ 'PRODUCT.DELETE.DIALOG_DELETE_MESSAGE' | translate }}
+    </p>
+    <ul>
+        <li name="archive-dialog-list-item">---</li>
+      </ul>
+</div>
+
+<button class="delete-button" name="archive-dialog-archive-button" mat-button> 
+    {{ 'PRODUCT.DELETE.DIALOG_DELETE_BUTTON' | translate }}
+  </button>
+  <button class="cancel-button" (click)="closeDialog()" name="archive-dialog-cancel-button" mat-stroked-button>
+    {{ 'PRODUCT.ARCHIVE.DIALOG_CANCEL_BUTTON' | translate }}
+  </button>

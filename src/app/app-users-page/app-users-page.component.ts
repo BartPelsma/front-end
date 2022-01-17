@@ -138,7 +138,7 @@ export class AppUsersPageComponent implements OnInit {
       user.bannedSelected = date.value;
     }
     else {
-      user.bannedSelected = undefined;
+      user.bannedSelected = undefined!;
     }
   }
 
@@ -237,7 +237,7 @@ export class AppUsersPageComponent implements OnInit {
           }
           case UsersBlockAction.Permablock: {
             user.banned = true;
-            user.bannedUntil = null;
+            user.bannedUntil = null!;
             break;
           }
           default: {

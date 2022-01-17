@@ -7,8 +7,18 @@
       "CATALOG": "Catalogus",
       "RESERVATIONS": "Reserveringen",
       "RESERVATION": "Reservering",
-      "USERS": "Gebruikers"
+      "USERS": "Gebruikers",
+      "LOGIN": "Login"
+
     }
+  },
+
+  "LOGIN": {
+    "USERNAME": "Gebruikersnaam",
+    "PASSWORD": "Wachtwoord",
+    "SIGNIN": "Inloggen",
+    "SIGNOUT": "Uitloggen"
+    
   },
   "CATALOG": {
     "TITLE": "Catalogus",
@@ -73,7 +83,7 @@
       "NO_CATALOG_NUMBER_RESPONSE": "Er is iets misgegaan met het ophalen van de catalogusnummers. Probeer het later opnieuw of contacteer een administrator",
       "NO_DATA": "Er is iets misgegaan met het opslaan van de gegevens. Probeer het later opnieuw of contacteer een administrator",
       "ADD_SUCCESSFUL": "Product is toegevoegd!",
-      "ADD_PDF": "Pdf toevoegen"
+      "DIALOG_ADD_BUTTON": "PDF Toevoegen"
     },
     "ARCHIVE": {
       "DIALOG_TITLE": "Bevestig",
@@ -84,6 +94,11 @@
       "NO_PRODUCT_FOUND": "Het product dat gearchiveerd moet worden is niet gevonden",
       "PRODUCT_ALREADY_ARCHIVED": "Dit product is al gearchiveerd",
       "ARCHIVE_SUCCESFULL": "Het product is succesvol gearchiveerd!"
+    },
+    "DELETE":{
+      "DIALOG_DELETE_BUTTON": "PDF Verwijderen",
+      "DIALOG_DELETE_MESSAGE": "U staat op het punt de PDF van het volgende product te verwijderen:"
+
     }
   },
   "CART": {
